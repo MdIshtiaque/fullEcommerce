@@ -10,7 +10,7 @@
     <meta name="keywords"
           content="admin template, Tinker Admin Template, dashboard template, flat admin template, responsive admin template, web app">
     <meta name="author" content="LEFT4CODE">
-    <title>Login - Tinker - Tailwind HTML Admin Template</title>
+    <title>Login - Ecommerce Admin Panal</title>
     @vite('resources/css/app.css')
     <!-- BEGIN: CSS Assets-->
     <link rel="stylesheet" href="{{ asset('dist/css/app.css') }}"/>
@@ -24,7 +24,7 @@
         <div class="hidden xl:flex flex-col min-h-screen">
             <a href="" class="-intro-x flex items-center pt-5">
                 <img alt="Tinker Tailwind HTML Admin Template" class="w-6" src="{{ asset('dist/images/logo.svg') }}">
-                <span class="text-white text-lg ml-3"> Tinker </span>
+                <span class="text-white text-lg ml-3"> Ecommerce </span>
             </a>
             <div class="my-auto">
                 <img alt="Tinker Tailwind HTML Admin Template" class="-intro-x w-1/2 -mt-16"
@@ -57,7 +57,7 @@
                         <x-text-input type="text" class="intro-x login__input form-control py-3 px-4 block" id="email"
                                       type="email" name="email" :value="old('email')" required autofocus
                                       autocomplete="username"/>
-                        <x-input-error :messages="$errors->get('email')" class="mt-2"/>
+                        <x-input-error :messages="$errors->get('email')" style="color: red" class="mt-2"/>
                         <x-text-input type="password" id="password"
                                       class="intro-x login__input form-control py-3 px-4 block mt-4" type="password"
                                       name="password" required autocomplete="current-password"/>
@@ -76,9 +76,9 @@
                     <div class="intro-x mt-5 xl:mt-8 text-center xl:text-left">
                         <x-primary-button class="btn btn-primary py-3 px-4 w-full xl:w-32 xl:mr-3 align-top">Login
                         </x-primary-button>
-                        <x-primary-button type="button" id="register" class="btn btn-outline-secondary py-3 px-4 w-full xl:w-32 mt-3 xl:mt-0 align-top" style="color:  #1a202c; background-color: #bbbbbb">
-                            Register
-                        </x-primary-button>
+{{--                        <x-primary-button type="button" id="register" class="btn btn-outline-secondary py-3 px-4 w-full xl:w-32 mt-3 xl:mt-0 align-top" style="color:  #1a202c; background-color: #bbbbbb">--}}
+{{--                            Register--}}
+{{--                        </x-primary-button>--}}
                     </div>
                 </form>
                 <div class="intro-x mt-10 xl:mt-24 text-slate-600 dark:text-slate-500 text-center xl:text-left"> By
@@ -94,11 +94,11 @@
 
 <!-- BEGIN: JS Assets-->
 <script src="{{ asset('dist/js/app.js') }}"></script>
-<script>
-    document.querySelector('#register').onclick = function() {
-        window.location.href = '/register';
-    };
-</script>
+{{--<script>--}}
+{{--    document.querySelector('#register').onclick = function() {--}}
+{{--        window.location.href = '/register';--}}
+{{--    };--}}
+{{--</script>--}}
 <!-- END: JS Assets-->
 </body>
 </html>
