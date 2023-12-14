@@ -6,59 +6,33 @@
     <div class="side-nav__devider my-6"></div>
     <ul>
         <li>
-            <a href="javascript:;.html" class="side-menu side-menu--active">
+            <a href="{{ route('admin.dashboard') }}" class="side-menu side-menu--active">
                 <div class="side-menu__icon"> <i data-feather="home"></i> </div>
                 <div class="side-menu__title">
                     Dashboard
-                    <div class="side-menu__sub-icon transform rotate-180"> <i data-feather="chevron-down"></i> </div>
+                    <div class="side-menu__sub-icon transform rotate-180"></div>
                 </div>
             </a>
-            <ul class="side-menu__sub-open">
-                <li>
-                    <a href="index.html" class="side-menu side-menu--active">
-                        <div class="side-menu__icon"> <i data-feather="activity"></i> </div>
-                        <div class="side-menu__title"> Overview 1 </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="side-menu-light-dashboard-overview-2.html" class="side-menu">
-                        <div class="side-menu__icon"> <i data-feather="activity"></i> </div>
-                        <div class="side-menu__title"> Overview 2 </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="side-menu-light-dashboard-overview-3.html" class="side-menu">
-                        <div class="side-menu__icon"> <i data-feather="activity"></i> </div>
-                        <div class="side-menu__title"> Overview 3 </div>
-                    </a>
-                </li>
-            </ul>
         </li>
         <li>
-            <a href="javascript:;" class="side-menu">
+            <a href="javascript:void(0);" class="side-menu" onclick="toggleSubMenu(this)">
                 <div class="side-menu__icon"> <i data-feather="box"></i> </div>
                 <div class="side-menu__title">
-                    Menu Layout
+                    Settings
                     <div class="side-menu__sub-icon "> <i data-feather="chevron-down"></i> </div>
                 </div>
             </a>
-            <ul class="">
+            <ul class="" style="display: none;">
                 <li>
-                    <a href="index.html" class="side-menu">
+                    <a href="{{ route('admin.setting.logo') }}" class="side-menu">
                         <div class="side-menu__icon"> <i data-feather="activity"></i> </div>
-                        <div class="side-menu__title"> Side Menu </div>
+                        <div class="side-menu__title"> Logo </div>
                     </a>
                 </li>
                 <li>
                     <a href="simple-menu-light-dashboard-overview-1.html" class="side-menu">
                         <div class="side-menu__icon"> <i data-feather="activity"></i> </div>
-                        <div class="side-menu__title"> Simple Menu </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="top-menu-light-dashboard-overview-1.html" class="side-menu">
-                        <div class="side-menu__icon"> <i data-feather="activity"></i> </div>
-                        <div class="side-menu__title"> Top Menu </div>
+                        <div class="side-menu__title"> Ecommerce Name </div>
                     </a>
                 </li>
             </ul>

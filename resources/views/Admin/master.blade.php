@@ -8,6 +8,7 @@
     <meta name="description" content="Tinker admin is super flexible, powerful, clean & modern responsive tailwind admin template with unlimited possibilities.">
     <meta name="keywords" content="admin template, Tinker Admin Template, dashboard template, flat admin template, responsive admin template, web app">
     <meta name="author" content="LEFT4CODE">
+    @vite('resources/css/app.css')
     <title>Dashboard - Ecommerce</title>
     <!-- BEGIN: CSS Assets-->
     @include('Admin.include.styles')
