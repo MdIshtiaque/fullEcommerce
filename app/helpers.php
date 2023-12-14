@@ -2,6 +2,7 @@
 
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Storage;
 
 function sendSuccessResponse(string $message, int $statusCode = 200, $payload = []): JsonResponse
 {
@@ -21,16 +22,17 @@ function sendErrorResponse(string $message, int $statusCode = 200, $payload = []
     ], $statusCode);
 }
 
-function uploadImage(UploadedFile $image, $folder = 'storage/app/public/admin/logo', $fileName = null)
+function uploadImage(UploadedFile $image, $folder = 'admin/logo', $fileName = null)
 {
     $imageCategory = substr($folder, strrpos($folder, '/') + 1);
 
     if (!$fileName) {
         $fileName = $imageCategory . '_' . time() . '_' . $image->getClientOriginalName();
     }
-
-    $path = $image->storeAs($folder, $fileName);
-
+    if (!file_exists($folder)) {
+        mkdir($folder, 0755, true);
+    }
+    $image->move(public_path($folder), $fileName);
     return $fileName;
 }
 

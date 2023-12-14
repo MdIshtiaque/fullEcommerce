@@ -84,76 +84,152 @@
             <!-- END: File Manager Filter -->
             <!-- BEGIN: Directory & Files -->
             <div class="intro-y grid grid-cols-12 gap-3 sm:gap-6 mt-5">
-                <div class="intro-y col-span-6 sm:col-span-4 md:col-span-3 2xl:col-span-2">
-                    <div class="file box rounded-md px-5 pt-8 pb-5 px-3 sm:px-5 relative zoom-in">
-                        <div class="absolute left-0 top-0 mt-3 ml-3">
-                            <input class="form-check-input border border-slate-500" type="checkbox">
-                        </div>
-                        <a href="" class="w-3/5 file__icon file__icon--image mx-auto">
-                            <div class="file__icon--image__preview image-fit">
-                                <img alt="Tinker Tailwind HTML Admin Template"
-                                     src="{{ asset('dist/images/preview-7.jpg') }}">
+                @foreach($logos as $key => $logo)
+                    <div class="intro-y col-span-6 sm:col-span-4 md:col-span-3 2xl:col-span-2">
+                        <div class="file box rounded-md px-5 pt-8 pb-5 px-3 sm:px-5 relative zoom-in">
+                            <div class="absolute left-0 top-0 mt-3 ml-3">
+                                <input class="form-check-input border border-slate-500" type="checkbox"
+                                       data-id="{{ $logo->id }}" {{ $logo->is_active == true ? "checked" : ""}}>
                             </div>
-                        </a>
-                        <a href="" class="block font-medium mt-4 text-center truncate">preview-7.jpg</a>
-                        <div class="text-slate-500 text-xs text-center mt-0.5">1 MB</div>
-                        <div class="absolute top-0 right-0 mr-2 mt-3 dropdown ml-auto">
-                            <a class="dropdown-toggle w-5 h-5 block" href="javascript:;" aria-expanded="false"
-                               data-tw-toggle="dropdown"> <i data-feather="more-vertical"
-                                                             class="w-5 h-5 text-slate-500"></i> </a>
-                            <div class="dropdown-menu w-40">
-                                <ul class="dropdown-content">
-                                    <li>
-                                        <a href="" class="dropdown-item"> <i data-feather="users"
-                                                                             class="w-4 h-4 mr-2"></i> Share File </a>
-                                    </li>
-                                    <li>
-                                        <a href="" class="dropdown-item"> <i data-feather="trash"
-                                                                             class="w-4 h-4 mr-2"></i> Delete </a>
-                                    </li>
-                                </ul>
+                            <a href="" class="w-3/5 file__icon file__icon--image mx-auto">
+                                <div class="file__icon--image__preview image-fit">
+                                    <img
+                                        src="{{ $logo->logo != '' ? asset('admin/logo/' . $logo->logo) : asset('dist/images/preview-7.jpg') }}"
+                                        alt="#">
+                                </div>
+                            </a>
+                            <a href="" class="block font-medium mt-4 text-center truncate">{{ $logo->logo }}</a>
+                            <div class="text-slate-500 text-xs text-center mt-0.5">1 MB</div>
+                            <div class="absolute top-0 right-0 mr-2 mt-3 dropdown ml-auto">
+                                <a class="dropdown-toggle w-5 h-5 block" href="javascript:;" aria-expanded="false"
+                                   data-tw-toggle="dropdown"> <i data-feather="more-vertical"
+                                                                 class="w-5 h-5 text-slate-500"></i> </a>
+                                <div class="dropdown-menu w-40">
+                                    <ul class="dropdown-content">
+                                        <li>
+                                            <a href="" class="dropdown-item"> <i data-feather="users"
+                                                                                 class="w-4 h-4 mr-2"></i> Share File
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="" class="dropdown-item"> <i data-feather="trash"
+                                                                                 class="w-4 h-4 mr-2"></i> Delete </a>
+                                        </li>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                @endforeach
+
+            </div>
+            <div class="btnContainer flex justify-end mt-5">
+                <button id="applyButton" class="btn btn-primary">Apply</button>
             </div>
             <!-- END: Directory & Files -->
             <!-- BEGIN: Pagination -->
             <div class="intro-y flex flex-wrap sm:flex-row sm:flex-nowrap items-center mt-6">
                 <nav class="w-full sm:w-auto sm:mr-auto">
                     <ul class="pagination">
-                        <li class="page-item">
-                            <a class="page-link" href="#"> <i class="w-4 h-4" data-feather="chevrons-left"></i> </a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="#"> <i class="w-4 h-4" data-feather="chevron-left"></i> </a>
-                        </li>
-                        <li class="page-item"><a class="page-link" href="#">...</a></li>
-                        <li class="page-item"><a class="page-link" href="#">1</a></li>
-                        <li class="page-item active"><a class="page-link" href="#">2</a></li>
-                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                        <li class="page-item"><a class="page-link" href="#">...</a></li>
-                        <li class="page-item">
-                            <a class="page-link" href="#"> <i class="w-4 h-4" data-feather="chevron-right"></i> </a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="#"> <i class="w-4 h-4" data-feather="chevrons-right"></i> </a>
-                        </li>
+                        @if ($logos->onFirstPage())
+                            <li class="page-item disabled">
+                                <span class="page-link" aria-hidden="true"> <i class="w-4 h-4"
+                                                                               data-feather="chevrons-left"></i> </span>
+                            </li>
+                            <li class="page-item disabled">
+                                <span class="page-link" aria-hidden="true"> <i class="w-4 h-4"
+                                                                               data-feather="chevron-left"></i> </span>
+                            </li>
+                        @else
+                            <li class="page-item">
+                                <a class="page-link" href="{{ $logos->previousPageUrl() }}"> <i class="w-4 h-4"
+                                                                                                data-feather="chevrons-left"></i>
+                                </a>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link" href="{{ $logos->previousPageUrl() }}"> <i class="w-4 h-4"
+                                                                                                data-feather="chevron-left"></i>
+                                </a>
+                            </li>
+                        @endif
+                        @php
+                            $count = $logos->hasMorePages() - (-1);
+                            $page = 1;
+                        @endphp
+                        @foreach ($logos as $logo)
+                            @if((12/$count) == 2 || (12/$count) == 1)
+                                <li class="page-item {{ $logo->is_current_page ? 'active' : '' }}">
+                                    <a class="page-link" href="{{ $page != 1 ? $logos->nextPageUrl() : $logo->url }}">{{ $page }}</a>
+                                </li>
+                                    @php
+                                        $page++;
+                                        $count--;
+                                    @endphp
+                            @endif
+                        @endforeach
+
+                        @if ($logos->hasMorePages())
+                            <li class="page-item">
+                                <a class="page-link" href="{{ $logos->nextPageUrl() }}"> <i class="w-4 h-4"
+                                                                                            data-feather="chevron-right"></i>
+                                </a>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link" href="{{ $logos->url($logos->lastPage()) }}"> <i class="w-4 h-4"
+                                                                                                      data-feather="chevrons-right"></i>
+                                </a>
+                            </li>
+                        @else
+                            <li class="page-item disabled">
+                                <span class="page-link" aria-hidden="true"> <i class="w-4 h-4"
+                                                                               data-feather="chevron-right"></i> </span>
+                            </li>
+                            <li class="page-item disabled">
+                                <span class="page-link" aria-hidden="true"> <i class="w-4 h-4"
+                                                                               data-feather="chevrons-right"></i> </span>
+                            </li>
+                        @endif
                     </ul>
                 </nav>
-                <select class="w-20 form-select box mt-3 sm:mt-0">
-                    <option>10</option>
-                    <option>25</option>
-                    <option>35</option>
-                    <option>50</option>
+{{--                TODO: need to fix--}}
+                <select id="perPageSelect" class="w-20 form-select box mt-3 sm:mt-0">
+                    <option value="10" {{ $logos->perPage() == 6 ? 'selected' : '' }}>6</option>
+                    <option value="25" {{ $logos->perPage() == 12 ? 'selected' : '' }}>12</option>
+                    <option value="35" {{ $logos->perPage() == 36 ? 'selected' : '' }}>35</option>
+                    <option value="50" {{ $logos->perPage() == 48 ? 'selected' : '' }}>50</option>
                 </select>
             </div>
             <!-- END: Pagination -->
         </div>
     </div>
+    <div id="success-notification" class="p-5">
+        <div class="preview">
+            <div class="text-center">
+                <!-- BEGIN: Notification Content -->
+                <div id="success-notification-content" class="toastify-content hidden flex">
+                    <i class="text-success" data-feather="check-circle"></i>
+                    <div class="ml-4 mr-4">
+                        <div class="font-medium">Success!</div>
+                        <div class="text-slate-500 mt-1">Logo Set Successfully</div>
+                    </div>
+                </div>
+                <!-- END: Notification Content -->
+                <!-- BEGIN: Notification Toggle -->
+                <button id="success-notification-toggle" class="btn btn-primary">Show Notification</button>
+                <!-- END: Notification Toggle -->
+            </div>
+        </div>
+    </div>
+
     @include('Admin.pages.settings.modals.upload-logo')
 @endsection
 @push('js')
+    <script>
+        // Handle dropdown change
+        $('#perPageSelect').on('change', function() {
+            window.location = '{{ url()->current() }}?perPage=' + $(this).val();
+        });
+    </script>
     <script>
         // Show modal
         const elShow = document.querySelector("#programmatically-show-modal");
@@ -170,18 +246,64 @@
             const modal = tailwind.Modal.getOrCreateInstance(elModal);
             modal.hide();
         });
-
-        // Toggle modal
-        const elToggle = document.querySelector("#programmatically-toggle-modal");
-        elToggle.addEventListener("click", function () {
-            const elModal = document.querySelector("#programmatically-modal");
-            const modal = tailwind.Modal.getOrCreateInstance(elModal);
-            modal.toggle();
-        });
     </script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script type="text/javascript" src="https://jeremyfagis.github.io/dropify/dist/js/dropify.min.js"></script>
     <script>
         $('.dropify').dropify();
+    </script>
+    <script>
+        $(document).ready(function () {
+            // Handle checkbox click event
+            $('.form-check-input').on('change', function () {
+                // Uncheck all other checkboxes
+                $('.form-check-input').not(this).prop('checked', false);
+            });
+
+            // Handle Apply button click event
+            $('#applyButton').on('click', function () {
+                // Find the checked checkbox
+                const checkedCheckbox = $('.form-check-input:checked');
+
+                if (checkedCheckbox.length > 0) {
+                    // Get the data attributes
+                    const logoId = checkedCheckbox.data('id');
+                    const isActive = checkedCheckbox.data('is-active');
+
+                    // Update the is_active property (you might want to send an AJAX request to update it in the backend)
+                    console.log(`Logo ID: ${logoId}, is_active: ${isActive}`);
+
+                    // Example: If you want to send an AJAX request to update is_active
+                    $.ajax({
+                        url: `update-is-active/${logoId}`,
+                        type: 'POST',
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        },
+                        data: {is_active: true},
+                        success: function (response) {
+                            console.log(response);
+                            // window.location.reload();
+                            Toastify({
+                                node: $("#success-notification-content")
+                                    .clone()
+                                    .removeClass("hidden")[0],
+                                duration: -1,
+                                newWindow: true,
+                                close: true,
+                                gravity: "top",
+                                position: "right",
+                                stopOnFocus: true,
+                            }).showToast();
+                        },
+                        error: function (error) {
+                            console.error(error);
+                        }
+                    });
+                } else {
+                    console.log('No checkbox is checked.');
+                }
+            });
+        });
     </script>
 @endpush
