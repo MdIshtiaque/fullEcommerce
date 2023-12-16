@@ -44,6 +44,29 @@
             </a>
         </li>
         <li>
+            <a href="javascript:;" class="side-menu">
+                <div class="side-menu__icon"> <i data-feather="trello"></i> </div>
+                <div class="side-menu__title">
+                    Products
+                    <div class="side-menu__sub-icon "> <i data-feather="chevron-down"></i> </div>
+                </div>
+            </a>
+            <ul class="">
+                <li>
+                    <a href="{{ route('admin.addNewProduct') }}" class="side-menu">
+                        <div class="side-menu__icon"> <i data-feather="activity"></i> </div>
+                        <div class="side-menu__title"> Add New Product </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="side-menu-light-profile-overview-2.html" class="side-menu">
+                        <div class="side-menu__icon"> <i data-feather="activity"></i> </div>
+                        <div class="side-menu__title"> List </div>
+                    </a>
+                </li>
+            </ul>
+        </li>
+        <li>
             <a href="side-menu-light-file-manager.html" class="side-menu">
                 <div class="side-menu__icon"> <i data-feather="hard-drive"></i> </div>
                 <div class="side-menu__title"> File Manager </div>
@@ -122,35 +145,6 @@
                     <a href="side-menu-light-users-layout-3.html" class="side-menu">
                         <div class="side-menu__icon"> <i data-feather="activity"></i> </div>
                         <div class="side-menu__title"> Layout 3 </div>
-                    </a>
-                </li>
-            </ul>
-        </li>
-        <li>
-            <a href="javascript:;" class="side-menu">
-                <div class="side-menu__icon"> <i data-feather="trello"></i> </div>
-                <div class="side-menu__title">
-                    Profile
-                    <div class="side-menu__sub-icon "> <i data-feather="chevron-down"></i> </div>
-                </div>
-            </a>
-            <ul class="">
-                <li>
-                    <a href="side-menu-light-profile-overview-1.html" class="side-menu">
-                        <div class="side-menu__icon"> <i data-feather="activity"></i> </div>
-                        <div class="side-menu__title"> Overview 1 </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="side-menu-light-profile-overview-2.html" class="side-menu">
-                        <div class="side-menu__icon"> <i data-feather="activity"></i> </div>
-                        <div class="side-menu__title"> Overview 2 </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="side-menu-light-profile-overview-3.html" class="side-menu">
-                        <div class="side-menu__icon"> <i data-feather="activity"></i> </div>
-                        <div class="side-menu__title"> Overview 3 </div>
                     </a>
                 </li>
             </ul>

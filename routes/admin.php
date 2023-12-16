@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\SettingsController;
 use Illuminate\Support\Facades\Route;
 
@@ -19,5 +20,5 @@ Route::middleware(['auth', 'verified'])->prefix('admin/')->group(function () {
     Route::put('/category/{category}', [CategoryController::class, 'edit'])->name('admin.categoryEdit');
     Route::delete('/category/delete/{category}', [CategoryController::class, 'delete'])->name('admin.categoryDelete');
 
-
+    Route::get('product', [ProductController::class, 'addNewProduct'])->name('admin.addNewProduct');
 });
