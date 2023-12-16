@@ -38,9 +38,9 @@
             </ul>
         </li>
         <li>
-            <a href="side-menu-light-inbox.html" class="side-menu">
+            <a href="{{ route('admin.showAllCategory') }}" class="side-menu">
                 <div class="side-menu__icon"> <i data-feather="inbox"></i> </div>
-                <div class="side-menu__title"> Inbox </div>
+                <div class="side-menu__title"> Categories </div>
             </a>
         </li>
         <li>

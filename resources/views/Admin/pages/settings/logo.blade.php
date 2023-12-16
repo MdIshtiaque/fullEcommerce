@@ -159,12 +159,13 @@
                         @foreach ($logos as $logo)
                             @if((12/$count) == 2 || (12/$count) == 1)
                                 <li class="page-item {{ $logo->is_current_page ? 'active' : '' }}">
-                                    <a class="page-link" href="{{ $page != 1 ? $logos->nextPageUrl() : $logo->url }}">{{ $page }}</a>
+                                    <a class="page-link"
+                                       href="{{ $page != 1 ? $logos->nextPageUrl() : $logo->url }}">{{ $page }}</a>
                                 </li>
-                                    @php
-                                        $page++;
-                                        $count--;
-                                    @endphp
+                                @php
+                                    $page++;
+                                    $count--;
+                                @endphp
                             @endif
                         @endforeach
 
@@ -191,7 +192,7 @@
                         @endif
                     </ul>
                 </nav>
-{{--                TODO: need to fix--}}
+                {{--                TODO: need to fix--}}
                 <select id="perPageSelect" class="w-20 form-select box mt-3 sm:mt-0">
                     <option value="10" {{ $logos->perPage() == 6 ? 'selected' : '' }}>6</option>
                     <option value="25" {{ $logos->perPage() == 12 ? 'selected' : '' }}>12</option>
@@ -226,7 +227,7 @@
 @push('js')
     <script>
         // Handle dropdown change
-        $('#perPageSelect').on('change', function() {
+        $('#perPageSelect').on('change', function () {
             window.location = '{{ url()->current() }}?perPage=' + $(this).val();
         });
     </script>

@@ -19,7 +19,7 @@ class SettingsController extends Controller
     public function logo(Request $request): View|Application|Factory
     {
         $perPage = request()->input('perPage', 12);
-        $logos = Logo::orderBy('id', 'desc')->paginate($perPage);;
+        $logos = Logo::orderBy('id', 'desc')->paginate($perPage);
         return view('Admin.pages.settings.logo', ['title' => 'Settings', 'logos' => $logos]);
     }
 
