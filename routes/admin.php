@@ -21,4 +21,5 @@ Route::middleware(['auth', 'verified'])->prefix('admin/')->group(function () {
     Route::delete('/category/delete/{category}', [CategoryController::class, 'delete'])->name('admin.categoryDelete');
 
     Route::get('product', [ProductController::class, 'addNewProduct'])->name('admin.addNewProduct');
+    Route::post('product/save', [ProductController::class, 'productStore'])->name('admin.productStore');
 });

@@ -14,5 +14,6 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         $this->call(AdminCredentialSeeder::class);
+        $this->call(ColorSeeder::class);
     }
 }
