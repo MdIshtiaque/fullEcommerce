@@ -1,6 +1,5 @@
 @extends('Admin.master')
 @push('css')
-
 @endpush
 @section('content')
     <h2 class="intro-y text-lg font-medium mt-10">
@@ -8,21 +7,26 @@
     </h2>
     <div class="grid grid-cols-12 gap-6 mt-5">
         <div class="intro-y col-span-12 flex flex-wrap sm:flex-nowrap items-center mt-2">
-            <a id="programmatically-show-modal" href="javascript:void(0);" class="btn btn-primary shadow-md mr-2">Add New Product</a>
+            <a id="programmatically-show-modal" href="javascript:void(0);" class="btn btn-primary shadow-md mr-2">Add New
+                Product</a>
             <div class="dropdown">
                 <button class="dropdown-toggle btn px-2 box" aria-expanded="false" data-tw-toggle="dropdown">
-                    <span class="w-5 h-5 flex items-center justify-center"> <i class="w-4 h-4" data-feather="plus"></i> </span>
+                    <span class="w-5 h-5 flex items-center justify-center"> <i class="w-4 h-4" data-feather="plus"></i>
+                    </span>
                 </button>
                 <div class="dropdown-menu w-40">
                     <ul class="dropdown-content">
                         <li>
-                            <a href="" class="dropdown-item"> <i data-feather="printer" class="w-4 h-4 mr-2"></i> Print </a>
+                            <a href="" class="dropdown-item"> <i data-feather="printer" class="w-4 h-4 mr-2"></i>
+                                Print </a>
                         </li>
                         <li>
-                            <a href="" class="dropdown-item"> <i data-feather="file-text" class="w-4 h-4 mr-2"></i> Export to Excel </a>
+                            <a href="" class="dropdown-item"> <i data-feather="file-text" class="w-4 h-4 mr-2"></i>
+                                Export to Excel </a>
                         </li>
                         <li>
-                            <a href="" class="dropdown-item"> <i data-feather="file-text" class="w-4 h-4 mr-2"></i> Export to PDF </a>
+                            <a href="" class="dropdown-item"> <i data-feather="file-text" class="w-4 h-4 mr-2"></i>
+                                Export to PDF </a>
                         </li>
                     </ul>
                 </div>
@@ -39,57 +43,66 @@
         <div class="intro-y col-span-12 overflow-auto lg:overflow-visible">
             <table class="table table-report -mt-2">
                 <thead>
-                <tr>
-                    <th class="whitespace-nowrap">Sl no</th>
-                    <th class="whitespace-nowrap">Category Name</th>
-                    <th class="text-center whitespace-nowrap">ACTIVE/INACTIVE</th>
-                    <th class="text-center whitespace-nowrap">STATUS</th>
-                    <th class="text-center whitespace-nowrap">ACTIONS</th>
-                </tr>
+                    <tr>
+                        <th class="whitespace-nowrap">Sl no</th>
+                        <th class="whitespace-nowrap">Category Name</th>
+                        <th class="text-center whitespace-nowrap">ACTIVE/INACTIVE</th>
+                        <th class="text-center whitespace-nowrap">STATUS</th>
+                        <th class="text-center whitespace-nowrap">ACTIONS</th>
+                    </tr>
                 </thead>
                 <tbody>
-                @foreach($categories as $category)
-                    <tr class="intro-x">
-                        <td class="w-40">
-                            <div class="flex">
-                                <div class="w-10 h-10 image-fit zoom-in">
-                                    {{ $loop->iteration }}
+                    @foreach ($categories as $category)
+                        <tr class="intro-x">
+                            <td class="w-40">
+                                <div class="flex">
+                                    <div class="w-10 h-10 image-fit zoom-in">
+                                        {{ $loop->iteration }}
+                                    </div>
                                 </div>
-                            </div>
-                        </td>
-                        <td>
-{{--                            TODO::Need to implement click to go products--}}
-                            <a href="" class="font-medium whitespace-nowrap">{{ $category->name }}</a>
-                        </td>
-                        <td class="text-center">
-                            <div class="form-switch w-full">
-                                <label class="form-check-label" for="show-example-1">Active/Disable</label>
-                                <input id="show-example-1"
-                                       class="show-code form-check-input mr-0 ml-3 active-btn" data-action="{{ route('status.toggle',$category->id) }}" id="statusToggle-{{ $category->id }}" name="status" type="checkbox" {{ $category->is_active ? 'checked' : '' }}>
-                            </div>
-                        </td>
-                        <td class="w-40 status">
-                            @if($category->is_active)
-                                <div class="flex items-center justify-center text-success"> <i data-feather="check-square" class="w-4 h-4 mr-2"></i> Active </div>
-                            @else
-                                <div class="flex items-center justify-center text-success" style="color: red"> <i data-feather="x-square" class="w-4 h-4 mr-2"></i> Inactive </div>
-                            @endif
-                        </td>
-                        <td class="table-report__action w-56">
-                            <div class="flex justify-center items-center">
-                                <button class="flex items-center mr-3 edit-button" data-id="{{ $category->id }}" data-name="{{ $category->name }}" data-status="{{ $category->is_active }}"> <i data-feather="check-square" class="w-4 h-4 mr-1"></i> Edit </button>
-                                <form id="delete-form" action="{{ route('admin.categoryDelete', ['category' => $category->id]) }}" method="POST">
-                                    @csrf
-                                    @method('DELETE') <!-- Specifying that this is a DELETE request -->
-                                    <button type="button" onclick="deleteConfirmation();" class="flex items-center text-danger">
-                                        <i data-feather="trash-2" class="w-4 h-4 mr-1"></i> Delete
-                                    </button>
-                                </form>
+                            </td>
+                            <td>
+                                {{--                            TODO::Need to implement click to go products --}}
+                                <a href="" class="font-medium whitespace-nowrap">{{ $category->name }}</a>
+                            </td>
+                            <td class="text-center">
+                                <div class="form-switch w-full">
+                                    <label class="form-check-label" for="show-example-1">Active/Disable</label>
+                                    <input id="show-example-1" class="show-code form-check-input mr-0 ml-3 active-btn"
+                                        data-action="{{ route('status.toggle', $category->id) }}"
+                                        id="statusToggle-{{ $category->id }}" name="status" type="checkbox"
+                                        {{ $category->is_active ? 'checked' : '' }}>
+                                </div>
+                            </td>
+                            <td class="w-40 status">
+                                @if ($category->is_active)
+                                    <div class="flex items-center justify-center text-success"> <i
+                                            data-feather="check-square" class="w-4 h-4 mr-2"></i> Active </div>
+                                @else
+                                    <div class="flex items-center justify-center text-success" style="color: red"> <i
+                                            data-feather="x-square" class="w-4 h-4 mr-2"></i> Inactive </div>
+                                @endif
+                            </td>
+                            <td class="table-report__action w-56">
+                                <div class="flex justify-center items-center">
+                                    <button class="flex items-center mr-3 edit-button" data-id="{{ $category->id }}"
+                                        data-name="{{ $category->name }}" data-status="{{ $category->is_active }}"> <i
+                                            data-feather="check-square" class="w-4 h-4 mr-1"></i> Edit </button>
+                                    <form id="delete-form"
+                                        action="{{ route('admin.categoryDelete', ['category' => $category->id]) }}"
+                                        method="POST">
+                                        @csrf
+                                        @method('DELETE') <!-- Specifying that this is a DELETE request -->
+                                        <button type="button" onclick="deleteConfirmation();"
+                                            class="flex items-center text-danger">
+                                            <i data-feather="trash-2" class="w-4 h-4 mr-1"></i> Delete
+                                        </button>
+                                    </form>
 
-                            </div>
-                        </td>
-                    </tr>
-                @endforeach
+                                </div>
+                            </td>
+                        </tr>
+                    @endforeach
                 </tbody>
             </table>
         </div>
@@ -100,34 +113,34 @@
                 <ul class="pagination">
                     @if ($categories->onFirstPage())
                         <li class="page-item disabled">
-                                <span class="page-link" aria-hidden="true"> <i class="w-4 h-4"
-                                                                               data-feather="chevrons-left"></i> </span>
+                            <span class="page-link" aria-hidden="true"> <i class="w-4 h-4" data-feather="chevrons-left"></i>
+                            </span>
                         </li>
                         <li class="page-item disabled">
-                                <span class="page-link" aria-hidden="true"> <i class="w-4 h-4"
-                                                                               data-feather="chevron-left"></i> </span>
+                            <span class="page-link" aria-hidden="true"> <i class="w-4 h-4" data-feather="chevron-left"></i>
+                            </span>
                         </li>
                     @else
                         <li class="page-item">
                             <a class="page-link" href="{{ $categories->previousPageUrl() }}"> <i class="w-4 h-4"
-                                                                                            data-feather="chevrons-left"></i>
+                                    data-feather="chevrons-left"></i>
                             </a>
                         </li>
                         <li class="page-item">
                             <a class="page-link" href="{{ $categories->previousPageUrl() }}"> <i class="w-4 h-4"
-                                                                                            data-feather="chevron-left"></i>
+                                    data-feather="chevron-left"></i>
                             </a>
                         </li>
                     @endif
                     @php
-                        $count = $categories->hasMorePages() - (-1);
+                        $count = $categories->hasMorePages() - -1;
                         $page = 1;
                     @endphp
                     @foreach ($categories as $category)
-                        @if((10/$count) == 2 || (10/$count) == 1)
+                        @if (10 / $count == 2 || 10 / $count == 1)
                             <li class="page-item {{ $logo->is_current_page ? 'active' : '' }}">
                                 <a class="page-link"
-                                   href="{{ $page != 1 ? $category->nextPageUrl() : $category->url }}">{{ $page }}</a>
+                                    href="{{ $page != 1 ? $category->nextPageUrl() : $category->url }}">{{ $page }}</a>
                             </li>
                             @php
                                 $page++;
@@ -139,27 +152,27 @@
                     @if ($categories->hasMorePages())
                         <li class="page-item">
                             <a class="page-link" href="{{ $categories->nextPageUrl() }}"> <i class="w-4 h-4"
-                                                                                        data-feather="chevron-right"></i>
+                                    data-feather="chevron-right"></i>
                             </a>
                         </li>
                         <li class="page-item">
-                            <a class="page-link" href="{{ $categories->url($categories->lastPage()) }}"> <i class="w-4 h-4"
-                                                                                                  data-feather="chevrons-right"></i>
+                            <a class="page-link" href="{{ $categories->url($categories->lastPage()) }}"> <i
+                                    class="w-4 h-4" data-feather="chevrons-right"></i>
                             </a>
                         </li>
                     @else
                         <li class="page-item disabled">
-                                <span class="page-link" aria-hidden="true"> <i class="w-4 h-4"
-                                                                               data-feather="chevron-right"></i> </span>
+                            <span class="page-link" aria-hidden="true"> <i class="w-4 h-4"
+                                    data-feather="chevron-right"></i> </span>
                         </li>
                         <li class="page-item disabled">
-                                <span class="page-link" aria-hidden="true"> <i class="w-4 h-4"
-                                                                               data-feather="chevrons-right"></i> </span>
+                            <span class="page-link" aria-hidden="true"> <i class="w-4 h-4"
+                                    data-feather="chevrons-right"></i> </span>
                         </li>
                     @endif
                 </ul>
             </nav>
-            {{--                TODO: need to fix--}}
+            {{--                TODO: need to fix --}}
             <select id="perPageSelect" class="w-20 form-select box mt-3 sm:mt-0">
                 <option value="10" {{ $categories->perPage() == 10 ? 'selected' : '' }}>10</option>
                 <option value="20" {{ $categories->perPage() == 20 ? 'selected' : '' }}>20</option>
@@ -190,7 +203,7 @@
     <script>
         // Show modal
         const elShow = document.querySelector("#programmatically-show-modal");
-        elShow.addEventListener("click", function () {
+        elShow.addEventListener("click", function() {
             const elModal = document.querySelector("#programmatically-modal");
             const modal = tailwind.Modal.getOrCreateInstance(elModal);
             modal.show();
@@ -198,7 +211,7 @@
 
         // Hide modal
         const elHide = document.querySelector("#programmatically-hide-modal");
-        elHide.addEventListener("click", function () {
+        elHide.addEventListener("click", function() {
             const elModal = document.querySelector("#programmatically-modal");
             const modal = tailwind.Modal.getOrCreateInstance(elModal);
             modal.hide();
@@ -218,10 +231,7 @@
             }).then((result) => {
                 if (result.isConfirmed) {
                     // If the user confirms, you can redirect to the delete route
-                    setTimeout(() => {
-                        document.getElementById('delete-form').submit();
-                    }, 2000);
-                    window.location.reload();
+                    document.getElementById('delete-form').submit();
                 }
             });
         }
@@ -242,14 +252,19 @@
                         status: status
                     },
                     success: function(response) {
-                        var editButton = document.querySelector('.edit-button[data-id="' + response.id + '"]');
+                        var editButton = document.querySelector('.edit-button[data-id="' +
+                            response.id + '"]');
                         if (response.is_active) {
                             // Category is active.
-                            tdElement.html(`<div class="flex items-center justify-center text-success"><i data-feather="check-square" class="w-4 h-4 mr-2"></i> Active</div>`);
+                            tdElement.html(
+                                `<div class="flex items-center justify-center text-success"><i data-feather="check-square" class="w-4 h-4 mr-2"></i> Active</div>`
+                                );
                             editButton.setAttribute('data-status', true);
                         } else {
                             // Category is inactive.
-                            tdElement.html('<div class="flex items-center justify-center text-success" style="color: red"><i data-feather="x-square" class="w-4 h-4 mr-2"></i> Inactive</div>');
+                            tdElement.html(
+                                '<div class="flex items-center justify-center text-success" style="color: red"><i data-feather="x-square" class="w-4 h-4 mr-2"></i> Inactive</div>'
+                                );
                             editButton.setAttribute('data-status', false);
                         }
                         feather.replace();
@@ -278,7 +293,7 @@
     </script>
     <script>
         // Handle dropdown change
-        $('#perPageSelect').on('change', function () {
+        $('#perPageSelect').on('change', function() {
             window.location = '{{ url()->current() }}?perPage=' + $(this).val();
         });
     </script>
@@ -295,7 +310,11 @@
                 // Fetch data based on the ID or use the row data
                 // For demonstration, let's assume you fetch data from an API
                 fetchData(id, name, status).then(function(data) {
-                    const { name, status, id: dataId } = data.someField;
+                    const {
+                        name,
+                        status,
+                        id: dataId
+                    } = data.someField;
 
                     // Populate the modal
                     document.querySelector('.categoryName').value = name;
@@ -303,7 +322,9 @@
 
                     // Set the action of the form
                     const form = document.getElementById('categoryEditForm');
-                    const actionRoute = "{{ route('admin.categoryEdit', ['category' => 'dataIdPlaceholder']) }}".replace('dataIdPlaceholder', dataId);
+                    const actionRoute =
+                        "{{ route('admin.categoryEdit', ['category' => 'dataIdPlaceholder']) }}"
+                        .replace('dataIdPlaceholder', dataId);
                     form.setAttribute('action', actionRoute);
                     // Open the modal
                     openModal(); // This function depends on your modal's implementation
@@ -316,14 +337,16 @@
             // Replace with actual data fetching logic
             if (status === "1" || status === "true") {
                 var isActive = true;
-            }else {
+            } else {
                 var isActive = false;
             }
-            return Promise.resolve({ someField: {
+            return Promise.resolve({
+                someField: {
                     id: id,
                     name: name,
                     status: isActive
-                } });
+                }
+            });
         }
 
         function openModal() {
@@ -334,7 +357,7 @@
 
         const editModalHide = document.querySelector("#editModal-hide-modal");
 
-        editModalHide.addEventListener("click", function () {
+        editModalHide.addEventListener("click", function() {
             const elModal = document.querySelector("#editModal");
             const modal = tailwind.Modal.getOrCreateInstance(elModal);
             modal.hide();
