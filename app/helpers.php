@@ -3,6 +3,7 @@
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
+use App\Models\Product;
 
 function sendSuccessResponse(string $message, int $statusCode = 200, $payload = []): JsonResponse
 {
@@ -34,6 +35,20 @@ function uploadImage(UploadedFile $image, $folder = 'admin/logo', $fileName = nu
     }
     $image->move(public_path($folder), $fileName);
     return $fileName;
+}
+
+function generateUniqueCode()
+{
+    // Generate a 6-digit random code
+    $code = mt_rand(100000, 999999);
+
+    // Check if the code already exists in the database
+    while (Product::where('code', $code)->exists()) {
+        // If it exists, generate a new code
+        $code = mt_rand(100000, 999999);
+    }
+
+    return $code;
 }
 
 

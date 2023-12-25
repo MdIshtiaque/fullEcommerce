@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Models\Product;
 use App\Models\Color;
 use App\Models\Currency;
 use App\Models\User;
@@ -31,6 +32,21 @@ class ProductController extends Controller
     {
         $photoString = $request->input('photo')[0];
         $photoArray = explode(',', $photoString);
-        dd($request->all(), $photoArray);
+        $tags = json_encode($request->tag);
+        $status = request('publish', 'off');
+
+        foreach($request->category as $category) {
+            Product::create([
+                'category_id' => $category,
+                'currency_id' => $request->currency,
+                'created_by'  => $request->added_by,
+                'code'        => generateUniqueCode(),
+                'name'        => $request->name,
+                'description' => $request->description,
+                'tags'        => $tags,
+                'price'       => $request->price,
+                'is_active'   => ($status === 'on') ? true : false,
+            ]);
+        }
     }
 }

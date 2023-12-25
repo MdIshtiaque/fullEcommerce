@@ -63,7 +63,7 @@
         }
 
         /* Scale up the color circle when the corresponding radio button is checked */
-        input[type="radio"]:checked + label span {
+        input[type="radio"]:checked+label span {
             transform: scale(1.25);
             box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3);
         }
@@ -78,40 +78,12 @@
             </h2>
             <div class="w-full sm:w-auto flex mt-4 sm:mt-0">
                 <button type="button" class="btn box mr-2 flex items-center ml-auto sm:ml-0"><i class="w-4 h-4 mr-2"
-                                                                                                data-feather="eye"></i>
+                        data-feather="eye"></i>
                     Preview
                 </button>
                 <div class="dropdown">
-                    <button type="submit" class="dropdown-toggle btn btn-primary shadow-md flex items-center"
-                            aria-expanded="false"
-                            data-tw-toggle="dropdown"> Save <i class="w-4 h-4 ml-2" data-feather="chevron-down"></i>
+                    <button type="submit" class="dropdown-toggle btn btn-primary shadow-md flex items-center"> Save
                     </button>
-                    <div class="dropdown-menu w-40">
-                        <ul class="dropdown-content">
-                            <li>
-                                <a href="" class="dropdown-item"> <i data-feather="file-text" class="w-4 h-4 mr-2"></i>
-                                    As
-                                    New Post </a>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="" class="dropdown-item"> <i data-feather="file-text" class="w-4 h-4 mr-2"></i>
-                                    As
-                                    Draft </a>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="" class="dropdown-item"> <i data-feather="file-text" class="w-4 h-4 mr-2"></i>
-                                    Export to PDF </a>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="" class="dropdown-item"> <i data-feather="file-text" class="w-4 h-4 mr-2"></i>
-                                    Export to Word </a>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
                 </div>
             </div>
         </div>
@@ -119,7 +91,8 @@
         <div class="pos intro-y grid grid-cols-12 gap-5 mt-5">
             <!-- BEGIN: Post Content -->
             <div class="intro-y col-span-12 lg:col-span-8">
-                <input type="text" name="name" class="intro-y form-control py-3 px-4 box pr-10" placeholder="Title">
+                <input type="text" name="name" class="intro-y form-control py-3 px-4 box pr-10" placeholder="Title"
+                    required>
                 <div class="post intro-y overflow-hidden box mt-5">
                     <div class="post__content tab-content">
                         <div id="content" class="tab-pane p-5 active" role="tabpanel" aria-labelledby="content-tab">
@@ -129,9 +102,7 @@
                                     <i data-feather="chevron-down" class="w-4 h-4 mr-2"></i> Product Description
                                 </div>
                                 <div class="mt-5">
-                                    <textarea class="editor" name="description">
-                                        {{--                                    <p>Write a brief Description about the product</p>--}}
-                                    </textarea>
+                                    <textarea name="description" style="width:100%;" cols="116" rows="15" required></textarea>
                                 </div>
                             </div>
                             <div class="border border-slate-200/60 dark:border-darkmode-400 rounded-md p-5 mt-5">
@@ -149,11 +120,10 @@
                                             <div class="px-4 pb-4 flex items-center cursor-pointer relative">
                                                 <i data-feather="image" class="w-4 h-4 mr-2"></i> <span
                                                     class="text-primary mr-1">Upload a file</span> or drag and drop
-                                                <input type="file" id="image-upload"
-                                                       class="w-full h-full top-0 left-0 absolute opacity-0" multiple>
+                                                <input type="file" id="image-upload" required
+                                                    class="w-full h-full top-0 left-0 absolute opacity-0" multiple>
                                             </div>
-                                            <textarea name="photo[]" id="hiddenTextarea"
-                                                      style="display: none;"></textarea>
+                                            <textarea name="photo[]" id="hiddenTextarea" style="display: none;"></textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -168,23 +138,24 @@
                 <div class="intro-y box p-5">
                     <div>
                         <label class="form-label">Added By</label>
-                        <select data-placeholder="Select categories" class="tom-select w-full" id="post-form-3"
-                                name="added_by">
-                            @foreach($admins as $user)
-                                <option value="{{ $user->id }}" {{ $user->id == auth()->user()->id ? 'selected' : '' }}>{{ $user->name }}</option>
+                        <select data-placeholder="Select categories" class="tom-select w-full" id="post-form-3" required
+                            name="added_by">
+                            @foreach ($admins as $user)
+                                <option value="{{ $user->id }}" {{ $user->id == auth()->user()->id ? 'selected' : '' }}>
+                                    {{ $user->name }}</option>
                             @endforeach
                         </select>
                     </div>
                     <div class="mt-3">
                         <label for="post-form-2" class="form-label">Post Date</label>
-                        <input type="text" name="date" class="datepicker form-control" id="post-form-2" data-single-mode="true">
+                        <input type="text" name="date" class="datepicker form-control" id="post-form-2"
+                            data-single-mode="true">
                     </div>
                     <div class="mt-3">
                         <label for="post-form-3" class="form-label">Categories</label>
                         <select data-placeholder="Select categories" class="tom-select w-full" id="post-form-3"
-                                name="category[]"
-                                multiple>
-                            @foreach($categories as $category)
+                            name="category[]" multiple>
+                            @foreach ($categories as $category)
                                 <option value="{{ $category->id }}">{{ $category->name }}</option>
                             @endforeach
                         </select>
@@ -192,14 +163,14 @@
                     <div class="mt-3">
                         <label for="post-form-4" class="form-label">Tags</label>
                         <select data-placeholder="Select your favorite actors" name="tag[]" class="tom-select w-full"
-                                id="post-form-4" multiple>
+                            id="post-form-4" multiple required>
 
                         </select>
                     </div>
                     <div class="mt-3">
                         <label for="post-form-4" class="form-label">Size (OPTIONAL)</label>
-                        <select data-placeholder="Add your product sizes" class="tom-select w-full" id="post-form-4" name="size[]"
-                                multiple>
+                        <select data-placeholder="Add your product sizes" class="tom-select w-full" id="post-form-4"
+                            name="size[]" multiple>
                             <option value="S">S</option>
                             <option value="M">M</option>
                             <option value="X">X</option>
@@ -209,50 +180,51 @@
                     </div>
                     <div class="mt-3">
                         <h1 class="mb-2">Select Color</h1>
-                        <input type="radio" name="color1" id="red" value="red"/>
+                        <input type="radio" name="color1" id="red" value="red" />
                         <label for="red"><span class="red"></span></label>
 
-                        <input type="radio" name="color" id="green"/>
+                        <input type="radio" name="color" id="green" />
                         <label for="green"><span class="green"></span></label>
 
-                        <input type="radio" name="color" id="yellow"/>
+                        <input type="radio" name="color" id="yellow" />
                         <label for="yellow"><span class="yellow"></span></label>
 
-                        <input type="radio" name="color" id="olive"/>
+                        <input type="radio" name="color" id="olive" />
                         <label for="olive"><span class="olive"></span></label>
 
-                        <input type="radio" name="color" id="orange"/>
+                        <input type="radio" name="color" id="orange" />
                         <label for="orange"><span class="orange"></span></label>
 
-                        <input type="radio" name="color" id="teal"/>
+                        <input type="radio" name="color" id="teal" />
                         <label for="teal"><span class="teal"></span></label>
 
-                        <input type="radio" name="color" id="blue"/>
+                        <input type="radio" name="color" id="blue" />
                         <label for="blue"><span class="blue"></span></label>
 
-                        <input type="radio" name="color" id="violet"/>
+                        <input type="radio" name="color" id="violet" />
                         <label for="violet"><span class="violet"></span></label>
 
-                        <input type="radio" name="color" id="purple"/>
+                        <input type="radio" name="color" id="purple" />
                         <label for="purple"><span class="purple"></span></label>
 
-                        <input type="radio" name="color" id="pink"/>
+                        <input type="radio" name="color" id="pink" />
                         <label for="pink"><span class="pink"></span></label>
                     </div>
 
 
                     <div class="mt-3">
                         <label for="post-form-4" class="form-label">Currency</label>
-                        <select data-placeholder="Add your product price currency" name="currency" class="tom-select w-full"
-                                id="post-form-4">
-                            @foreach($currencies as $currency)
+                        <select data-placeholder="Add your product price currency" name="currency"
+                            class="tom-select w-full" id="post-form-4" required>
+                            @foreach ($currencies as $currency)
                                 <option value="{{ $currency->id }}">{{ $currency->name }} ({{ $currency->code }})</option>
                             @endforeach
                         </select>
                     </div>
                     <div class="mt-3">
                         <label for="post-form-4" class="form-label">Product Price</label>
-                        <input type="text" name="price" class="form-control" id="post-form-2" data-single-mode="true">
+                        <input type="text" name="price" class="form-control" id="post-form-2"
+                            data-single-mode="true" required>
                     </div>
                     <div class="form-check form-switch flex flex-col items-start mt-3">
                         <label for="coupon-toggle" class="form-check-label ml-0 mb-2">Add Coupon Code?</label>
@@ -260,11 +232,13 @@
                     </div>
                     <div id="coupon-field" class="mt-3" style="display: none;">
                         <label for="post-form-coupon" class="form-label">Product Coupon Code(OPTIONAL)</label>
-                        <input type="text" name="coupon_code" class="form-control" id="post-form-coupon" data-single-mode="true">
+                        <input type="text" name="coupon_code" class="form-control" id="post-form-coupon"
+                            data-single-mode="true">
                     </div>
                     <div id="percentage-field" class="mt-3" style="display: none;">
                         <label for="post-form-percentage" class="form-label">Percentage</label>
-                        <input type="text" name="coupon_percentage" class="form-control" id="post-form-percentage" data-single-mode="true">
+                        <input type="text" name="coupon_percentage" class="form-control" id="post-form-percentage"
+                            data-single-mode="true">
                     </div>
                     <div class="form-check form-switch flex flex-col items-start mt-3">
                         <label for="post-form-5" class="form-check-label ml-0 mb-2">Published</label>
@@ -280,17 +254,18 @@
     <script src="{{ asset('dist/js/ckeditor-classic.js') }}"></script>
     <script>
         let allFiles = [];
-        document.getElementById('image-upload').addEventListener('change', function () {
+        document.getElementById('image-upload').addEventListener('change', function() {
             const previewContainer = document.getElementById('image-preview-container');
 
             const files = this.files;
             for (const file of files) {
                 allFiles.push(file);
                 const reader = new FileReader();
-                reader.onload = function (e) {
+                reader.onload = function(e) {
                     // Create the outer div
                     const imgDiv = document.createElement('div');
-                    imgDiv.classList.add('w-24', 'h-24', 'relative', 'image-fit', 'mb-5', 'mr-5', 'cursor-pointer', 'zoom-in');
+                    imgDiv.classList.add('w-24', 'h-24', 'relative', 'image-fit', 'mb-5', 'mr-5',
+                        'cursor-pointer', 'zoom-in');
 
                     // Create the img element
                     const imgElement = document.createElement('img');
@@ -300,13 +275,15 @@
 
                     // Create the remove button div
                     const removeButtonDiv = document.createElement('div');
-                    removeButtonDiv.classList.add('tooltip', 'w-5', 'h-5', 'flex', 'items-center', 'justify-center', 'absolute', 'rounded-full', 'text-white', 'bg-danger', 'right-0', 'top-0', '-mr-2', '-mt-2');
+                    removeButtonDiv.classList.add('tooltip', 'w-5', 'h-5', 'flex', 'items-center',
+                        'justify-center', 'absolute', 'rounded-full', 'text-white', 'bg-danger', 'right-0',
+                        'top-0', '-mr-2', '-mt-2');
                     removeButtonDiv.setAttribute('title', 'Remove this image?');
                     removeButtonDiv.innerHTML = '<i data-feather="x" class="w-4 h-4"></i>';
 
 
                     // Event listener for remove button
-                    removeButtonDiv.addEventListener('click', function () {
+                    removeButtonDiv.addEventListener('click', function() {
                         const fileName = file.name;
                         const fileIndex = allFiles.findIndex(f => f.name === fileName);
                         if (fileIndex !== -1) {
@@ -365,5 +342,4 @@
             toggleVisibility(checkbox.checked);
         });
     </script>
-
 @endpush
