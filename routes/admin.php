@@ -20,6 +20,6 @@ Route::middleware(['auth', 'verified'])->prefix('admin/')->group(function () {
     Route::put('/category/{category}', [CategoryController::class, 'edit'])->name('admin.categoryEdit');
     Route::delete('/category/delete/{category}', [CategoryController::class, 'delete'])->name('admin.categoryDelete');
 
-    Route::get('product', [ProductController::class, 'addNewProduct'])->name('admin.addNewProduct');
+    Route::get('product/add-new-product', [ProductController::class, 'addNewProduct'])->name('admin.addNewProduct');
     Route::post('product/save', [ProductController::class, 'productStore'])->name('admin.productStore');
 });

@@ -70,7 +70,7 @@
     </style>
 @endpush
 @section('content')
-    <form action="{{ route('admin.productStore') }}" method="post">
+    <form action="{{ route('admin.productStore') }}" method="post" enctype="multipart/form-data">
         @csrf
         <div class="intro-y flex flex-col sm:flex-row items-center mt-8">
             <h2 class="text-lg font-medium mr-auto">
@@ -82,7 +82,7 @@
                     Preview
                 </button>
                 <div class="dropdown">
-                    <button type="submit" class="dropdown-toggle btn btn-primary shadow-md flex items-center"> Save
+                    <button type="submit" class="btn btn-primary shadow-md flex items-center"> Save
                     </button>
                 </div>
             </div>
@@ -120,7 +120,7 @@
                                             <div class="px-4 pb-4 flex items-center cursor-pointer relative">
                                                 <i data-feather="image" class="w-4 h-4 mr-2"></i> <span
                                                     class="text-primary mr-1">Upload a file</span> or drag and drop
-                                                <input type="file" id="image-upload" required
+                                                <input type="file" id="image-upload" name="image[]" required
                                                     class="w-full h-full top-0 left-0 absolute opacity-0" multiple>
                                             </div>
                                             <textarea name="photo[]" id="hiddenTextarea" style="display: none;"></textarea>
