@@ -22,6 +22,7 @@ Route::middleware(['auth', 'verified'])->prefix('admin/')->group(function () {
 
     Route::get('product/add-new-product', [ProductController::class, 'addNewProduct'])->name('admin.addNewProduct');
     Route::post('product/save', [ProductController::class, 'productStore'])->name('admin.productStore');
+    Route::put('product/update/{product}', [ProductController::class, 'productUpdate'])->name('admin.productUpdate');
     Route::get('product/list', [ProductController::class, 'showProductList'])->name('admin.productList');
     Route::post('/toggle-product/{product}', [ProductController::class, 'toggle'])->name('productStatus.toggle');
     Route::put('/product/{code}', [ProductController::class, 'edit'])->name('admin.productEdit');

@@ -17,6 +17,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Log;
 
 class ProductController extends Controller
@@ -96,9 +97,73 @@ class ProductController extends Controller
 
         return redirect()->route('admin.addNewProduct');
     }
+
+    public function productUpdate(Request $request, Product $product)
+    {
+//        dd($request->all(), $product);
+        try {
+            DB::beginTransaction();
+            $photoString = $request->input('photo')[0];
+            $photoArray = explode(',', $photoString);
+            $tags = json_encode($request->tag);
+            $status = request('publish', 'off');
+            $coupon = request('coupon', 'off');
+            $product->update([
+                'currency_id' => $request->currency,
+                'created_by' => $request->added_by,
+                'name' => $request->name,
+                'description' => $request->description,
+                'tags' => $tags,
+                'price' => $request->price,
+                'stock' => $request->stock,
+                'is_active' => ($status === 'on') ? true : false,
+            ]);
+
+            foreach ($request->category as $category) {
+                $product->productCategory()->updateOrCreate(
+                    [
+                        // Conditions to check existing record
+                        'product_id' => $product->id,
+                        'category_id' => $category,
+                    ],
+                    [
+                        // Fields to update or create
+                        'product_id' => $product->id,
+                        'category_id' => $category,
+                    ]
+                );
+            }
+
+            foreach ($request->file('image') as $photo) {
+                if (in_array($photo->getClientOriginalName(), $photoArray)) {
+                    $image = $product->productImage()->create([
+                        'product_id' => $product->id,
+                    ]);
+                    upload($image, $photo, 'image');
+                }
+            }
+
+            if ($coupon === 'on') {
+                if ($product->has_coupon === true) {
+                    $product->productCoupon()->update([
+                        'product_id' => $product->id,
+                        'coupon_code' => $request->coupon_code,
+                        'percentage' => $request->coupon_percentage
+                    ]);
+                }
+            }
+            DB::commit();
+        } catch (Exception $exception) {
+            DB::rollback();
+            dd($exception);
+        }
+
+        return redirect()->route('admin.productList');
+    }
+
     public function edit($code)
     {
-        $product = Product::with('productImage')->whereCode($code)->get()->groupBy('code');
+        $product = Product::with('productImage', 'productCategory')->whereCode($code)->first();
         $admins = User::all();
         $categories = Category::get();
         $colors = Color::get();
@@ -109,7 +174,7 @@ class ProductController extends Controller
             'admins' => $admins,
             'colors' => $colors,
             'currencies' => $currencies,
-            'products' => $product
+            'product' => $product
         ]);
     }
 
@@ -161,8 +226,22 @@ class ProductController extends Controller
 
     public function deleteImage($id)
     {
-        $images = ProductImage::with('product')->whereId($id)->first();
+        $image = ProductImage::whereId($id)->first();
 
+        if (!$image) {
+            return response()->json(['success' => false, 'message' => 'Image not found']);
+        }
 
+        // Define the path to the image
+        $imagePath = public_path('admin/product/' . $image->image);
+
+        // Check if the image file exists and delete it
+        if (File::exists($imagePath)) {
+            File::delete($imagePath);
+        }
+
+        $image->delete(); // Delete the image record from the database
+
+        return response()->json(['success' => true, 'message' => 'Image deleted successfully']);
     }
 }

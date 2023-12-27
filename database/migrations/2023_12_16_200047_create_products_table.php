@@ -20,6 +20,7 @@ return new class extends Migration {
             $table->string('tags');
             $table->decimal('price', 10, 2);
             $table->integer('stock');
+            $table->boolean('has_coupon')->default(false);
             $table->boolean('is_active')->default(false);
             $table->timestamps();
         });
