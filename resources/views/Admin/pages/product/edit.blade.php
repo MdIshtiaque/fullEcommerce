@@ -74,25 +74,25 @@
         @csrf
         <div class="intro-y flex flex-col sm:flex-row items-center mt-8">
             <h2 class="text-lg font-medium mr-auto">
-                Add New Product
+                Edit Product
             </h2>
             <div class="w-full sm:w-auto flex mt-4 sm:mt-0">
                 <button type="button" class="btn box mr-2 flex items-center ml-auto sm:ml-0"><i class="w-4 h-4 mr-2"
-                        data-feather="eye"></i>
+                                                                                                data-feather="eye"></i>
                     Preview
                 </button>
                 <div class="dropdown">
-                    <button type="submit" class="btn btn-primary shadow-md flex items-center"> Save
+                    <button type="submit" class="btn btn-primary shadow-md flex items-center"> Update
                     </button>
                 </div>
             </div>
         </div>
-
+        @dump(collect($products)->first()->first()->name)
         <div class="pos intro-y grid grid-cols-12 gap-5 mt-5">
             <!-- BEGIN: Post Content -->
             <div class="intro-y col-span-12 lg:col-span-8">
-                <input type="text" name="name" class="intro-y form-control py-3 px-4 box pr-10" placeholder="Title"
-                    required>
+                <input type="text" name="name" class="intro-y form-control py-3 px-4 box pr-10" placeholder="Title" value="{{ collect($products)->first()->first()->name }}"
+                       required>
                 <div class="post intro-y overflow-hidden box mt-5">
                     <div class="post__content tab-content">
                         <div id="content" class="tab-pane p-5 active" role="tabpanel" aria-labelledby="content-tab">
@@ -102,7 +102,7 @@
                                     <i data-feather="chevron-down" class="w-4 h-4 mr-2"></i> Product Description
                                 </div>
                                 <div class="mt-5">
-                                    <textarea name="description" style="width:100%;" cols="116" rows="15" required></textarea>
+                                    <textarea name="description" style="width:100%;" cols="116" rows="15" required>{{ collect($products)->first()->first()->description }}</textarea>
                                 </div>
                             </div>
                             <div class="border border-slate-200/60 dark:border-darkmode-400 rounded-md p-5 mt-5">
@@ -115,13 +115,24 @@
                                         <label class="form-label">Upload Image</label>
                                         <div class="border-2 border-dashed dark:border-darkmode-400 rounded-md pt-4">
                                             <div class="flex flex-wrap px-4" id="image-preview-container">
-
+{{--                                                @dd($products->first()->first()->productImage)--}}
+                                                @foreach ($products->first()->first()->productImage as $image)
+                                                    @if (isset($image->image))
+                                                        <div class='w-24 h-24 relative image-fit mb-5 mr-5 cursor-pointer zoom-in' data-image-id="{{ $image->id }}">
+                                                            <img src="{{ asset('admin/product/'.$image->image) }}" class="rounded-md" alt="Preview Image">
+                                                            {{-- Remove button --}}
+                                                            <div class='remove-image tooltip w-5 h-5 flex items-center justify-center absolute rounded-full text-white bg-danger right-0 top-0 -mr-2 -mt-2' title='Remove this image?'>
+                                                                <i data-feather="x" class="w-4 h-4"></i>
+                                                            </div>
+                                                        </div>
+                                                    @endif
+                                                @endforeach
                                             </div>
                                             <div class="px-4 pb-4 flex items-center cursor-pointer relative">
                                                 <i data-feather="image" class="w-4 h-4 mr-2"></i> <span
                                                     class="text-primary mr-1">Upload a file</span> or drag and drop
                                                 <input type="file" id="image-upload" name="image[]" required
-                                                    class="w-full h-full top-0 left-0 absolute opacity-0" multiple>
+                                                       class="w-full h-full top-0 left-0 absolute opacity-0" multiple>
                                             </div>
                                             <textarea name="photo[]" id="hiddenTextarea" style="display: none;"></textarea>
                                         </div>
@@ -139,7 +150,7 @@
                     <div>
                         <label class="form-label">Added By</label>
                         <select data-placeholder="Select categories" class="tom-select w-full" id="post-form-3" required
-                            name="added_by">
+                                name="added_by">
                             @foreach ($admins as $user)
                                 <option value="{{ $user->id }}" {{ $user->id == auth()->user()->id ? 'selected' : '' }}>
                                     {{ $user->name }}</option>
@@ -149,12 +160,12 @@
                     <div class="mt-3">
                         <label for="post-form-2" class="form-label">Post Date</label>
                         <input type="text" name="date" class="datepicker form-control" id="post-form-2"
-                            data-single-mode="true">
+                               data-single-mode="true">
                     </div>
                     <div class="mt-3">
                         <label for="post-form-3" class="form-label">Categories</label>
                         <select data-placeholder="Select categories" class="tom-select w-full" id="post-form-3"
-                            name="category[]" multiple>
+                                name="category[]" multiple>
                             @foreach ($categories as $category)
                                 <option value="{{ $category->id }}">{{ $category->name }}</option>
                             @endforeach
@@ -163,14 +174,14 @@
                     <div class="mt-3">
                         <label for="post-form-4" class="form-label">Tags</label>
                         <select data-placeholder="Select your favorite actors" name="tag[]" class="tom-select w-full"
-                            id="post-form-4" multiple required>
+                                id="post-form-4" multiple required>
 
                         </select>
                     </div>
                     <div class="mt-3">
                         <label for="post-form-4" class="form-label">Size (OPTIONAL)</label>
                         <select data-placeholder="Add your product sizes" class="tom-select w-full" id="post-form-4"
-                            name="size[]" multiple>
+                                name="size[]" multiple>
                             <option value="S">S</option>
                             <option value="M">M</option>
                             <option value="X">X</option>
@@ -215,7 +226,7 @@
                     <div class="mt-3">
                         <label for="post-form-4" class="form-label">Currency</label>
                         <select data-placeholder="Add your product price currency" name="currency"
-                            class="tom-select w-full" id="post-form-4" required>
+                                class="tom-select w-full" id="post-form-4" required>
                             @foreach ($currencies as $currency)
                                 <option value="{{ $currency->id }}">{{ $currency->name }} ({{ $currency->code }})</option>
                             @endforeach
@@ -224,12 +235,12 @@
                     <div class="mt-3">
                         <label for="post-form-4" class="form-label">Product Price</label>
                         <input type="text" name="price" class="form-control" id="post-form-2"
-                            data-single-mode="true" required>
+                               data-single-mode="true" required>
                     </div>
                     <div class="mt-3">
                         <label for="post-form-4" class="form-label">Product Stock</label>
                         <input type="number" name="stock" class="form-control" id="post-form-2"
-                            data-single-mode="true" required>
+                               data-single-mode="true" required>
                     </div>
                     <div class="form-check form-switch flex flex-col items-start mt-3">
                         <label for="coupon-toggle" class="form-check-label ml-0 mb-2">Add Coupon Code?</label>
@@ -238,12 +249,12 @@
                     <div id="coupon-field" class="mt-3" style="display: none;">
                         <label for="post-form-coupon" class="form-label">Product Coupon Code(OPTIONAL)</label>
                         <input type="text" name="coupon_code" class="form-control" id="post-form-coupon"
-                            data-single-mode="true">
+                               data-single-mode="true">
                     </div>
                     <div id="percentage-field" class="mt-3" style="display: none;">
                         <label for="post-form-percentage" class="form-label">Percentage</label>
                         <input type="text" name="coupon_percentage" class="form-control" id="post-form-percentage"
-                            data-single-mode="true">
+                               data-single-mode="true">
                     </div>
                     <div class="form-check form-switch flex flex-col items-start mt-3">
                         <label for="post-form-5" class="form-check-label ml-0 mb-2">Published</label>
@@ -346,5 +357,36 @@
             // Initial check
             toggleVisibility(checkbox.checked);
         });
+    </script>
+    <script>
+        document.querySelectorAll('.remove-image').forEach(button => {
+            button.addEventListener('click', function() {
+                var imageDiv = this.parentElement;
+                var imageId = imageDiv.getAttribute('data-image-id');
+
+                // AJAX request to backend route for deletion
+                console.log(imageId);
+                fetch('delete-image/' + imageId, {
+                    method: 'DELETE',
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        if(data.success) {
+                            // Remove the image element from the DOM
+                            imageDiv.remove();
+                        } else {
+                            // Handle error
+                            alert('Error removing image');
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                    });
+            });
+        });
+
     </script>
 @endpush

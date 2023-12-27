@@ -7,8 +7,13 @@ use App\Models\Category;
 use App\Models\Product;
 use App\Models\Color;
 use App\Models\Currency;
+use App\Models\ProductImage;
 use App\Models\User;
 use Exception;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
+use Illuminate\Foundation\Application;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -25,11 +30,11 @@ class ProductController extends Controller
         $currencies = Currency::get();
 
         return view('Admin.pages.product.create', ['title' => 'Add New Product',
-                                                        'categories' => $categories,
-                                                        'admins' => $admins,
-                                                        'colors' => $colors,
-                                                        'currencies' => $currencies
-                                                        ]);
+            'categories' => $categories,
+            'admins' => $admins,
+            'colors' => $colors,
+            'currencies' => $currencies
+        ]);
     }
 
     public function productStore(Request $request): RedirectResponse
@@ -47,44 +52,117 @@ class ProductController extends Controller
             $tags = json_encode($request->tag);
             $status = request('publish', 'off');
             $coupon = request('coupon', 'off');
-            foreach($request->category as $category) {
-                $product = Product::create([
+            $code = generateProductCode();
+            $product = Product::create([
+                'currency_id' => $request->currency,
+                'created_by' => $request->added_by,
+                'code' => $code,
+                'name' => $request->name,
+                'description' => $request->description,
+                'tags' => $tags,
+                'price' => $request->price,
+                'stock' => $request->stock,
+                'is_active' => ($status === 'on') ? true : false,
+            ]);
+
+            foreach ($request->category as $category) {
+                $product->productCategory()->create([
+                    'product_id' => $product->id,
                     'category_id' => $category,
-                    'currency_id' => $request->currency,
-                    'created_by'  => $request->added_by,
-                    'code'        => generateUniqueCode(),
-                    'name'        => $request->name,
-                    'description' => $request->description,
-                    'tags'        => $tags,
-                    'price'       => $request->price,
-                    'is_active'   => ($status === 'on') ? true : false,
                 ]);
+            }
 
-                foreach ($request->file('image') as $photo) {
-                    if(in_array($photo->getClientOriginalName(), $photoArray))
-                    {
-                        $image = $product->productImage()->create([
-                            'product_id' => $product->id,
-                        ]);
-                        upload($image, $photo, 'image');
-                    }
-                }
-
-                if ($coupon === 'on') {
-                    $product->productCoupon()->create([
+            foreach ($request->file('image') as $photo) {
+                if (in_array($photo->getClientOriginalName(), $photoArray)) {
+                    $image = $product->productImage()->create([
                         'product_id' => $product->id,
-                        'coupon_code'=> $request->coupon_code,
-                        'percentage' => $request->coupon_percentage
                     ]);
+                    upload($image, $photo, 'image');
                 }
+            }
 
+            if ($coupon === 'on') {
+                $product->productCoupon()->create([
+                    'product_id' => $product->id,
+                    'coupon_code' => $request->coupon_code,
+                    'percentage' => $request->coupon_percentage
+                ]);
             }
             DB::commit();
-        }catch (Exception $exception) {
+        } catch (Exception $exception) {
             DB::rollback();
             dd($exception);
         }
 
         return redirect()->route('admin.addNewProduct');
+    }
+    public function edit($code)
+    {
+        $product = Product::with('productImage')->whereCode($code)->get()->groupBy('code');
+        $admins = User::all();
+        $categories = Category::get();
+        $colors = Color::get();
+        $currencies = Currency::get();
+
+        return view('Admin.pages.product.edit', ['title' => 'Edit Product',
+            'categories' => $categories,
+            'admins' => $admins,
+            'colors' => $colors,
+            'currencies' => $currencies,
+            'products' => $product
+        ]);
+    }
+
+    public function showProductList(): View|Application|Factory
+    {
+        $perPage = request()->input('perPage', 10);
+        $items = Product::with('productImage', 'productSize', 'productColor', 'productCoupon', 'productCurrency', 'productCategory')
+            ->orderBy('id', 'DESC')
+            ->paginate($perPage);
+
+        return view('Admin.pages.product.list', ['title' => 'Product List',
+            'items' => $items
+        ]);
+    }
+
+    public function toggle(Request $request, $product): JsonResponse
+    {
+
+        try {
+            $status = (bool)$request->input('status');
+
+            $products = Product::where('code', $product)->get();
+            foreach ($products as $product) {
+                $product->update(['is_active' => $status]);
+            }
+            $data = ['message' => 'Success! status updated', 'is_active' => $product->is_active, 'id' => $product->id];
+        } catch (Exception $exception) {
+            $data['message'] = 'Sorry! something went wrong';
+
+            return response()->json($data, $status = 500);
+        }
+
+        return response()->json($data);
+    }
+
+    public function delete($product): RedirectResponse
+    {
+        try {
+            $products = Product::where('code', $product)->get();
+            foreach ($products as $product) {
+                $product->delete();
+            }
+        } catch (Exception $exception) {
+            dd($exception);
+        }
+
+        return back();
+    }
+
+    public function deleteImage($id)
+    {
+        $images = ProductImage::with('product')->whereId($id)->first();
+
+
     }
 }

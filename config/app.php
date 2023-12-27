@@ -169,6 +169,7 @@ return [
         Intervention\Image\ImageServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        App\Providers\LogoServiceProvider::class,
 //        App\Providers\TelescopeServiceProvider::class,
 
     ])->toArray(),

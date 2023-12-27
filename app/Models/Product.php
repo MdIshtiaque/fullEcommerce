@@ -4,7 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Product extends Model
 {
@@ -31,6 +33,21 @@ class Product extends Model
     public function productCoupon(): HasMany
     {
         return $this->hasMany(ProductCoupon::class);
+    }
+
+
+    public function productCategory(): HasMany
+    {
+        return $this->hasMany(ProductCategory::class, 'product_id', 'id');
+    }
+    public function productCurrency(): BelongsTo
+    {
+        return $this->belongsTo(Currency::class, 'currency_id', 'id');
+    }
+
+    public function category(): BelongsTo
+    {
+        return $this->belongsTo(Category::class, 'category_id', 'id');
     }
 
 }

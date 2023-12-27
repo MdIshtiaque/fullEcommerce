@@ -79,7 +79,7 @@ function upload($model, $request, $input = 'image')
     }
 }
 
-function generateUniqueCode(): int
+function generateProductCode(): int
 {
     // Generate a 6-digit random code
     $code = mt_rand(100000, 999999);
