@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Jobs\Admin\SendNewProductEmail;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\Color;
@@ -64,6 +65,7 @@ class ProductController extends Controller
                 'price' => $request->price,
                 'stock' => $request->stock,
                 'is_active' => ($status === 'on') ? true : false,
+                'has_coupon' => ($coupon === 'on') ? true : false,
             ]);
 
             foreach ($request->category as $category) {
@@ -90,6 +92,7 @@ class ProductController extends Controller
                 ]);
             }
             DB::commit();
+            dispatch(new SendNewProductEmail($product));
         } catch (Exception $exception) {
             DB::rollback();
             dd($exception);
