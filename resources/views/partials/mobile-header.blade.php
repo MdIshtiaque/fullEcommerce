@@ -8,7 +8,7 @@
                         <li>
                             <a href="index.html">
                                 <div class="logo">
-                                    <img src="assets/images/logo/logo_white.png" alt="">
+                                    <img src="{{ asset('assets/images/logo/logo_white.png') }}" alt="">
                                 </div>
                             </a>
                         </li>

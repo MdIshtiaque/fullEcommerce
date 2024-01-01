@@ -21,6 +21,6 @@ class LogoServiceProvider extends ServiceProvider
     public function boot(): void
     {
         $systemLogo = Logo::whereIs_active(true)->first();
-        view()->share('systemLogo', $systemLogo->logo);
+        view()->share('systemLogo', $systemLogo->logo ?? "sadsad");
     }
 }

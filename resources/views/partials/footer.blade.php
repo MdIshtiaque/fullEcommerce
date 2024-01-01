@@ -119,7 +119,7 @@
                     <div class="col-auto mb-6">
                         <div class="footer-payment">
                             <div class="image">
-                                <img src="assets/images/company-logo/payment.png" alt="">
+                                <img src="{{ asset('assets/images/company-logo/payment.png') }}" alt="">
                             </div>
                         </div>
                     </div>

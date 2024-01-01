@@ -112,7 +112,7 @@
         <!-- Start Mobile contact Info -->
         <div class="mobile-contact-info">
             <div class="logo">
-                <a href="index.html"><img src="assets/images/logo/logo_white.png" alt=""></a>
+                <a href="index.html"><img src="{{ asset('assets/images/logo/logo_white.png') }}" alt=""></a>
             </div>
 
             <address class="address">

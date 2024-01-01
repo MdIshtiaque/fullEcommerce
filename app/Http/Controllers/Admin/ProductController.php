@@ -44,7 +44,7 @@ class ProductController extends Controller
         try {
             $validatedData = $request->validate([
                 'image' => 'required|array',
-                'image.*' => 'image|mimes:jpeg,png,jpg,gif,svg, webp|max:2048', // Example for image files
+                'image.*' => 'image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048', // Example for image files
                 // Add other fields and rules as needed
             ]);
 

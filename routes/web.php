@@ -1,7 +1,10 @@
 <?php
 
+use App\Http\Controllers\CartController;
+use App\Http\Controllers\CategoryToProductController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UserAuthController;
 use App\Models\ProductImage;
 use Illuminate\Support\Facades\Route;
 
@@ -27,14 +30,13 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
-Route::get('test', function () {
-    $i = -1;
-    $img = ProductImage::pluck('gid');
-    foreach ($img as $item) {
-        if ($item > $i) {
-            $i = $item;
-        }
-    }
-    return ++$i;
-});
+Route::get('/auth', [UserAuthController::class, 'index'])->name('user.auth');
+Route::post('/user-login', [UserAuthController::class, 'login'])->name('user.auth.login');
+Route::post('/user-register', [UserAuthController::class, 'register'])->name('user.auth.register');
+
+
+Route::get('category/{category}/products', [CategoryToProductController::class, 'showCategoryWiseProducts'])->name('category.products');
+Route::post('/add-to-cart', [CartController::class, 'addToCart']);
+Route::post('/delete-cart', [CartController::class, 'deleteToCart']);
+
 require __DIR__.'/auth.php';
