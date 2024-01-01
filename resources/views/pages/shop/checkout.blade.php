@@ -27,65 +27,66 @@
         <div class="container">
             <div class="row">
                 <!-- User Quick Action Form -->
-{{--                <div class="col-12">--}}
-{{--                    <div class="user-actions accordion" data-aos="fade-up" data-aos-delay="0">--}}
-{{--                        <h3>--}}
-{{--                            <i class="fa fa-file-o" aria-hidden="true"></i>--}}
-{{--                            Returning customer?--}}
-{{--                            <a class="Returning" href="#" data-bs-toggle="collapse" data-bs-target="#checkout_login"--}}
-{{--                               aria-expanded="true">Click here to login</a>--}}
-{{--                        </h3>--}}
-{{--                        <div id="checkout_login" class="collapse" data-parent="#checkout_login">--}}
-{{--                            <div class="checkout_info">--}}
-{{--                                <p>If you have shopped with us before, please enter your details in the boxes below. If--}}
-{{--                                    you are a new customer please proceed to the Billing &amp; Shipping section.</p>--}}
-{{--                                <form action="#">--}}
-{{--                                    <div class="form_group default-form-box">--}}
-{{--                                        <label>Username or email <span>*</span></label>--}}
-{{--                                        <input type="text">--}}
-{{--                                    </div>--}}
-{{--                                    <div class="form_group default-form-box">--}}
-{{--                                        <label>Password <span>*</span></label>--}}
-{{--                                        <input type="password">--}}
-{{--                                    </div>--}}
-{{--                                    <div class="form_group group_3 default-form-box">--}}
-{{--                                        <button class="btn btn-md btn-black-default-hover" type="submit">Login</button>--}}
-{{--                                        <label class="checkbox-default">--}}
-{{--                                            <input type="checkbox">--}}
-{{--                                            <span>Remember me</span>--}}
-{{--                                        </label>--}}
-{{--                                    </div>--}}
-{{--                                    <a href="#">Lost your password?</a>--}}
-{{--                                </form>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-{{--                    <div class="user-actions accordion" data-aos="fade-up" data-aos-delay="200">--}}
-{{--                        <h3>--}}
-{{--                            <i class="fa fa-file-o" aria-hidden="true"></i>--}}
-{{--                            Returning customer?--}}
-{{--                            <a class="Returning" href="#" data-bs-toggle="collapse" data-bs-target="#checkout_coupon"--}}
-{{--                               aria-expanded="true">Click here to enter your code</a>--}}
+                {{--                <div class="col-12">--}}
+                {{--                    <div class="user-actions accordion" data-aos="fade-up" data-aos-delay="0">--}}
+                {{--                        <h3>--}}
+                {{--                            <i class="fa fa-file-o" aria-hidden="true"></i>--}}
+                {{--                            Returning customer?--}}
+                {{--                            <a class="Returning" href="#" data-bs-toggle="collapse" data-bs-target="#checkout_login"--}}
+                {{--                               aria-expanded="true">Click here to login</a>--}}
+                {{--                        </h3>--}}
+                {{--                        <div id="checkout_login" class="collapse" data-parent="#checkout_login">--}}
+                {{--                            <div class="checkout_info">--}}
+                {{--                                <p>If you have shopped with us before, please enter your details in the boxes below. If--}}
+                {{--                                    you are a new customer please proceed to the Billing &amp; Shipping section.</p>--}}
+                {{--                                <form action="#">--}}
+                {{--                                    <div class="form_group default-form-box">--}}
+                {{--                                        <label>Username or email <span>*</span></label>--}}
+                {{--                                        <input type="text">--}}
+                {{--                                    </div>--}}
+                {{--                                    <div class="form_group default-form-box">--}}
+                {{--                                        <label>Password <span>*</span></label>--}}
+                {{--                                        <input type="password">--}}
+                {{--                                    </div>--}}
+                {{--                                    <div class="form_group group_3 default-form-box">--}}
+                {{--                                        <button class="btn btn-md btn-black-default-hover" type="submit">Login</button>--}}
+                {{--                                        <label class="checkbox-default">--}}
+                {{--                                            <input type="checkbox">--}}
+                {{--                                            <span>Remember me</span>--}}
+                {{--                                        </label>--}}
+                {{--                                    </div>--}}
+                {{--                                    <a href="#">Lost your password?</a>--}}
+                {{--                                </form>--}}
+                {{--                            </div>--}}
+                {{--                        </div>--}}
+                {{--                    </div>--}}
+                {{--                    <div class="user-actions accordion" data-aos="fade-up" data-aos-delay="200">--}}
+                {{--                        <h3>--}}
+                {{--                            <i class="fa fa-file-o" aria-hidden="true"></i>--}}
+                {{--                            Returning customer?--}}
+                {{--                            <a class="Returning" href="#" data-bs-toggle="collapse" data-bs-target="#checkout_coupon"--}}
+                {{--                               aria-expanded="true">Click here to enter your code</a>--}}
 
-{{--                        </h3>--}}
-{{--                        <div id="checkout_coupon" class="collapse checkout_coupon" data-parent="#checkout_coupon">--}}
-{{--                            <div class="checkout_info">--}}
-{{--                                <form action="#">--}}
-{{--                                    <input placeholder="Coupon code" type="text">--}}
-{{--                                    <button class="btn btn-md btn-black-default-hover" type="submit">Apply--}}
-{{--                                        coupon</button>--}}
-{{--                                </form>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
+                {{--                        </h3>--}}
+                {{--                        <div id="checkout_coupon" class="collapse checkout_coupon" data-parent="#checkout_coupon">--}}
+                {{--                            <div class="checkout_info">--}}
+                {{--                                <form action="#">--}}
+                {{--                                    <input placeholder="Coupon code" type="text">--}}
+                {{--                                    <button class="btn btn-md btn-black-default-hover" type="submit">Apply--}}
+                {{--                                        coupon</button>--}}
+                {{--                                </form>--}}
+                {{--                            </div>--}}
+                {{--                        </div>--}}
+                {{--                    </div>--}}
+                {{--                </div>--}}
                 <!-- User Quick Action Form -->
             </div>
             <!-- Start User Details Checkout Form -->
             <div class="checkout_form" data-aos="fade-up" data-aos-delay="400">
-                <div class="row">
-                    <div class="col-lg-6 col-md-6">
-                        <form action="#">
+                <form action="{{ route('user.checkout.purchase') }}" method="POST">
+                    @csrf
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6">
                             <h3>Billing Details</h3>
                             <div class="row">
                                 <div class="col-lg-12">
@@ -118,12 +119,14 @@
                                 <div class="col-12">
                                     <div class="default-form-box">
                                         <label>Street address <span>*</span></label>
-                                        <input placeholder="House number and street name" type="text" name="address1" required>
+                                        <input placeholder="House number and street name" type="text" name="address1"
+                                               required>
                                     </div>
                                 </div>
                                 <div class="col-12">
                                     <div class="default-form-box">
-                                        <input placeholder="Apartment, suite, unit etc. (optional)" type="text" name="address2">
+                                        <input placeholder="Apartment, suite, unit etc. (optional)" type="text"
+                                               name="address2">
                                     </div>
                                 </div>
                                 <div class="col-12">
@@ -152,73 +155,78 @@
                                     </div>
                                 </div>
                             </div>
-                        </form>
-                    </div>
-                    <div class="col-lg-6 col-md-6">
-                        <form action="#">
-                            <h3>Your order</h3>
-                            <div class="order_table table-responsive">
-                                <table>
-                                    <thead>
-                                    <tr>
-                                        <th>Product</th>
-                                        <th>Total</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    @foreach($items as $item)
+                        </div>
+                        <div class="col-lg-6 col-md-6">
+                            <form action="#">
+                                <h3>Your order</h3>
+                                <div class="order_table table-responsive">
+                                    <table>
+                                        <thead>
                                         <tr>
-                                            <td> {{ $item->product->name }} <strong> × {{ $item->quantity }}</strong></td>
-                                            <td> ৳ {{ $item->total_price }}</td>
+                                            <th>Product</th>
+                                            <th>Total</th>
                                         </tr>
-                                    @endforeach
-                                    </tbody>
-                                    <tfoot>
-                                    <tr>
-                                        <th>Cart Subtotal</th>
-                                        <td> ৳ {{ $subtotal }}</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Shipping</th>
-                                        <td><strong> ৳ 0</strong></td>
-                                    </tr>
-                                    <tr class="order_total">
-                                        <th>Order Total</th>
-                                        <td><strong> ৳ {{ $subtotal }}</strong></td>
-                                    </tr>
-                                    </tfoot>
-                                </table>
-                            </div>
-                            <div class="payment_method">
-                                <div class="panel-default">
-                                    <label class="checkbox-default" for="currencyCod" data-bs-toggle="collapse"
-                                           data-bs-target="#methodCod">
-                                        <input type="radio" id="currencyCod" name="payment_type">
-                                        <span>Cash on Delivery</span>
-                                    </label>
+                                        </thead>
+                                        <tbody>
+                                        @foreach($items as $item)
+                                            <tr>
+                                                <td> {{ $item->product->name }} <strong>
+                                                        × {{ $item->quantity }}</strong></td>
+                                                <td> ৳ {{ $item->total_price }}</td>
+                                            </tr>
+                                            <input type="hidden" name="cart_ids[]" value="{{ $item->id }}">
+                                        @endforeach
+                                        </tbody>
+                                        <tfoot>
+                                        <tr>
+                                            <th>Cart Subtotal</th>
+                                            <td> ৳ {{ $subtotal }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Shipping</th>
+                                            <td><strong> ৳ 0</strong></td>
+                                        </tr>
+                                        <tr class="order_total">
+                                            <th>Order Total</th>
+                                            <td><strong> ৳ {{ $subtotal }}</strong></td>
+                                        </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
+                                <input type="hidden" name="total_charge" value="{{ $subtotal }}">
+                                <div class="payment_method">
+                                    <div class="panel-default">
+                                        <label class="checkbox-default" for="currencyCod" data-bs-toggle="collapse"
+                                               data-bs-target="#methodCod">
+                                            <input type="radio" id="currencyCod" name="payment_type">
+                                            <span>Cash on Delivery</span>
+                                        </label>
 
-                                    <div id="methodCod" class="collapse" data-parent="#methodCod">
+                                        <div id="methodCod" class="collapse" data-parent="#methodCod">
 
+                                        </div>
+                                    </div>
+                                    <div class="panel-default">
+                                        <label class="checkbox-default" for="currencyPaypal" data-bs-toggle="collapse"
+                                               data-bs-target="#methodPaypal">
+                                            <input type="radio" id="currencyPaypal" name="payment_type" disabled>
+                                            <span>Online Payment</span>
+                                        </label>
+                                        <div id="methodPaypal" class="collapse " data-parent="#methodPaypal">
+
+                                        </div>
+                                    </div>
+                                    <div class="order_button pt-3">
+                                        <button class="btn btn-md btn-black-default-hover" type="submit">Proceed
+                                        </button>
                                     </div>
                                 </div>
-                                <div class="panel-default">
-                                    <label class="checkbox-default" for="currencyPaypal" data-bs-toggle="collapse"
-                                           data-bs-target="#methodPaypal">
-                                        <input type="radio" id="currencyPaypal" name="payment_type" disabled>
-                                        <span>Online Payment</span>
-                                    </label>
-                                    <div id="methodPaypal" class="collapse " data-parent="#methodPaypal">
-
-                                    </div>
-                                </div>
-                                <div class="order_button pt-3">
-                                    <button class="btn btn-md btn-black-default-hover" type="submit">Proceed</button>
-                                </div>
-                            </div>
-                        </form>
+                            </form>
+                        </div>
                     </div>
-                </div>
-            </div> <!-- Start User Details Checkout Form -->
-        </div>
-    </div><!-- ...:::: End Checkout Section:::... -->
+                </form>
+            </div>
+        </div> <!-- Start User Details Checkout Form -->
+    </div>
+    <!-- ...:::: End Checkout Section:::... -->
 @endsection

@@ -5,6 +5,7 @@ use App\Http\Controllers\CategoryToProductController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\PurchaseController;
 use App\Http\Controllers\UserAuthController;
 use App\Models\ProductImage;
 use Illuminate\Support\Facades\Route;
@@ -38,6 +39,7 @@ Route::post('/user-register', [UserAuthController::class, 'register'])->name('us
 Route::middleware('custom.auth')->group(function () {
 
     Route::get('/checkout', [CheckoutController::class, 'checkout'])->name('user.checkout');
+    Route::post('/checkout/purchase', [PurchaseController::class, 'purchase'])->name('user.checkout.purchase');
     Route::post('/user-logout', [UserAuthController::class, 'logout'])->name('user.auth.logout');
 });
 
@@ -47,4 +49,4 @@ Route::post('/add-to-cart', [CartController::class, 'addToCart']);
 Route::post('/delete-cart', [CartController::class, 'deleteToCart']);
 
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

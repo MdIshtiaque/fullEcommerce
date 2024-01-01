@@ -14,7 +14,7 @@ class CartController extends Controller
         $price = $request->input('price');
         // Add the product to the cart
         // Assuming you have a Cart model or a similar logic
-        $exist = Cart::whereUser_id(auth()->user()->id)->whereProduct_id($productId)->first();
+        $exist = Cart::whereUser_id(auth()->user()->id)->whereProduct_id($productId)->whereIs_purchased(false)->first();
         if($exist) {
             $newQuantity = $exist->quantity+1;
             $newPrice = $exist->total_price+$price;
@@ -33,7 +33,7 @@ class CartController extends Controller
             ]);
         }
 
-        $data = Cart::with('product.productImage')->whereUser_id(auth()->user()->id)->get();
+        $data = Cart::with('product.productImage')->whereUser_id(auth()->user()->id)->whereIs_purchased(false)->get();
 
         return response()->json(['data' => $data, 'message' => 'Product added to cart successfully']);
     }
@@ -43,7 +43,7 @@ class CartController extends Controller
         $cartId = $request->input('cart_id');
 
         // Find the cart item
-        $cartItem = Cart::whereId($cartId)->first();
+        $cartItem = Cart::whereId($cartId)->whereIs_purchased(false)->first();
 
         if ($cartItem) {
             // Delete the cart item if it exists
@@ -56,6 +56,7 @@ class CartController extends Controller
         // Retrieve updated cart items
         $updatedCartItems = Cart::with('product.productImage')
             ->whereUser_id(auth()->user()->id)
+            ->whereIs_purchased(false)
             ->get();
 
         return response()->json(['data' => $updatedCartItems, 'message' => 'Product removed from cart successfully']);

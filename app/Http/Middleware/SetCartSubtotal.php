@@ -17,7 +17,7 @@ class SetCartSubtotal
     public function handle(Request $request, Closure $next): Response
     {
         if (auth()->check()) {
-            $cartItems = Cart::with('product.productImage')->whereUser_id($request->user()->id)->get();
+            $cartItems = Cart::with('product.productImage')->whereUser_id($request->user()->id)->whereIs_purchased(false)->get();
             $subtotal = $cartItems->sum('total_price');
         } else {
             $subtotal = 0;

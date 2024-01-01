@@ -18,6 +18,7 @@ return new class extends Migration
             $table->integer('quantity');
             $table->decimal('price', 8, 2)->nullable(); // Optional, depending on whether you want to store the price
             $table->decimal('total_price', 8, 2)->nullable(); // Optional, depending on whether you want to store the price
+            $table->boolean('is_purchased')->default(false);
             $table->timestamps();
 
             // Foreign key constraints
