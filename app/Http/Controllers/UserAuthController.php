@@ -25,9 +25,10 @@ class UserAuthController extends Controller
 
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
+            toastr()->success('You successfully logged in!!');
             return redirect()->route('home');
         }
-
+        toastr()->warning('You must be logged in to access this page.');
         return back()->withErrors([
             'email' => 'The provided credentials do not match our records.',
         ]);
@@ -48,9 +49,20 @@ class UserAuthController extends Controller
         ]);
 
         Auth::login($user);
-
+        toastr()->success('You successfully logged in!!');
         return redirect()->route('home');
     }
+
+    public function logout(Request $request)
+    {
+        Auth::logout();
+
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        toastr()->success('You successfully logged out!!');
+        return redirect()->route('home');
+    }
+
 
 
 }

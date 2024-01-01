@@ -113,7 +113,7 @@
                             <li>
                                 <a href="#offcanvas-add-cart" class="offcanvas-toggle">
                                     <i class="icon-bag"></i>
-                                    <span class="item-count cart-count" >{{ $cartItems->count() }}</span>
+                                    <span class="item-count cart-count" >{{ optional($cartItems)->count()?? 0 }}</span>
                                 </a>
                             </li>
                             <li>

@@ -59,7 +59,10 @@
                 <li><a href="{{ route('user.auth') }}" class="btn btn-black-default-hover">Login</a></li>
                 <li><a href="{{ route('user.auth') }}" class="btn btn-black-default-hover">Register</a></li>
             @else
-                <li><a href="#" class="btn btn-black-default-hover">Logout</a></li>
+                <form action="{{ route('user.auth.logout') }}" method="post">
+                    @csrf
+                    <li><button type="submit" class="btn btn-black-default-hover">Logout</button></li>
+                </form>
             @endif
         </ul>
     </div>

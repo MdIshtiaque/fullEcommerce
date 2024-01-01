@@ -35,7 +35,7 @@
         </div>
         <ul class="offcanvas-cart-action-button">
             <li><a href="cart.html" class="btn btn-block btn-pink">View Cart</a></li>
-            <li><a href="compare.html" class=" btn btn-block btn-pink mt-5">Checkout</a></li>
+            <li><a href="{{ route('user.checkout') }}" class=" btn btn-block btn-pink mt-5">Checkout</a></li>
         </ul>
     </div> <!-- End  Offcanvas Addcart Wrapper -->
 

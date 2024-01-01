@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryToProductController;
+use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserAuthController;
@@ -34,9 +35,16 @@ Route::get('/auth', [UserAuthController::class, 'index'])->name('user.auth');
 Route::post('/user-login', [UserAuthController::class, 'login'])->name('user.auth.login');
 Route::post('/user-register', [UserAuthController::class, 'register'])->name('user.auth.register');
 
+Route::middleware('custom.auth')->group(function () {
+
+    Route::get('/checkout', [CheckoutController::class, 'checkout'])->name('user.checkout');
+    Route::post('/user-logout', [UserAuthController::class, 'logout'])->name('user.auth.logout');
+});
+
 
 Route::get('category/{category}/products', [CategoryToProductController::class, 'showCategoryWiseProducts'])->name('category.products');
 Route::post('/add-to-cart', [CartController::class, 'addToCart']);
 Route::post('/delete-cart', [CartController::class, 'deleteToCart']);
+
 
 require __DIR__.'/auth.php';

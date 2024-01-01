@@ -21,6 +21,7 @@ class SetCartSubtotal
             $subtotal = $cartItems->sum('total_price');
         } else {
             $subtotal = 0;
+            $cartItems = [];
         }
 
         view()->share([
