@@ -6,8 +6,12 @@ use App\Events\ProductPurchased;
 use App\Jobs\SendOrderInvoiceEmail;
 use App\Models\BillingDetails;
 use App\Models\Category;
+use App\Models\Order;
 use App\Models\OrderedProduct;
 use Exception;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
+use Illuminate\Foundation\Application;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -56,16 +60,20 @@ class PurchaseController extends Controller
                 event(new ProductPurchased($cartId));
             }
             DB::commit();
-            $categories = Category::all();
             dispatch(new SendOrderInvoiceEmail($order));
 
             toastr()->Success('You have successfully created a new order!!!');
-            return view('pages.shop.purchase-success', ['order' => $order, 'categories' => $categories]);
+            return redirect()->route('user.order.success', ['order' => $order]);
 
         } catch (Exception $exception) {
             DB::rollback();
-            dd($exception);
             toastr()->error('Something went wrong');
         }
+    }
+
+    public function success(Order $order): View|Application|Factory
+    {
+        $categories = Category::all();
+        return view('pages.shop.purchase-success', ['order' => $order, 'categories' => $categories]);
     }
 }
