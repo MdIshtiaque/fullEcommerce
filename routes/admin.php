@@ -30,6 +30,10 @@ Route::middleware(['auth', 'verified'])->prefix('admin/')->group(function () {
         Route::put('/product/{code}', [ProductController::class, 'edit'])->name('admin.productEdit');
         Route::delete('/product/delete/{product}', [ProductController::class, 'delete'])->name('admin.productDelete');
         Route::delete('/product/delete-image/{id}', [ProductController::class, 'deleteImage']);
+
+        Route::post('/import-products', [ProductController::class, 'importProducts'])->name('import.products');
+        Route::get('/export-products', [ProductController::class, 'exportProducts'])->name('export.products');
+
     });
 
 });

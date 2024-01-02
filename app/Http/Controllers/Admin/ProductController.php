@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Exports\ProductsExport;
 use App\Http\Controllers\Controller;
+use App\Imports\ProductsImport;
 use App\Jobs\Admin\SendNewProductEmail;
 use App\Models\Category;
 use App\Models\Product;
@@ -20,6 +22,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Log;
+use Maatwebsite\Excel\Facades\Excel;
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
 
 class ProductController extends Controller
 {
@@ -246,5 +250,25 @@ class ProductController extends Controller
         $image->delete(); // Delete the image record from the database
 
         return response()->json(['success' => true, 'message' => 'Image deleted successfully']);
+    }
+
+    public function importProducts(Request $request): RedirectResponse
+    {
+        $validatedData = $request->validate([
+            'file' => 'required|file|mimes:csv,xls',
+        ]);
+
+        try {
+            Excel::import(new ProductsImport, $validatedData['file']);
+        } catch (Exception $exception) {
+            toastr()->error('Something went wrong!!!');
+        }
+        toastr()->success('Import Success!!');
+        return back();
+    }
+
+    public function exportProducts(): BinaryFileResponse
+    {
+        return Excel::download(new ProductsExport, 'products.xlsx');
     }
 }

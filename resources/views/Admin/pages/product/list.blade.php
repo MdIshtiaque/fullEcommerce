@@ -1,6 +1,6 @@
 @extends('Admin.master')
 @push('css')
-
+    <link rel="stylesheet" type="text/css" href="https://jeremyfagis.github.io/dropify/dist/css/dropify.min.css">
 @endpush
 @section('content')
     <h2 class="intro-y text-lg font-medium mt-10">
@@ -9,6 +9,25 @@
     <div class="grid grid-cols-12 gap-6 mt-5">
         <div class="intro-y col-span-12 flex flex-wrap sm:flex-nowrap items-center mt-2">
             <a href="{{ route('admin.addNewProduct') }}" class="btn btn-primary shadow-md mr-2">Add New Product</a>
+            <div class="dropdown">
+                <button class="dropdown-toggle btn px-2 box" aria-expanded="false" data-tw-toggle="dropdown">
+                    <span class="w-5 h-5 flex items-center justify-center"> <i class="w-4 h-4" data-feather="plus"></i>
+                    </span>
+                </button>
+                <div class="dropdown-menu w-40">
+                    <ul class="dropdown-content">
+                        <li>
+                            <a href="{{ route('export.products') }}" class="dropdown-item"> <i data-feather="file-text" class="w-4 h-4 mr-2"></i>
+                                Export to Excel </a>
+                        </li>
+                        <li>
+                            <a id="programmatically-show-modal" href="javascript:void(0);" class="dropdown-item"> <i
+                                    data-feather="file-text" class="w-4 h-4 mr-2"></i>
+                                Import XLS </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
             <div class="hidden md:block mx-auto text-slate-500"></div>
             <div class="w-full sm:w-auto mt-3 sm:mt-0 sm:ml-auto md:ml-0">
                 <div class="w-56 relative text-slate-500">
@@ -50,16 +69,17 @@
                             <div class="text-slate-500 text-xs whitespace-nowrap mt-0.5">
                                 <span style="font-weight: bold">Categories: </span>
                                 @foreach ($product->productCategory as $category)
-                                        {{ $category->category->name }}
-                                        @unless ($loop->last)
-                                            , <!-- Add a comma unless it's the last category -->
-                                        @endunless
+                                    {{ $category->category->name }}
+                                    @unless ($loop->last)
+                                        , <!-- Add a comma unless it's the last category -->
+                                    @endunless
                                 @endforeach
                             </div>
                         </td>
                         <td class="text-center">{{ $product->stock }}</td>
                         <td class="w-40">
-                            <div class="flex items-center justify-center w">{{ $product->productCurrency->symbol }} {{ $product->price }}
+                            <div
+                                class="flex items-center justify-center w">{{ $product->productCurrency->symbol }} {{ $product->price }}
                             </div>
                         </td>
                         <td class="text-center">
@@ -73,20 +93,24 @@
                         </td>
                         <td class="w-40 status">
                             @if ($product->is_active)
-                                <div class="flex items-center justify-center text-success"> <i
-                                        data-feather="check-square" class="w-4 h-4 mr-2"></i> Published </div>
+                                <div class="flex items-center justify-center text-success"><i
+                                        data-feather="check-square" class="w-4 h-4 mr-2"></i> Published
+                                </div>
                             @else
-                                <div class="flex items-center justify-center text-success" style="color: red"> <i
-                                        data-feather="x-square" class="w-4 h-4 mr-2"></i> Unpublished </div>
+                                <div class="flex items-center justify-center text-success" style="color: red"><i
+                                        data-feather="x-square" class="w-4 h-4 mr-2"></i> Unpublished
+                                </div>
                             @endif
                         </td>
                         <td class="table-report__action w-56">
                             <div class="flex justify-center items-center">
-                                <form method="post" action="{{ route('admin.productEdit', ['code' => $product->code]) }}">
+                                <form method="post"
+                                      action="{{ route('admin.productEdit', ['code' => $product->code]) }}">
                                     @csrf
                                     @method('PUT')
-                                    <button class="flex items-center mr-3" type="submit"> <i data-feather="check-square"
-                                                                                              class="w-4 h-4 mr-1"></i> Edit
+                                    <button class="flex items-center mr-3" type="submit"><i data-feather="check-square"
+                                                                                            class="w-4 h-4 mr-1"></i>
+                                        Edit
                                     </button>
                                 </form>
                                 <form id="delete-form"
@@ -113,22 +137,24 @@
                 <ul class="pagination">
                     @if ($items->onFirstPage())
                         <li class="page-item disabled">
-                            <span class="page-link" aria-hidden="true"> <i class="w-4 h-4" data-feather="chevrons-left"></i>
+                            <span class="page-link" aria-hidden="true"> <i class="w-4 h-4"
+                                                                           data-feather="chevrons-left"></i>
                             </span>
                         </li>
                         <li class="page-item disabled">
-                            <span class="page-link" aria-hidden="true"> <i class="w-4 h-4" data-feather="chevron-left"></i>
+                            <span class="page-link" aria-hidden="true"> <i class="w-4 h-4"
+                                                                           data-feather="chevron-left"></i>
                             </span>
                         </li>
                     @else
                         <li class="page-item">
                             <a class="page-link" href="{{ $items->previousPageUrl() }}"> <i class="w-4 h-4"
-                                                                                                 data-feather="chevrons-left"></i>
+                                                                                            data-feather="chevrons-left"></i>
                             </a>
                         </li>
                         <li class="page-item">
                             <a class="page-link" href="{{ $items->previousPageUrl() }}"> <i class="w-4 h-4"
-                                                                                                 data-feather="chevron-left"></i>
+                                                                                            data-feather="chevron-left"></i>
                             </a>
                         </li>
                     @endif
@@ -152,7 +178,7 @@
                     @if ($items->hasMorePages())
                         <li class="page-item">
                             <a class="page-link" href="{{ $items->nextPageUrl() }}"> <i class="w-4 h-4"
-                                                                                             data-feather="chevron-right"></i>
+                                                                                        data-feather="chevron-right"></i>
                             </a>
                         </li>
                         <li class="page-item">
@@ -220,13 +246,14 @@
             </div>
         </div>
     </div>
+    @include('Admin.pages.product.modal.upload-csv')
 @endsection
 @push('js')
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
-        $(document).ready(function() {
-            $('.active-btn').on('change', function() {
+        $(document).ready(function () {
+            $('.active-btn').on('change', function () {
                 let status = $(this).prop('checked') ? 1 : 0;
                 url = $(this).attr('data-action');
                 let tdElement = $(this).closest('tr').find('.status');
@@ -239,7 +266,7 @@
                     data: {
                         status: status
                     },
-                    success: function(response) {
+                    success: function (response) {
                         var editButton = document.querySelector('.edit-button[data-id="' +
                             response.id + '"]');
                         if (response.is_active) {
@@ -264,7 +291,7 @@
                             stopOnFocus: true,
                         }).showToast();
                     },
-                    error: function(xhr, status, error) {
+                    error: function (xhr, status, error) {
                         // toastr.options = {
                         //     "closeButton": true,
                         //     "progressBar": true
@@ -292,5 +319,27 @@
                 }
             });
         }
+    </script>
+    <script>
+        // Show modal
+        const elShow = document.querySelector("#programmatically-show-modal");
+        elShow.addEventListener("click", function () {
+            const elModal = document.querySelector("#programmatically-modal");
+            const modal = tailwind.Modal.getOrCreateInstance(elModal);
+            modal.show();
+        });
+
+        // Hide modal
+        const elHide = document.querySelector("#programmatically-hide-modal");
+        elHide.addEventListener("click", function () {
+            const elModal = document.querySelector("#programmatically-modal");
+            const modal = tailwind.Modal.getOrCreateInstance(elModal);
+            modal.hide();
+        });
+    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://jeremyfagis.github.io/dropify/dist/js/dropify.min.js"></script>
+    <script>
+        $('.dropify').dropify();
     </script>
 @endpush
