@@ -7,6 +7,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PurchaseController;
 use App\Http\Controllers\UserAuthController;
+use App\Http\Controllers\UserProductController;
 use App\Models\ProductImage;
 use Illuminate\Support\Facades\Route;
 
@@ -44,7 +45,7 @@ Route::middleware('custom.auth')->group(function () {
     Route::post('/user-logout', [UserAuthController::class, 'logout'])->name('user.auth.logout');
 });
 
-
+Route::get('product/{product}/details', [UserProductController::class, 'productDetails'])->name('product.details');
 Route::get('category/{category}/products', [CategoryToProductController::class, 'showCategoryWiseProducts'])->name('category.products');
 Route::get('category/all-products/', [CategoryToProductController::class, 'showAllProducts'])->name('allProducts');
 Route::post('/add-to-cart', [CartController::class, 'addToCart']);

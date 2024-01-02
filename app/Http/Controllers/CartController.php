@@ -16,7 +16,7 @@ class CartController extends Controller
         // Assuming you have a Cart model or a similar logic
         $exist = Cart::whereUser_id(auth()->user()->id)->whereProduct_id($productId)->whereIs_purchased(false)->first();
         if($exist) {
-            $newQuantity = $exist->quantity+1;
+            $newQuantity = $exist->quantity+$quantity;
             $newPrice = $exist->total_price+$price;
             $exist->update([
                 'quantity' => $newQuantity,

@@ -139,7 +139,7 @@
                                                             <div class="content">
                                                                 <div class="content-left">
                                                                     <h6 class="title"><a
-                                                                            href="product-details-default.html">{{ $item->product->name }}</a>
+                                                                            href="{{ route('product.details', ['product' => $item->product->id]) }}">{{ $item->product->name }}</a>
                                                                     </h6>
                                                                     <ul class="review-star">
                                                                         <li class="fill"><i
@@ -190,7 +190,7 @@
                                                             </a>
                                                             <div class="product-list-content">
                                                                 <h5 class="product-list-link"><a
-                                                                        href="product-details-default.html">{{ $item->product->name }}</a>
+                                                                        href="{{ route('product.details', ['product' => $item->id]) }}">{{ $item->product->name }}</a>
                                                                 </h5>
                                                                 <ul class="review-star">
                                                                     <li class="fill"><i class="ion-android-star"></i>
