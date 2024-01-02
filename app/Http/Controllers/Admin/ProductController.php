@@ -99,10 +99,10 @@ class ProductController extends Controller
             dispatch(new SendNewProductEmail($product));
         } catch (Exception $exception) {
             DB::rollback();
-            dd($exception);
+            toastr()->error('Something went wrong!!!');
         }
-
-        return redirect()->route('admin.addNewProduct');
+        toastr()->success('Product created successfully!!!');
+        return redirect()->route('admin.productList');
     }
 
     public function productUpdate(Request $request, Product $product)
@@ -140,7 +140,7 @@ class ProductController extends Controller
                     ]
                 );
             }
-
+        if ($request->file('image') != '') {
             foreach ($request->file('image') as $photo) {
                 if (in_array($photo->getClientOriginalName(), $photoArray)) {
                     $image = $product->productImage()->create([
@@ -149,6 +149,7 @@ class ProductController extends Controller
                     upload($image, $photo, 'image');
                 }
             }
+        }
 
             if ($coupon === 'on') {
                 if ($product->has_coupon === true) {
@@ -160,10 +161,13 @@ class ProductController extends Controller
                 }
             }
             DB::commit();
+            toastr()->success('Product updated successfully!!!');
         } catch (Exception $exception) {
             DB::rollback();
             dd($exception);
+            toastr()->error('Something went wrong!!!');
         }
+
 
         return redirect()->route('admin.productList');
     }

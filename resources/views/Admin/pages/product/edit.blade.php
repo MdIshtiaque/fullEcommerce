@@ -138,7 +138,7 @@
                                             <div class="px-4 pb-4 flex items-center cursor-pointer relative">
                                                 <i data-feather="image" class="w-4 h-4 mr-2"></i> <span
                                                     class="text-primary mr-1">Upload a file</span> or drag and drop
-                                                <input type="file" id="image-upload" name="image[]" required
+                                                <input type="file" id="image-upload" name="image[]"
                                                        class="w-full h-full top-0 left-0 absolute opacity-0" multiple>
                                             </div>
                                             <textarea name="photo[]" id="hiddenTextarea"
