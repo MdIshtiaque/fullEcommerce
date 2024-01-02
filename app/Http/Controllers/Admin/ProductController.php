@@ -164,7 +164,6 @@ class ProductController extends Controller
             toastr()->success('Product updated successfully!!!');
         } catch (Exception $exception) {
             DB::rollback();
-            dd($exception);
             toastr()->error('Something went wrong!!!');
         }
 
