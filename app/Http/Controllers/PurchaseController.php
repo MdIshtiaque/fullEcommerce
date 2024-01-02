@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Events\ProductPurchased;
 use App\Models\BillingDetails;
+use App\Models\Category;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -12,7 +13,6 @@ class PurchaseController extends Controller
 {
     public function purchase(Request $request)
     {
-//        dd($request->all());
         try {
             $validatedData = $request->validate([
                 'full_name' => 'required|string|max:255',
@@ -54,9 +54,9 @@ class PurchaseController extends Controller
                 event(new ProductPurchased($cartId));
             }
             DB::commit();
-
+            $categories = Category::all();
             toastr()->Success('You have successfully created a new order!!!');
-            return back();
+            return view('pages.shop.purchase-success', ['order' => $order, 'categories' => $categories]);
 
         } catch (Exception $exception) {
             DB::rollback();
