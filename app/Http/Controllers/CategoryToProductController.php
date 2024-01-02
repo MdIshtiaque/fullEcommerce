@@ -15,4 +15,11 @@ class CategoryToProductController extends Controller
         $categories = Category::all();
         return view('pages.shop.products', ['items' => $items, 'categories' => $categories]);
     }
+
+    public function showAllProducts() {
+        $itemsPerPage = 10;
+        $items = ProductCategory::with('product', 'product.productImage', 'product.symbol')->paginate($itemsPerPage);
+        $categories = Category::all();
+        return view('pages.shop.products', ['items' => $items, 'categories' => $categories]);
+    }
 }

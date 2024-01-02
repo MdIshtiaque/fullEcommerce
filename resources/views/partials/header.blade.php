@@ -32,7 +32,7 @@
                                                         @foreach($categories as $category)
                                                             <li><a href="{{ route('category.products', ['category' => $category->id]) }}">{{ $category->name }}</a></li>
                                                         @endforeach
-                                                            <li><a href="shop-grid-sidebar-left.html">All Products</a></li>
+                                                            <li><a href="{{ route('allProducts') }}">All Products</a></li>
                                                     </ul>
                                                 </li>
 {{--                                                <!-- Mega Menu Sub Link -->--}}

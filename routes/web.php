@@ -45,6 +45,7 @@ Route::middleware('custom.auth')->group(function () {
 
 
 Route::get('category/{category}/products', [CategoryToProductController::class, 'showCategoryWiseProducts'])->name('category.products');
+Route::get('category/all-products/', [CategoryToProductController::class, 'showAllProducts'])->name('allProducts');
 Route::post('/add-to-cart', [CartController::class, 'addToCart']);
 Route::post('/delete-cart', [CartController::class, 'deleteToCart']);
 
