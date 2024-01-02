@@ -15,8 +15,18 @@ class AdminCredentialSeeder extends Seeder
     {
         User::create([
             'name' => 'Md Emon',
-            'email' => 'admin@admin.com',
-            'password' => bcrypt('12345678')
+            'email' => 'ishtiaqueferdous109@gmail.com',
+            'password' => bcrypt('12345678'),
+            'is_admin' => true,
+            'role' => User::USER_ADMIN
+        ]);
+
+        User::create([
+            'name' => 'Md Stark',
+            'email' => 'moderator@admin.com',
+            'password' => bcrypt('12345678'),
+            'is_admin' => false,
+            'role' => User::USER_MODERATOR
         ]);
     }
 }

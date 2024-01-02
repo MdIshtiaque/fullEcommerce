@@ -15,9 +15,10 @@ class AdminCheck
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (auth()->check() && auth()->user()->is_admin) {
+        if (auth()->check() && auth()->user()->role == 'admin') {
             return $next($request);
         }
-        return redirect()->route('admin.dashboard')->with('error', 'You do not have admin access');
+        toastr()->warning('You do not have admin access');
+        return redirect()->route('admin.dashboard');
     }
 }

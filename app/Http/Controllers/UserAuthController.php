@@ -46,6 +46,7 @@ class UserAuthController extends Controller
             'name' => $validatedData['name'],
             'email' => $validatedData['email'],
             'password' => Hash::make($validatedData['password']),
+            'role' => User::USER_CUSTOMER
         ]);
 
         Auth::login($user);

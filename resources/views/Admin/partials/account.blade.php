@@ -5,8 +5,7 @@
     <div class="dropdown-menu w-56">
         <ul class="dropdown-content bg-primary text-white">
             <li class="p-2">
-                <div class="font-medium">Kevin Spacey</div>
-                <div class="text-xs text-white/70 mt-0.5 dark:text-slate-500">Backend Engineer</div>
+                <div class="font-medium">{{ auth()->user()->name }}</div>
             </li>
             <li>
                 <hr class="dropdown-divider border-white/[0.08]">
@@ -27,7 +26,10 @@
                 <hr class="dropdown-divider border-white/[0.08]">
             </li>
             <li>
-                <a href="" class="dropdown-item hover:bg-white/5"> <i data-feather="toggle-right" class="w-4 h-4 mr-2"></i> Logout </a>
+                <form action="{{ route('logout') }}" method="post">
+                    @csrf
+                    <button type="submit" class="dropdown-item hover:bg-white/5"> <i data-feather="toggle-right" class="w-4 h-4 mr-2"></i> Logout </button>
+                </form>
             </li>
         </ul>
     </div>
