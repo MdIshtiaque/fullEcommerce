@@ -14,7 +14,7 @@ class CheckoutController extends Controller
     public function checkout(): View|Application|Factory
     {
         $categories = Category::all();
-        $items = Cart::with('product.productImage')->whereUser_id(auth()->user()->id)->get();
+        $items = Cart::with('product.productImage')->whereUser_id(auth()->user()->id)->whereIs_purchased(false)->get();
 
         return view('pages.shop.checkout', ['items' => $items, 'categories' => $categories]);
     }

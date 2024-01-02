@@ -43,7 +43,7 @@ class PurchaseController extends Controller
             $order = $billingDetails->order()->create([
                 'billing_detail_id' => $billingDetails->id,
                 'ordered_by' => auth()->user()->id,
-                'order_code' => '023Ab231Akdksa23114',
+                'order_code' => generateOrderNumber(),
                 'shipping_charge' => 0,
                 'total_charge' => $request->total_charge,
                 'payment_type' => ($paymentType === 'on') ? 'cash' : 'online',
