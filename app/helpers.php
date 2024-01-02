@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Order;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
@@ -91,6 +92,23 @@ function generateProductCode(): int
     }
 
     return $code;
+}
+
+function generateOrderNumber(): string
+{
+    $date = now();
+    $year = $date->year;
+    $month = str_pad($date->month, 2, '0', STR_PAD_LEFT);
+    $day = str_pad($date->day, 2, '0', STR_PAD_LEFT);
+
+    $sequentialNumber = str_pad(rand(1, 9999), 4, '0', STR_PAD_LEFT);
+
+    $orderNumber = "#{$year}{$month}{$day}{$sequentialNumber}";
+    while (Order::where('order_code', $orderNumber)->exists()) {
+        $sequentialNumber = str_pad(rand(1, 9999), 4, '0', STR_PAD_LEFT);
+        $orderNumber = "#{$year}{$month}{$day}{$sequentialNumber}";
+    }
+    return $orderNumber;
 }
 
 

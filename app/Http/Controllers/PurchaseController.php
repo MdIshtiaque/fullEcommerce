@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Events\ProductPurchased;
+use App\Jobs\SendOrderInvoiceEmail;
 use App\Models\BillingDetails;
 use App\Models\Category;
+use App\Models\OrderedProduct;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -41,7 +43,7 @@ class PurchaseController extends Controller
             $order = $billingDetails->order()->create([
                 'billing_detail_id' => $billingDetails->id,
                 'ordered_by' => auth()->user()->id,
-                'order_code' => '023Ab231Akdksa23114',
+                'order_code' => generateOrderNumber(),
                 'shipping_charge' => 0,
                 'total_charge' => $request->total_charge,
                 'payment_type' => ($paymentType === 'on') ? 'cash' : 'online',
@@ -55,6 +57,8 @@ class PurchaseController extends Controller
             }
             DB::commit();
             $categories = Category::all();
+            dispatch(new SendOrderInvoiceEmail($order));
+
             toastr()->Success('You have successfully created a new order!!!');
             return view('pages.shop.purchase-success', ['order' => $order, 'categories' => $categories]);
 
