@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
@@ -13,13 +14,18 @@ class Order extends Model
 
     protected $guarded = ['id'];
 
-    public function billingDetail(): HasOne
+    public function billingDetail(): BelongsTo
     {
-        return $this->hasOne(BillingDetails::class);
+        return $this->belongsTo(BillingDetails::class);
     }
 
     public function orderProducts(): HasMany
     {
         return $this->hasMany(OrderedProduct::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'ordered_by', 'id');
     }
 }

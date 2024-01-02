@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Events\ProductPurchased;
+use App\Jobs\SendOrderInvoiceEmail;
 use App\Models\BillingDetails;
 use App\Models\Category;
+use App\Models\OrderedProduct;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -55,6 +57,8 @@ class PurchaseController extends Controller
             }
             DB::commit();
             $categories = Category::all();
+            dispatch(new SendOrderInvoiceEmail($order));
+
             toastr()->Success('You have successfully created a new order!!!');
             return view('pages.shop.purchase-success', ['order' => $order, 'categories' => $categories]);
 
