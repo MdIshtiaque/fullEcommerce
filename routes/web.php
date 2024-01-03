@@ -39,7 +39,7 @@ Route::post('/user-register', [UserAuthController::class, 'register'])->name('us
 
 Route::middleware('custom.auth')->group(function () {
 
-    Route::get('/checkout', [CheckoutController::class, 'checkout'])->name('user.checkout');
+    Route::get('/checkout/{product?}', [CheckoutController::class, 'checkout'])->name('user.checkout');
     Route::post('/checkout/purchase', [PurchaseController::class, 'purchase'])->name('user.checkout.purchase');
     Route::get('/order/{order}/success',[PurchaseController::class, 'success'])->name('user.order.success');
     Route::post('/user-logout', [UserAuthController::class, 'logout'])->name('user.auth.logout');
