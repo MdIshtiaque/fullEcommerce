@@ -288,7 +288,7 @@
                                                 </div>
                                                 <div class="modal-add-cart-product-cart-buttons">
                                                     <a href="cart.html">View Cart</a>
-                                                    <a href="checkout.html">Checkout</a>
+                                                    <a href="{{ route('user.checkout', ['product' => $item->id]) }}">Checkout</a>
                                                 </div>
                                             </div>
                                         </div>
