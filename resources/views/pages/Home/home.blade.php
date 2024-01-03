@@ -1,5 +1,21 @@
 @extends('welcome')
+@push('css')
+    <style>
+        .product-default-single-item .image-box img,
+        .product-list-single .product-list-img-link img {
+            width: 100%; /* or specific fixed width */
+            height: 300px; /* or specific fixed height */
+            object-fit: cover;
+        }
 
+        .product-list-single .product-list-img-link img {
+            width: 250px; /* or a specific fixed width */
+            height: 300px; /* or a specific fixed height */
+            object-fit: cover;
+        }
+
+    </style>
+@endpush
 @section('content')
     <!-- Start Hero Slider Section-->
     <div class="hero-slider-section">
@@ -125,40 +141,40 @@
     <!-- End Service Section -->
 
     <!-- Start Banner Section -->
-{{--    <div class="banner-section section-top-gap-100">--}}
-{{--        <div class="banner-wrapper clearfix">--}}
-{{--            <!-- Start Banner Single Item -->--}}
-{{--            <a href="product-details-default.html">--}}
-{{--                <div class="banner-single-item banner-style-7 banner-animation banner-color--green float-left"--}}
-{{--                     data-aos="fade-up" data-aos-delay="0">--}}
-{{--                    <div class="image">--}}
-{{--                        <img class="img-fluid" src="assets/images/banner/banner-style-7-img-1.jpg" alt="">--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--            </a>--}}
-{{--            <!-- End Banner Single Item -->--}}
-{{--            <!-- Start Banner Single Item -->--}}
-{{--            <a href="product-details-default.html">--}}
-{{--                <div class="banner-single-item banner-style-7 banner-animation banner-color--green float-left"--}}
-{{--                     data-aos="fade-up" data-aos-delay="200">--}}
-{{--                    <div class="image">--}}
-{{--                        <img class="img-fluid" src="assets/images/banner/banner-style-7-img-2.jpg" alt="">--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--            </a>--}}
-{{--            <!-- End Banner Single Item -->--}}
-{{--            <!-- Start Banner Single Item -->--}}
-{{--            <a href="product-details-default.html">--}}
-{{--                <div class="banner-single-item banner-style-7 banner-animation banner-color--green float-left"--}}
-{{--                     data-aos="fade-up" data-aos-delay="400">--}}
-{{--                    <div class="image">--}}
-{{--                        <img class="img-fluid" src="assets/images/banner/banner-style-7-img-3.jpg" alt="">--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--            </a>--}}
-{{--            <!-- End Banner Single Item -->--}}
-{{--        </div>--}}
-{{--    </div>--}}
+    {{--    <div class="banner-section section-top-gap-100">--}}
+    {{--        <div class="banner-wrapper clearfix">--}}
+    {{--            <!-- Start Banner Single Item -->--}}
+    {{--            <a href="product-details-default.html">--}}
+    {{--                <div class="banner-single-item banner-style-7 banner-animation banner-color--green float-left"--}}
+    {{--                     data-aos="fade-up" data-aos-delay="0">--}}
+    {{--                    <div class="image">--}}
+    {{--                        <img class="img-fluid" src="assets/images/banner/banner-style-7-img-1.jpg" alt="">--}}
+    {{--                    </div>--}}
+    {{--                </div>--}}
+    {{--            </a>--}}
+    {{--            <!-- End Banner Single Item -->--}}
+    {{--            <!-- Start Banner Single Item -->--}}
+    {{--            <a href="product-details-default.html">--}}
+    {{--                <div class="banner-single-item banner-style-7 banner-animation banner-color--green float-left"--}}
+    {{--                     data-aos="fade-up" data-aos-delay="200">--}}
+    {{--                    <div class="image">--}}
+    {{--                        <img class="img-fluid" src="assets/images/banner/banner-style-7-img-2.jpg" alt="">--}}
+    {{--                    </div>--}}
+    {{--                </div>--}}
+    {{--            </a>--}}
+    {{--            <!-- End Banner Single Item -->--}}
+    {{--            <!-- Start Banner Single Item -->--}}
+    {{--            <a href="product-details-default.html">--}}
+    {{--                <div class="banner-single-item banner-style-7 banner-animation banner-color--green float-left"--}}
+    {{--                     data-aos="fade-up" data-aos-delay="400">--}}
+    {{--                    <div class="image">--}}
+    {{--                        <img class="img-fluid" src="assets/images/banner/banner-style-7-img-3.jpg" alt="">--}}
+    {{--                    </div>--}}
+    {{--                </div>--}}
+    {{--            </a>--}}
+    {{--            <!-- End Banner Single Item -->--}}
+    {{--        </div>--}}
+    {{--    </div>--}}
     <!-- End Banner Section -->
 
     <!-- Start Product Default Slider Section -->
@@ -183,17 +199,21 @@
             <div class="container">
                 <div class="row">
                     <div class="col-12">
-                        <div class="product-slider-default-2rows default-slider-nav-arrow">
+                        <div class="product-slider-default-1row default-slider-nav-arrow">
                             <!-- Slider main container -->
-                            <div class="swiper-container product-default-slider-4grid-2row">
+                            <div class="swiper-container product-default-slider-4grid-1row">
                                 <!-- Additional required wrapper -->
                                 <div class="swiper-wrapper">
-                                    @foreach($products as $product)
-                                        <div class="product-default-single-item product-color--pink swiper-slide">
+                                        @foreach($products as $product)
+                                    <div class="product-default-single-item product-color--pink swiper-slide">
                                             <div class="image-box">
                                                 <a href="product-details-default.html" class="image-link">
-                                                    <img src="{{ asset('admin/product/'. $product->productImage->first()->image) }}" alt="">
-                                                    <img src="{{ asset('admin/product/'. optional($product->productImage->skip(1)->first())->image) }}" alt="">
+                                                    <img
+                                                        src="{{ asset('admin/product/'. $product->productImage->first()->image) }}"
+                                                        alt="">
+                                                    <img
+                                                        src="{{ asset('admin/product/'. optional($product->productImage->skip(1)->first())->image) }}"
+                                                        alt="">
                                                 </a>
                                                 <div class="tag">
                                                     <span>sale</span>
@@ -201,7 +221,12 @@
                                                 <div class="action-link">
                                                     <div class="action-link-left">
                                                         <a href="#" data-bs-toggle="modal"
-                                                           data-bs-target="#modalAddcart">Add to Cart</a>
+                                                           class="add-to-cart-btn"
+                                                           data-product-id="{{ $product->id }}"
+                                                           data-product-price="{{ $product->price }}"
+                                                           data-bs-target="#modalAddcart-{{ $product->id }}">Add
+                                                            to
+                                                            Cart</a>
                                                     </div>
                                                     <div class="action-link-right">
                                                         <a href="#" data-bs-toggle="modal"
@@ -213,7 +238,9 @@
                                             </div>
                                             <div class="content">
                                                 <div class="content-left">
-                                                    <h6 class="title"><a href="product-details-default.html">{{ $product->name }}</a></h6>
+                                                    <h6 class="title"><a
+                                                            href="{{ route('product.details', ['product' => $product->id]) }}">{{ $product->name }}</a>
+                                                    </h6>
                                                     <ul class="review-star">
                                                         <li class="fill"><i class="ion-android-star"></i></li>
                                                         <li class="fill"><i class="ion-android-star"></i></li>
@@ -227,8 +254,8 @@
                                                 </div>
 
                                             </div>
-                                        </div>
-                                    @endforeach
+                                    </div>
+                                        @endforeach
                                 </div>
                             </div>
                             <!-- If we need navigation buttons -->
@@ -639,186 +666,186 @@
     <!-- End Product Default Slider Section -->
 
     <!-- Start Blog Slider Section -->
-{{--    <div class="blog-default-slider-section section-top-gap-100 section-fluid">--}}
-{{--        <!-- Start Section Content Text Area -->--}}
-{{--        <div class="section-title-wrapper" data-aos="fade-up" data-aos-delay="0">--}}
-{{--            <div class="container">--}}
-{{--                <div class="row">--}}
-{{--                    <div class="col-12">--}}
-{{--                        <div class="section-content-gap">--}}
-{{--                            <div class="secton-content">--}}
-{{--                                <h3 class="section-title">THE LATEST BLOGS</h3>--}}
-{{--                                <p>Present posts in a best way to highlight interesting moments of your blog.</p>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--            </div>--}}
-{{--        </div>--}}
-{{--        <!-- Start Section Content Text Area -->--}}
-{{--        <div class="blog-wrapper" data-aos="fade-up" data-aos-delay="200">--}}
-{{--            <div class="container">--}}
-{{--                <div class="row">--}}
-{{--                    <div class="col-12">--}}
-{{--                        <div class="blog-default-slider default-slider-nav-arrow">--}}
-{{--                            <!-- Slider main container -->--}}
-{{--                            <div class="swiper-container blog-slider">--}}
-{{--                                <!-- Additional required wrapper -->--}}
-{{--                                <div class="swiper-wrapper">--}}
-{{--                                    <!-- Start Product Default Single Item -->--}}
-{{--                                    <div class="blog-default-single-item blog-color--pink swiper-slide">--}}
-{{--                                        <div class="image-box">--}}
-{{--                                            <a href="blog-single-sidebar-left.html" class="image-link">--}}
-{{--                                                <img class="img-fluid"--}}
-{{--                                                     src="assets/images/blog/blog-grid-home-1-img-1.jpg" alt="">--}}
-{{--                                            </a>--}}
-{{--                                        </div>--}}
-{{--                                        <div class="content">--}}
-{{--                                            <h6 class="title"><a href="blog-single-sidebar-left.html">Blog Post One</a>--}}
-{{--                                            </h6>--}}
-{{--                                            <p>Donec vitae hendrerit arcu, sit amet faucibus nisl. Cras pretium arcu ex.--}}
-{{--                                                Aenean posuere libero eu augue condimentum rhoncus. Praesent</p>--}}
-{{--                                            <div class="inner">--}}
-{{--                                                <a href="blog-single-sidebar-left.html"--}}
-{{--                                                   class="read-more-btn icon-space-left">Read More <span><i--}}
-{{--                                                            class="ion-ios-arrow-thin-right"></i></span></a>--}}
-{{--                                                <div class="post-meta">--}}
-{{--                                                    <a href="#" class="date">24 Apr</a>--}}
-{{--                                                </div>--}}
-{{--                                            </div>--}}
-{{--                                        </div>--}}
-{{--                                    </div>--}}
-{{--                                    <!-- End Product Default Single Item -->--}}
-{{--                                    <!-- Start Product Default Single Item -->--}}
-{{--                                    <div class="blog-default-single-item blog-color--pink swiper-slide">--}}
-{{--                                        <div class="image-box">--}}
-{{--                                            <a href="blog-single-sidebar-left.html" class="image-link">--}}
-{{--                                                <img class="img-fluid"--}}
-{{--                                                     src="assets/images/blog/blog-grid-home-1-img-2.jpg" alt="">--}}
-{{--                                            </a>--}}
-{{--                                        </div>--}}
-{{--                                        <div class="content">--}}
-{{--                                            <h6 class="title"><a href="blog-single-sidebar-left.html">Blog Post Two</a>--}}
-{{--                                            </h6>--}}
-{{--                                            <p>Donec vitae hendrerit arcu, sit amet faucibus nisl. Cras pretium arcu ex.--}}
-{{--                                                Aenean posuere libero eu augue condimentum rhoncus. Praesent</p>--}}
-{{--                                            <div class="inner">--}}
-{{--                                                <a href="#" class="read-more-btn icon-space-left">Read More <span><i--}}
-{{--                                                            class="ion-ios-arrow-thin-right"></i></span></a>--}}
-{{--                                                <div class="post-meta">--}}
-{{--                                                    <a href="blog-single-sidebar-left.html" class="date">24 Apr</a>--}}
-{{--                                                </div>--}}
-{{--                                            </div>--}}
-{{--                                        </div>--}}
-{{--                                    </div>--}}
-{{--                                    <!-- End Product Default Single Item -->--}}
-{{--                                    <!-- Start Product Default Single Item -->--}}
-{{--                                    <div class="blog-default-single-item blog-color--pink swiper-slide">--}}
-{{--                                        <div class="image-box">--}}
-{{--                                            <a href="blog-single-sidebar-left.html" class="image-link">--}}
-{{--                                                <img class="img-fluid"--}}
-{{--                                                     src="assets/images/blog/blog-grid-home-1-img-3.jpg" alt="">--}}
-{{--                                            </a>--}}
-{{--                                        </div>--}}
-{{--                                        <div class="content">--}}
-{{--                                            <h6 class="title"><a href="blog-single-sidebar-left.html">Blog Post--}}
-{{--                                                    Three</a></h6>--}}
-{{--                                            <p>Donec vitae hendrerit arcu, sit amet faucibus nisl. Cras pretium arcu ex.--}}
-{{--                                                Aenean posuere libero eu augue condimentum rhoncus. Praesent</p>--}}
-{{--                                            <div class="inner">--}}
-{{--                                                <a href="blog-single-sidebar-left.html"--}}
-{{--                                                   class="read-more-btn icon-space-left">Read More <span><i--}}
-{{--                                                            class="ion-ios-arrow-thin-right"></i></span></a>--}}
-{{--                                                <div class="post-meta">--}}
-{{--                                                    <a href="#" class="date">24 Apr</a>--}}
-{{--                                                </div>--}}
-{{--                                            </div>--}}
-{{--                                        </div>--}}
-{{--                                    </div>--}}
-{{--                                    <!-- End Product Default Single Item -->--}}
-{{--                                    <!-- Start Product Default Single Item -->--}}
-{{--                                    <div class="blog-default-single-item blog-color--pink swiper-slide">--}}
-{{--                                        <div class="image-box">--}}
-{{--                                            <a href="blog-single-sidebar-left.html" class="image-link">--}}
-{{--                                                <img class="img-fluid"--}}
-{{--                                                     src="assets/images/blog/blog-grid-home-1-img-4.jpg" alt="">--}}
-{{--                                            </a>--}}
-{{--                                        </div>--}}
-{{--                                        <div class="content">--}}
-{{--                                            <h6 class="title"><a href="blog-single-sidebar-left.html">Blog Post Four</a>--}}
-{{--                                            </h6>--}}
-{{--                                            <p>Donec vitae hendrerit arcu, sit amet faucibus nisl. Cras pretium arcu ex.--}}
-{{--                                                Aenean posuere libero eu augue condimentum rhoncus. Praesent</p>--}}
-{{--                                            <div class="inner">--}}
-{{--                                                <a href="blog-single-sidebar-left.html"--}}
-{{--                                                   class="read-more-btn icon-space-left">Read More <span><i--}}
-{{--                                                            class="ion-ios-arrow-thin-right"></i></span></a>--}}
-{{--                                                <div class="post-meta">--}}
-{{--                                                    <a href="#" class="date">24 Apr</a>--}}
-{{--                                                </div>--}}
-{{--                                            </div>--}}
-{{--                                        </div>--}}
-{{--                                    </div>--}}
-{{--                                    <!-- End Product Default Single Item -->--}}
-{{--                                    <!-- Start Product Default Single Item -->--}}
-{{--                                    <div class="blog-default-single-item blog-color--pink swiper-slide">--}}
-{{--                                        <div class="image-box">--}}
-{{--                                            <a href="blog-single-sidebar-left.html" class="image-link">--}}
-{{--                                                <img class="img-fluid"--}}
-{{--                                                     src="assets/images/blog/blog-grid-home-1-img-5.jpg" alt="">--}}
-{{--                                            </a>--}}
-{{--                                        </div>--}}
-{{--                                        <div class="content">--}}
-{{--                                            <h6 class="title"><a href="blog-single-sidebar-left.html">Blog Post Five</a>--}}
-{{--                                            </h6>--}}
-{{--                                            <p>Donec vitae hendrerit arcu, sit amet faucibus nisl. Cras pretium arcu ex.--}}
-{{--                                                Aenean posuere libero eu augue condimentum rhoncus. Praesent</p>--}}
-{{--                                            <div class="inner">--}}
-{{--                                                <a href="blog-single-sidebar-left.html"--}}
-{{--                                                   class="read-more-btn icon-space-left">Read More <span><i--}}
-{{--                                                            class="ion-ios-arrow-thin-right"></i></span></a>--}}
-{{--                                                <div class="post-meta">--}}
-{{--                                                    <a href="#" class="date">24 Apr</a>--}}
-{{--                                                </div>--}}
-{{--                                            </div>--}}
-{{--                                        </div>--}}
-{{--                                    </div>--}}
-{{--                                    <!-- End Product Default Single Item -->--}}
-{{--                                    <!-- Start Product Default Single Item -->--}}
-{{--                                    <div class="blog-default-single-item blog-color--pink swiper-slide">--}}
-{{--                                        <div class="image-box">--}}
-{{--                                            <a href="blog-single-sidebar-left.html" class="image-link">--}}
-{{--                                                <img class="img-fluid"--}}
-{{--                                                     src="assets/images/blog/blog-grid-home-1-img-6.jpg" alt="">--}}
-{{--                                            </a>--}}
-{{--                                        </div>--}}
-{{--                                        <div class="content">--}}
-{{--                                            <h6 class="title"><a href="blog-single-sidebar-left.html">Blog Post Six</a>--}}
-{{--                                            </h6>--}}
-{{--                                            <p>Donec vitae hendrerit arcu, sit amet faucibus nisl. Cras pretium arcu ex.--}}
-{{--                                                Aenean posuere libero eu augue condimentum rhoncus. Praesent</p>--}}
-{{--                                            <div class="inner">--}}
-{{--                                                <a href="blog-single-sidebar-left.html"--}}
-{{--                                                   class="read-more-btn icon-space-left">Read More <span><i--}}
-{{--                                                            class="ion-ios-arrow-thin-right"></i></span></a>--}}
-{{--                                                <div class="post-meta">--}}
-{{--                                                    <a href="#" class="date">24 Apr</a>--}}
-{{--                                                </div>--}}
-{{--                                            </div>--}}
-{{--                                        </div>--}}
-{{--                                    </div>--}}
-{{--                                    <!-- End Product Default Single Item -->--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-{{--                            <!-- If we need navigation buttons -->--}}
-{{--                            <div class="swiper-button-prev"></div>--}}
-{{--                            <div class="swiper-button-next"></div>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--            </div>--}}
-{{--        </div>--}}
-{{--    </div>--}}
+    {{--    <div class="blog-default-slider-section section-top-gap-100 section-fluid">--}}
+    {{--        <!-- Start Section Content Text Area -->--}}
+    {{--        <div class="section-title-wrapper" data-aos="fade-up" data-aos-delay="0">--}}
+    {{--            <div class="container">--}}
+    {{--                <div class="row">--}}
+    {{--                    <div class="col-12">--}}
+    {{--                        <div class="section-content-gap">--}}
+    {{--                            <div class="secton-content">--}}
+    {{--                                <h3 class="section-title">THE LATEST BLOGS</h3>--}}
+    {{--                                <p>Present posts in a best way to highlight interesting moments of your blog.</p>--}}
+    {{--                            </div>--}}
+    {{--                        </div>--}}
+    {{--                    </div>--}}
+    {{--                </div>--}}
+    {{--            </div>--}}
+    {{--        </div>--}}
+    {{--        <!-- Start Section Content Text Area -->--}}
+    {{--        <div class="blog-wrapper" data-aos="fade-up" data-aos-delay="200">--}}
+    {{--            <div class="container">--}}
+    {{--                <div class="row">--}}
+    {{--                    <div class="col-12">--}}
+    {{--                        <div class="blog-default-slider default-slider-nav-arrow">--}}
+    {{--                            <!-- Slider main container -->--}}
+    {{--                            <div class="swiper-container blog-slider">--}}
+    {{--                                <!-- Additional required wrapper -->--}}
+    {{--                                <div class="swiper-wrapper">--}}
+    {{--                                    <!-- Start Product Default Single Item -->--}}
+    {{--                                    <div class="blog-default-single-item blog-color--pink swiper-slide">--}}
+    {{--                                        <div class="image-box">--}}
+    {{--                                            <a href="blog-single-sidebar-left.html" class="image-link">--}}
+    {{--                                                <img class="img-fluid"--}}
+    {{--                                                     src="assets/images/blog/blog-grid-home-1-img-1.jpg" alt="">--}}
+    {{--                                            </a>--}}
+    {{--                                        </div>--}}
+    {{--                                        <div class="content">--}}
+    {{--                                            <h6 class="title"><a href="blog-single-sidebar-left.html">Blog Post One</a>--}}
+    {{--                                            </h6>--}}
+    {{--                                            <p>Donec vitae hendrerit arcu, sit amet faucibus nisl. Cras pretium arcu ex.--}}
+    {{--                                                Aenean posuere libero eu augue condimentum rhoncus. Praesent</p>--}}
+    {{--                                            <div class="inner">--}}
+    {{--                                                <a href="blog-single-sidebar-left.html"--}}
+    {{--                                                   class="read-more-btn icon-space-left">Read More <span><i--}}
+    {{--                                                            class="ion-ios-arrow-thin-right"></i></span></a>--}}
+    {{--                                                <div class="post-meta">--}}
+    {{--                                                    <a href="#" class="date">24 Apr</a>--}}
+    {{--                                                </div>--}}
+    {{--                                            </div>--}}
+    {{--                                        </div>--}}
+    {{--                                    </div>--}}
+    {{--                                    <!-- End Product Default Single Item -->--}}
+    {{--                                    <!-- Start Product Default Single Item -->--}}
+    {{--                                    <div class="blog-default-single-item blog-color--pink swiper-slide">--}}
+    {{--                                        <div class="image-box">--}}
+    {{--                                            <a href="blog-single-sidebar-left.html" class="image-link">--}}
+    {{--                                                <img class="img-fluid"--}}
+    {{--                                                     src="assets/images/blog/blog-grid-home-1-img-2.jpg" alt="">--}}
+    {{--                                            </a>--}}
+    {{--                                        </div>--}}
+    {{--                                        <div class="content">--}}
+    {{--                                            <h6 class="title"><a href="blog-single-sidebar-left.html">Blog Post Two</a>--}}
+    {{--                                            </h6>--}}
+    {{--                                            <p>Donec vitae hendrerit arcu, sit amet faucibus nisl. Cras pretium arcu ex.--}}
+    {{--                                                Aenean posuere libero eu augue condimentum rhoncus. Praesent</p>--}}
+    {{--                                            <div class="inner">--}}
+    {{--                                                <a href="#" class="read-more-btn icon-space-left">Read More <span><i--}}
+    {{--                                                            class="ion-ios-arrow-thin-right"></i></span></a>--}}
+    {{--                                                <div class="post-meta">--}}
+    {{--                                                    <a href="blog-single-sidebar-left.html" class="date">24 Apr</a>--}}
+    {{--                                                </div>--}}
+    {{--                                            </div>--}}
+    {{--                                        </div>--}}
+    {{--                                    </div>--}}
+    {{--                                    <!-- End Product Default Single Item -->--}}
+    {{--                                    <!-- Start Product Default Single Item -->--}}
+    {{--                                    <div class="blog-default-single-item blog-color--pink swiper-slide">--}}
+    {{--                                        <div class="image-box">--}}
+    {{--                                            <a href="blog-single-sidebar-left.html" class="image-link">--}}
+    {{--                                                <img class="img-fluid"--}}
+    {{--                                                     src="assets/images/blog/blog-grid-home-1-img-3.jpg" alt="">--}}
+    {{--                                            </a>--}}
+    {{--                                        </div>--}}
+    {{--                                        <div class="content">--}}
+    {{--                                            <h6 class="title"><a href="blog-single-sidebar-left.html">Blog Post--}}
+    {{--                                                    Three</a></h6>--}}
+    {{--                                            <p>Donec vitae hendrerit arcu, sit amet faucibus nisl. Cras pretium arcu ex.--}}
+    {{--                                                Aenean posuere libero eu augue condimentum rhoncus. Praesent</p>--}}
+    {{--                                            <div class="inner">--}}
+    {{--                                                <a href="blog-single-sidebar-left.html"--}}
+    {{--                                                   class="read-more-btn icon-space-left">Read More <span><i--}}
+    {{--                                                            class="ion-ios-arrow-thin-right"></i></span></a>--}}
+    {{--                                                <div class="post-meta">--}}
+    {{--                                                    <a href="#" class="date">24 Apr</a>--}}
+    {{--                                                </div>--}}
+    {{--                                            </div>--}}
+    {{--                                        </div>--}}
+    {{--                                    </div>--}}
+    {{--                                    <!-- End Product Default Single Item -->--}}
+    {{--                                    <!-- Start Product Default Single Item -->--}}
+    {{--                                    <div class="blog-default-single-item blog-color--pink swiper-slide">--}}
+    {{--                                        <div class="image-box">--}}
+    {{--                                            <a href="blog-single-sidebar-left.html" class="image-link">--}}
+    {{--                                                <img class="img-fluid"--}}
+    {{--                                                     src="assets/images/blog/blog-grid-home-1-img-4.jpg" alt="">--}}
+    {{--                                            </a>--}}
+    {{--                                        </div>--}}
+    {{--                                        <div class="content">--}}
+    {{--                                            <h6 class="title"><a href="blog-single-sidebar-left.html">Blog Post Four</a>--}}
+    {{--                                            </h6>--}}
+    {{--                                            <p>Donec vitae hendrerit arcu, sit amet faucibus nisl. Cras pretium arcu ex.--}}
+    {{--                                                Aenean posuere libero eu augue condimentum rhoncus. Praesent</p>--}}
+    {{--                                            <div class="inner">--}}
+    {{--                                                <a href="blog-single-sidebar-left.html"--}}
+    {{--                                                   class="read-more-btn icon-space-left">Read More <span><i--}}
+    {{--                                                            class="ion-ios-arrow-thin-right"></i></span></a>--}}
+    {{--                                                <div class="post-meta">--}}
+    {{--                                                    <a href="#" class="date">24 Apr</a>--}}
+    {{--                                                </div>--}}
+    {{--                                            </div>--}}
+    {{--                                        </div>--}}
+    {{--                                    </div>--}}
+    {{--                                    <!-- End Product Default Single Item -->--}}
+    {{--                                    <!-- Start Product Default Single Item -->--}}
+    {{--                                    <div class="blog-default-single-item blog-color--pink swiper-slide">--}}
+    {{--                                        <div class="image-box">--}}
+    {{--                                            <a href="blog-single-sidebar-left.html" class="image-link">--}}
+    {{--                                                <img class="img-fluid"--}}
+    {{--                                                     src="assets/images/blog/blog-grid-home-1-img-5.jpg" alt="">--}}
+    {{--                                            </a>--}}
+    {{--                                        </div>--}}
+    {{--                                        <div class="content">--}}
+    {{--                                            <h6 class="title"><a href="blog-single-sidebar-left.html">Blog Post Five</a>--}}
+    {{--                                            </h6>--}}
+    {{--                                            <p>Donec vitae hendrerit arcu, sit amet faucibus nisl. Cras pretium arcu ex.--}}
+    {{--                                                Aenean posuere libero eu augue condimentum rhoncus. Praesent</p>--}}
+    {{--                                            <div class="inner">--}}
+    {{--                                                <a href="blog-single-sidebar-left.html"--}}
+    {{--                                                   class="read-more-btn icon-space-left">Read More <span><i--}}
+    {{--                                                            class="ion-ios-arrow-thin-right"></i></span></a>--}}
+    {{--                                                <div class="post-meta">--}}
+    {{--                                                    <a href="#" class="date">24 Apr</a>--}}
+    {{--                                                </div>--}}
+    {{--                                            </div>--}}
+    {{--                                        </div>--}}
+    {{--                                    </div>--}}
+    {{--                                    <!-- End Product Default Single Item -->--}}
+    {{--                                    <!-- Start Product Default Single Item -->--}}
+    {{--                                    <div class="blog-default-single-item blog-color--pink swiper-slide">--}}
+    {{--                                        <div class="image-box">--}}
+    {{--                                            <a href="blog-single-sidebar-left.html" class="image-link">--}}
+    {{--                                                <img class="img-fluid"--}}
+    {{--                                                     src="assets/images/blog/blog-grid-home-1-img-6.jpg" alt="">--}}
+    {{--                                            </a>--}}
+    {{--                                        </div>--}}
+    {{--                                        <div class="content">--}}
+    {{--                                            <h6 class="title"><a href="blog-single-sidebar-left.html">Blog Post Six</a>--}}
+    {{--                                            </h6>--}}
+    {{--                                            <p>Donec vitae hendrerit arcu, sit amet faucibus nisl. Cras pretium arcu ex.--}}
+    {{--                                                Aenean posuere libero eu augue condimentum rhoncus. Praesent</p>--}}
+    {{--                                            <div class="inner">--}}
+    {{--                                                <a href="blog-single-sidebar-left.html"--}}
+    {{--                                                   class="read-more-btn icon-space-left">Read More <span><i--}}
+    {{--                                                            class="ion-ios-arrow-thin-right"></i></span></a>--}}
+    {{--                                                <div class="post-meta">--}}
+    {{--                                                    <a href="#" class="date">24 Apr</a>--}}
+    {{--                                                </div>--}}
+    {{--                                            </div>--}}
+    {{--                                        </div>--}}
+    {{--                                    </div>--}}
+    {{--                                    <!-- End Product Default Single Item -->--}}
+    {{--                                </div>--}}
+    {{--                            </div>--}}
+    {{--                            <!-- If we need navigation buttons -->--}}
+    {{--                            <div class="swiper-button-prev"></div>--}}
+    {{--                            <div class="swiper-button-next"></div>--}}
+    {{--                        </div>--}}
+    {{--                    </div>--}}
+    {{--                </div>--}}
+    {{--            </div>--}}
+    {{--        </div>--}}
+    {{--    </div>--}}
     <!-- End Blog Slider Section -->
 
     <!-- Start Company Logo Section -->
@@ -835,49 +862,57 @@
                                     <!-- Start Company Logo Single Item -->
                                     <div class="company-logo-single-item swiper-slide">
                                         <div class="image"><img class="img-fluid"
-                                                                src="assets/images/company-logo/company-logo-1.png" alt=""></div>
+                                                                src="assets/images/company-logo/company-logo-1.png"
+                                                                alt=""></div>
                                     </div>
                                     <!-- End Company Logo Single Item -->
                                     <!-- Start Company Logo Single Item -->
                                     <div class="company-logo-single-item swiper-slide">
                                         <div class="image"><img class="img-fluid"
-                                                                src="assets/images/company-logo/company-logo-2.png" alt=""></div>
+                                                                src="assets/images/company-logo/company-logo-2.png"
+                                                                alt=""></div>
                                     </div>
                                     <!-- End Company Logo Single Item -->
                                     <!-- Start Company Logo Single Item -->
                                     <div class="company-logo-single-item swiper-slide">
                                         <div class="image"><img class="img-fluid"
-                                                                src="assets/images/company-logo/company-logo-3.png" alt=""></div>
+                                                                src="assets/images/company-logo/company-logo-3.png"
+                                                                alt=""></div>
                                     </div>
                                     <!-- End Company Logo Single Item -->
                                     <!-- Start Company Logo Single Item -->
                                     <div class="company-logo-single-item swiper-slide">
                                         <div class="image"><img class="img-fluid"
-                                                                src="assets/images/company-logo/company-logo-4.png" alt=""></div>
+                                                                src="assets/images/company-logo/company-logo-4.png"
+                                                                alt=""></div>
                                     </div>
                                     <!-- End Company Logo Single Item -->
                                     <!-- Start Company Logo Single Item -->
                                     <div class="company-logo-single-item swiper-slide">
                                         <div class="image"><img class="img-fluid"
-                                                                src="assets/images/company-logo/company-logo-5.png" alt=""></div>
+                                                                src="assets/images/company-logo/company-logo-5.png"
+                                                                alt=""></div>
                                     </div>
                                     <!-- End Company Logo Single Item -->
                                     <!-- Start Company Logo Single Item -->
                                     <div class="company-logo-single-item swiper-slide">
                                         <div class="image"><img class="img-fluid"
-                                                                src="assets/images/company-logo/company-logo-6.png" alt=""></div>
+                                                                src="assets/images/company-logo/company-logo-6.png"
+                                                                alt=""></div>
                                     </div>
                                     <!-- End Company Logo Single Item -->
                                     <!-- Start Company Logo Single Item -->
                                     <div class="company-logo-single-item swiper-slide">
                                         <div class="image"><img class="img-fluid"
-                                                                src="assets/images/company-logo/company-logo-7.png" alt=""></div>
+                                                                src="assets/images/company-logo/company-logo-7.png"
+                                                                alt=""></div>
                                     </div>
                                     <!-- End Company Logo Single Item -->
                                     <!-- Start Company Logo Single Item -->
                                     <div class="company-logo-single-item swiper-slide">
                                         <div class="image"><img class="img-fluid"
-                                                                src="assets/images/company-logo/company-logo-8.png" alt=""></div>
+                                                                src="assets/images/company-logo/company-logo-8.png"
+                                                                alt=""></div>
                                     </div>
                                     <!-- End Company Logo Single Item -->
                                 </div>
@@ -922,7 +957,8 @@
                                     </div>
                                     <div class="col-md-8">
                                         <div class="modal-add-cart-info"><i class="fa fa-check-square"></i>Added to cart
-                                            successfully!</div>
+                                            successfully!
+                                        </div>
                                         <div class="modal-add-cart-product-cart-buttons">
                                             <a href="cart.html">View Cart</a>
                                             <a href="checkout.html">Checkout</a>
@@ -932,9 +968,9 @@
                             </div>
                             <div class="col-md-5 modal-border">
                                 <ul class="modal-add-cart-product-shipping-info">
-                                    <li> <strong><i class="icon-shopping-cart"></i> There Are 5 Items In Your
+                                    <li><strong><i class="icon-shopping-cart"></i> There Are 5 Items In Your
                                             Cart.</strong></li>
-                                    <li> <strong>TOTAL PRICE: </strong> <span>$187.00</span></li>
+                                    <li><strong>TOTAL PRICE: </strong> <span>$187.00</span></li>
                                     <li class="modal-continue-button"><a href="#" data-bs-dismiss="modal">CONTINUE
                                             SHOPPING</a></li>
                                 </ul>
@@ -1028,7 +1064,10 @@
                                     <!-- Start  Product Details Text Area-->
                                     <div class="product-details-text">
                                         <h4 class="title">Nonstick Dishwasher PFOA</h4>
-                                        <div class="price"><del>$70.00</del>$80.00</div>
+                                        <div class="price">
+                                            <del>$70.00</del>
+                                            $80.00
+                                        </div>
                                     </div> <!-- End  Product Details Text Area-->
                                     <!-- Start Product Variable Area -->
                                     <div class="product-details-variable">
@@ -1112,4 +1151,138 @@
             </div>
         </div>
     </div> <!-- End Modal Quickview cart -->
+
+    <!-- Start Modal Add cart -->
+    @foreach($products as $product)
+        <div class="modal fade" id="modalAddcart-{{ $product->id }}" tabindex="-1" role="dialog"
+             aria-hidden="true">
+            <div class="modal-dialog  modal-dialog-centered modal-xl" role="document">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col text-right">
+                                    <button type="button" class="close modal-close" data-bs-dismiss="modal"
+                                            aria-label="Close">
+                                        <span aria-hidden="true"> <i class="fa fa-times"></i></span>
+                                    </button>
+                                </div>
+                            </div>
+                            @if(auth()->check())
+                                <div class="row">
+                                    <div class="col-md-7">
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <div class="modal-add-cart-product-img">
+                                                    <img class="img-fluid"
+                                                         src="{{ asset('admin/product/'. $product->productImage->first()->image) }}"
+                                                         alt="">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-8">
+                                                <div class="modal-add-cart-info"><i class="fa fa-check-square"></i>Added
+                                                    to cart
+                                                    successfully!
+                                                </div>
+                                                <div class="modal-add-cart-product-cart-buttons">
+                                                    <a href="cart.html">View Cart</a>
+                                                    <a href="checkout.html">Checkout</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-5 modal-border">
+                                        <ul class="modal-add-cart-product-shipping-info">
+                                            <li><strong><i class="icon-shopping-cart"></i> There Are 5 Items In Your
+                                                    Cart.</strong></li>
+                                            <li><strong>TOTAL PRICE: </strong> <span>$187.00</span></li>
+                                            <li class="modal-continue-button"><a href="#" data-bs-dismiss="modal">CONTINUE
+                                                    SHOPPING</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            @else
+                                <h1>You Must need to login First to cart a Product</h1>
+                            @endif
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> <!-- End Modal Add cart -->
+    @endforeach
 @endsection
+@push('js')
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+        var basePath = "{{ asset('admin/product/') }}";
+        var subTotal = 0;
+        var count = 0;
+
+        $(document).ready(function () {
+            $('.add-to-cart-btn').click(function (e) {
+                e.preventDefault();
+                var productId = $(this).data('product-id');
+                var productPrice = $(this).data('product-price');
+                var quantity = 1;
+                updateCart('/add-to-cart', {product_id: productId, quantity: quantity, price: productPrice});
+            });
+
+            $('.offcanvas-cart').on('click', '.cart-delete', function (e) {
+                e.preventDefault();
+                var cartId = $(this).data('cart-id');
+                updateCart('/delete-cart', {cart_id: cartId});
+            });
+        });
+
+        function updateCart(url, data) {
+            $.ajax({
+                url: url,
+                type: 'POST',
+                data: Object.assign({_token: '{{ csrf_token() }}'}, data),
+                success: function (response) {
+                    renderCart(response.data);
+                },
+                error: function (error) {
+                    console.error('Cart update error:', error);
+                }
+            });
+        }
+
+        function renderCart(items) {
+            $('.offcanvas-cart').empty();
+            subTotal = 0;
+            count = 0;
+
+            items.forEach(function (item) {
+                subTotal += parseFloat(item.total_price);
+                count += 1;
+                $('.offcanvas-cart').append(cartItemHtml(item));
+            });
+
+            $('.offcanvas-cart-total-price-value').text('৳ ' + subTotal);
+            $('.cart-count').text(count);
+        }
+
+        function cartItemHtml(item) {
+            return `
+            <li class="offcanvas-cart-item-single">
+                <div class="offcanvas-cart-item-block">
+                    <a href="#" class="offcanvas-cart-item-image-link">
+                        <img src="${basePath + '/' + item.product.product_image[0].image}" alt="" class="offcanvas-cart-image">
+                    </a>
+                    <div class="offcanvas-cart-item-content">
+                        <a href="#" class="offcanvas-cart-item-link">${item.product.name}</a>
+                        <div class="offcanvas-cart-item-details">
+                            <span class="offcanvas-cart-item-details-quantity">${item.quantity} x </span>
+                            <span class="offcanvas-cart-item-details-price">$${item.price}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="offcanvas-cart-item-delete text-right">
+                    <a href="#" class="offcanvas-cart-item-delete cart-delete" data-cart-id="${item.id}"><i class="fa fa-trash-o"></i></a>
+                </div>
+            </li>
+        `;
+        }
+    </script>
+@endpush

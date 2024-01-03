@@ -7,7 +7,7 @@
                         <!-- Start Header Logo -->
                         <div class="header-logo">
                             <div class="logo">
-                                <a href="index.html"><img src="{{ asset('assets/images/logo/logo_white.png') }}" alt=""></a>
+                                <a href="{{ route('home') }}"><img src="{{ asset('assets/images/logo/logo_white.png') }}" alt=""></a>
                             </div>
                         </div>
                         <!-- End Header Logo -->
@@ -17,7 +17,7 @@
                             <nav>
                                 <ul>
                                     <li class="has-dropdown">
-                                        <a class="active main-menu-link" href="index.html">Home</a>
+                                        <a class="active main-menu-link" href="{{ route('home') }}">Home</a>
                                     </li>
                                     <li class="has-dropdown has-megaitem">
                                         <a href="product-details-default.html">Shop <i

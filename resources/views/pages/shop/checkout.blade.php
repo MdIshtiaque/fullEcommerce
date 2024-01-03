@@ -27,58 +27,26 @@
         <div class="container">
             <div class="row">
                 <!-- User Quick Action Form -->
-                {{--                <div class="col-12">--}}
-                {{--                    <div class="user-actions accordion" data-aos="fade-up" data-aos-delay="0">--}}
-                {{--                        <h3>--}}
-                {{--                            <i class="fa fa-file-o" aria-hidden="true"></i>--}}
-                {{--                            Returning customer?--}}
-                {{--                            <a class="Returning" href="#" data-bs-toggle="collapse" data-bs-target="#checkout_login"--}}
-                {{--                               aria-expanded="true">Click here to login</a>--}}
-                {{--                        </h3>--}}
-                {{--                        <div id="checkout_login" class="collapse" data-parent="#checkout_login">--}}
-                {{--                            <div class="checkout_info">--}}
-                {{--                                <p>If you have shopped with us before, please enter your details in the boxes below. If--}}
-                {{--                                    you are a new customer please proceed to the Billing &amp; Shipping section.</p>--}}
-                {{--                                <form action="#">--}}
-                {{--                                    <div class="form_group default-form-box">--}}
-                {{--                                        <label>Username or email <span>*</span></label>--}}
-                {{--                                        <input type="text">--}}
-                {{--                                    </div>--}}
-                {{--                                    <div class="form_group default-form-box">--}}
-                {{--                                        <label>Password <span>*</span></label>--}}
-                {{--                                        <input type="password">--}}
-                {{--                                    </div>--}}
-                {{--                                    <div class="form_group group_3 default-form-box">--}}
-                {{--                                        <button class="btn btn-md btn-black-default-hover" type="submit">Login</button>--}}
-                {{--                                        <label class="checkbox-default">--}}
-                {{--                                            <input type="checkbox">--}}
-                {{--                                            <span>Remember me</span>--}}
-                {{--                                        </label>--}}
-                {{--                                    </div>--}}
-                {{--                                    <a href="#">Lost your password?</a>--}}
-                {{--                                </form>--}}
-                {{--                            </div>--}}
-                {{--                        </div>--}}
-                {{--                    </div>--}}
-                {{--                    <div class="user-actions accordion" data-aos="fade-up" data-aos-delay="200">--}}
-                {{--                        <h3>--}}
-                {{--                            <i class="fa fa-file-o" aria-hidden="true"></i>--}}
-                {{--                            Returning customer?--}}
-                {{--                            <a class="Returning" href="#" data-bs-toggle="collapse" data-bs-target="#checkout_coupon"--}}
-                {{--                               aria-expanded="true">Click here to enter your code</a>--}}
+                                <div class="col-12">
+                                    <div class="user-actions accordion" data-aos="fade-up" data-aos-delay="200">
+                                        <h3>
+                                            <i class="fa fa-file-o" aria-hidden="true"></i>
+                                            Have a coupon?
+                                            <a class="Returning" href="#" data-bs-toggle="collapse" data-bs-target="#checkout_coupon"
+                                               aria-expanded="true">Click here to enter your code</a>
 
-                {{--                        </h3>--}}
-                {{--                        <div id="checkout_coupon" class="collapse checkout_coupon" data-parent="#checkout_coupon">--}}
-                {{--                            <div class="checkout_info">--}}
-                {{--                                <form action="#">--}}
-                {{--                                    <input placeholder="Coupon code" type="text">--}}
-                {{--                                    <button class="btn btn-md btn-black-default-hover" type="submit">Apply--}}
-                {{--                                        coupon</button>--}}
-                {{--                                </form>--}}
-                {{--                            </div>--}}
-                {{--                        </div>--}}
-                {{--                    </div>--}}
-                {{--                </div>--}}
+                                        </h3>
+                                        <div id="checkout_coupon" class="collapse checkout_coupon" data-parent="#checkout_coupon">
+                                            <div class="checkout_info">
+                                                <form action="#">
+                                                    <input placeholder="Coupon code" type="text">
+                                                    <button class="btn btn-md btn-black-default-hover" type="submit">Apply
+                                                        coupon</button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                 <!-- User Quick Action Form -->
             </div>
             <!-- Start User Details Checkout Form -->
