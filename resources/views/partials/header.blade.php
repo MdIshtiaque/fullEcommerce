@@ -27,7 +27,7 @@
                                             <ul class="mega-menu-inner">
                                                 <!-- Mega Menu Sub Link -->
                                                 <li class="mega-menu-item">
-                                                    <a href="#" class="mega-menu-item-title">Cateegories</a>
+                                                    <a href="#" class="mega-menu-item-title">Categories</a>
                                                     <ul class="mega-menu-sub">
                                                         @foreach($categories as $category)
                                                             <li><a href="{{ route('category.products', ['category' => $category->id]) }}">{{ $category->name }}</a></li>
