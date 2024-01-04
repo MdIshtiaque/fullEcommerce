@@ -4,6 +4,7 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryToProductController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\MyAccountController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PurchaseController;
 use App\Http\Controllers\UserAuthController;
@@ -43,6 +44,8 @@ Route::middleware('custom.auth')->group(function () {
     Route::post('/checkout/purchase', [PurchaseController::class, 'purchase'])->name('user.checkout.purchase');
     Route::get('/order/{order}/success',[PurchaseController::class, 'success'])->name('user.order.success');
     Route::post('/user-logout', [UserAuthController::class, 'logout'])->name('user.auth.logout');
+
+    Route::get('/my-account', [MyAccountController::class, 'index'])->name('user.account');
 });
 
 Route::get('product/{product}/details', [UserProductController::class, 'productDetails'])->name('product.details');
