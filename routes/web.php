@@ -4,6 +4,7 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryToProductController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\MyAccountController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PurchaseController;
@@ -46,6 +47,7 @@ Route::middleware('custom.auth')->group(function () {
     Route::post('/user-logout', [UserAuthController::class, 'logout'])->name('user.auth.logout');
 
     Route::get('/my-account', [MyAccountController::class, 'index'])->name('user.account');
+    Route::get('/invoice/{order}', [InvoiceController::class, 'showInvoice'])->name('user.invoice');
 });
 
 Route::get('product/{product}/details', [UserProductController::class, 'productDetails'])->name('product.details');
