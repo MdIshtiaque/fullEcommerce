@@ -87,10 +87,27 @@
         .download-button:hover {
             background-color: #0056b3;
         }
+        .print-button {
+            display: block;
+            width: 200px;
+            padding: 10px;
+            margin: 20px auto;
+            text-align: center;
+            background-color: green;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none; /* If using an 'a' tag */
+        }
+
+        .print-button:hover {
+            background-color: darkgreen;
+        }
     </style>
 </head>
 <body>
-<div class="container">
+<div class="container" id="print">
 
     <table width="100%">
         <tr>
@@ -180,9 +197,12 @@
         </tr>
         @foreach($items as $item)
             <tr>
-                <td class="row"><span style="color:#777;font-size:11px;">#64000L</span><br>{{ $item->cart->product->name }}</td>
+                <td class="row"><span
+                        style="color:#777;font-size:11px;">#64000L</span><br>{{ $item->cart->product->name }}</td>
                 <td class="row">{{ $item->cart->quantity }}</td>
-                <td class="row">{{ $item->cart->quantity }} <span style="color:#777">X</span> {{ $item->cart->price }} TK</td>
+                <td class="row">{{ $item->cart->quantity }} <span style="color:#777">X</span> {{ $item->cart->price }}
+                    TK
+                </td>
                 <td class="row">{{ $item->cart->total_price }} TK</td>
             </tr>
         @endforeach
@@ -209,7 +229,21 @@
         </tr>
     </table>
 </div>
-    <a href="path_to_your_download" class="download-button">Download Invoice</a>
+<a href="{{ route('user.invoice.download', ['order' => $order->id]) }}" class="download-button">Download Invoice</a>
+<a href="javascript:void(0);" class="print-button" onclick="printInvoice()">Print Invoice</a>
 <!-- container -->
 </body>
 </html>
+
+<script>
+    function printInvoice() {
+        var printContent = document.getElementById("print").innerHTML;
+        var originalContent = document.body.innerHTML;
+
+        document.body.innerHTML = printContent;
+        window.print();
+
+        // Restore the original content after printing
+        document.body.innerHTML = originalContent;
+    }
+</script>
