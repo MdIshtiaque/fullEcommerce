@@ -48,6 +48,7 @@ Route::middleware('custom.auth')->group(function () {
 
     Route::get('/my-account', [MyAccountController::class, 'index'])->name('user.account');
     Route::get('/invoice/{order}', [InvoiceController::class, 'showInvoice'])->name('user.invoice');
+    Route::get('/invoice/{order}/download', [InvoiceController::class, 'downloadInvoice'])->name('user.invoice.download');
 });
 
 Route::get('product/{product}/details', [UserProductController::class, 'productDetails'])->name('product.details');
