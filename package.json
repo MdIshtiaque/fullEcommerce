@@ -17,6 +17,7 @@
     },
     "dependencies": {
         "dropify": "^0.2.2",
-        "dropzone": "^6.0.0-beta.2"
+        "dropzone": "^6.0.0-beta.2",
+        "jspdf": "^2.5.1"
     }
 }

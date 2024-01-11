@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.js"></script>
     <title>Invoice Template</title>
     <style>
         /* Custom CSS */
@@ -144,9 +145,9 @@
                 <table>
                     <tr>
                         <td style="vertical-align: text-top;">
-                            <div
-                                style="background: #ffd9e8 url(https://cdn0.iconfinder.com/data/icons/commerce-line-1/512/comerce_delivery_shop_business-07-128.png);width: 50px;height: 50px;margin-right: 10px;background-position: center;background-size: 42px;"></div>
+                            <div style="background: #ffd9e8 url('{{ asset('assets/images/logo/delivery.png') }}'); width: 50px; height: 50px; margin-right: 10px; background-position: center; background-size: 42px; background-repeat: no-repeat"></div>
                         </td>
+
                         <td>
                             <strong>Delivery</strong><br>
                             {{ $order->billingDetail->name }}<br>
@@ -161,8 +162,7 @@
                 <table>
                     <tr>
                         <td style="vertical-align: text-top;">
-                            <div
-                                style="background: #ffd9e8 url(https://cdn4.iconfinder.com/data/icons/app-custom-ui-1/48/Check_circle-128.png) no-repeat;width: 50px;height: 50px;margin-right: 10px;background-position: center;background-size: 25px;"></div>
+                            <div style="background: #ffd9e8 url('{{ asset('assets/images/logo/delivery.png') }}'); width: 50px; height: 50px; margin-right: 10px; background-position: center; background-size: 42px; background-repeat: no-repeat"></div>
                         </td>
                         <td>
                             <strong>Delivery</strong><br>
@@ -229,7 +229,7 @@
         </tr>
     </table>
 </div>
-<a href="{{ route('user.invoice.download', ['order' => $order->id]) }}" class="download-button">Download Invoice</a>
+<button id="downloadButton" class="download-button">Download Invoice</button>
 <a href="javascript:void(0);" class="print-button" onclick="printInvoice()">Print Invoice</a>
 <!-- container -->
 </body>
@@ -247,3 +247,17 @@
         document.body.innerHTML = originalContent;
     }
 </script>
+<script>
+    document.getElementById('downloadButton').addEventListener('click', function () {
+        var element = document.getElementById('print');
+        html2pdf(element, {
+            margin: 10,
+            filename: 'invoice.pdf',
+            image: { type: 'jpeg', quality: 0.98 },
+            html2canvas: { scale: 2, logging: true, dpi: 192, letterRendering: true },
+            jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+        });
+    });
+</script>
+
+
