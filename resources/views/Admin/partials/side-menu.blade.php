@@ -66,6 +66,12 @@
                 </li>
             </ul>
         </li>
+        <li>
+            <a href="{{ route('admin.orderList') }}" class="side-menu">
+                <div class="side-menu__icon"> <i data-feather="inbox"></i> </div>
+                <div class="side-menu__title"> Orders </div>
+            </a>
+        </li>
 {{--        <li>--}}
 {{--            <a href="side-menu-light-file-manager.html" class="side-menu">--}}
 {{--                <div class="side-menu__icon"> <i data-feather="hard-drive"></i> </div>--}}

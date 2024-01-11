@@ -34,6 +34,7 @@ Route::middleware(['auth', 'verified'])->prefix('admin/')->group(function () {
         Route::post('/import-products', [ProductController::class, 'importProducts'])->name('import.products');
         Route::get('/export-products', [ProductController::class, 'exportProducts'])->name('export.products');
 
+        Route::get('/orders', [\App\Http\Controllers\Admin\OrderController::class, 'showAllOrder'])->name('admin.orderList');
     });
 
 });

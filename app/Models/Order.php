@@ -24,7 +24,7 @@ class Order extends Model
         return $this->hasMany(OrderedProduct::class);
     }
 
-    public function user()
+    public function user(): BelongsTo
     {
         return $this->belongsTo(User::class, 'ordered_by', 'id');
     }
