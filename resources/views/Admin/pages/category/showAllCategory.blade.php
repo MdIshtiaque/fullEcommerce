@@ -107,79 +107,8 @@
         </div>
         <!-- END: Data List -->
         <!-- BEGIN: Pagination -->
-        <div class="intro-y flex flex-wrap sm:flex-row sm:flex-nowrap items-center mt-6">
-            <nav class="w-full sm:w-auto sm:mr-auto">
-                <ul class="pagination">
-                    @if ($categories->onFirstPage())
-                        <li class="page-item disabled">
-                            <span class="page-link" aria-hidden="true"> <i class="w-4 h-4" data-feather="chevrons-left"></i>
-                            </span>
-                        </li>
-                        <li class="page-item disabled">
-                            <span class="page-link" aria-hidden="true"> <i class="w-4 h-4" data-feather="chevron-left"></i>
-                            </span>
-                        </li>
-                    @else
-                        <li class="page-item">
-                            <a class="page-link" href="{{ $categories->previousPageUrl() }}"> <i class="w-4 h-4"
-                                    data-feather="chevrons-left"></i>
-                            </a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="{{ $categories->previousPageUrl() }}"> <i class="w-4 h-4"
-                                    data-feather="chevron-left"></i>
-                            </a>
-                        </li>
-                    @endif
-                    @php
-                        $count = $categories->hasMorePages() - -1;
-                        $page = 1;
-                    @endphp
-                    @foreach ($categories as $category)
-                        @if (10 / $count == 2 || 10 / $count == 1)
-                            <li class="page-item {{ $logo->is_current_page ? 'active' : '' }}">
-                                <a class="page-link"
-                                    href="{{ $page != 1 ? $category->nextPageUrl() : $category->url }}">{{ $page }}</a>
-                            </li>
-                            @php
-                                $page++;
-                                $count--;
-                            @endphp
-                        @endif
-                    @endforeach
+        {{ $categories->links('vendor.pagination.tailwind-pagination') }}
 
-                    @if ($categories->hasMorePages())
-                        <li class="page-item">
-                            <a class="page-link" href="{{ $categories->nextPageUrl() }}"> <i class="w-4 h-4"
-                                    data-feather="chevron-right"></i>
-                            </a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="{{ $categories->url($categories->lastPage()) }}"> <i
-                                    class="w-4 h-4" data-feather="chevrons-right"></i>
-                            </a>
-                        </li>
-                    @else
-                        <li class="page-item disabled">
-                            <span class="page-link" aria-hidden="true"> <i class="w-4 h-4"
-                                    data-feather="chevron-right"></i> </span>
-                        </li>
-                        <li class="page-item disabled">
-                            <span class="page-link" aria-hidden="true"> <i class="w-4 h-4"
-                                    data-feather="chevrons-right"></i> </span>
-                        </li>
-                    @endif
-                </ul>
-            </nav>
-            {{--                TODO: need to fix --}}
-            <select id="perPageSelect" class="w-20 form-select box mt-3 sm:mt-0">
-                <option value="10" {{ $categories->perPage() == 10 ? 'selected' : '' }}>10</option>
-                <option value="20" {{ $categories->perPage() == 20 ? 'selected' : '' }}>20</option>
-                <option value="50" {{ $categories->perPage() == 50 ? 'selected' : '' }}>50</option>
-                <option value="100" {{ $categories->perPage() == 100 ? 'selected' : '' }}>100</option>
-            </select>
-        </div>
-        <!-- END: Pagination -->
     </div>
     @include('Admin.pages.category.modals.create')
     @include('Admin.pages.category.modals.edit')

@@ -128,78 +128,7 @@
             </div>
             <!-- END: Directory & Files -->
             <!-- BEGIN: Pagination -->
-            <div class="intro-y flex flex-wrap sm:flex-row sm:flex-nowrap items-center mt-6">
-                <nav class="w-full sm:w-auto sm:mr-auto">
-                    <ul class="pagination">
-                        @if ($logos->onFirstPage())
-                            <li class="page-item disabled">
-                                <span class="page-link" aria-hidden="true"> <i class="w-4 h-4"
-                                                                               data-feather="chevrons-left"></i> </span>
-                            </li>
-                            <li class="page-item disabled">
-                                <span class="page-link" aria-hidden="true"> <i class="w-4 h-4"
-                                                                               data-feather="chevron-left"></i> </span>
-                            </li>
-                        @else
-                            <li class="page-item">
-                                <a class="page-link" href="{{ $logos->previousPageUrl() }}"> <i class="w-4 h-4"
-                                                                                                data-feather="chevrons-left"></i>
-                                </a>
-                            </li>
-                            <li class="page-item">
-                                <a class="page-link" href="{{ $logos->previousPageUrl() }}"> <i class="w-4 h-4"
-                                                                                                data-feather="chevron-left"></i>
-                                </a>
-                            </li>
-                        @endif
-                        @php
-                            $count = $logos->hasMorePages() - (-1);
-                            $page = 1;
-                        @endphp
-                        @foreach ($logos as $logo)
-                            @if((12/$count) == 2 || (12/$count) == 1)
-                                <li class="page-item {{ $logo->is_current_page ? 'active' : '' }}">
-                                    <a class="page-link"
-                                       href="{{ $page != 1 ? $logos->nextPageUrl() : $logo->url }}">{{ $page }}</a>
-                                </li>
-                                @php
-                                    $page++;
-                                    $count--;
-                                @endphp
-                            @endif
-                        @endforeach
-
-                        @if ($logos->hasMorePages())
-                            <li class="page-item">
-                                <a class="page-link" href="{{ $logos->nextPageUrl() }}"> <i class="w-4 h-4"
-                                                                                            data-feather="chevron-right"></i>
-                                </a>
-                            </li>
-                            <li class="page-item">
-                                <a class="page-link" href="{{ $logos->url($logos->lastPage()) }}"> <i class="w-4 h-4"
-                                                                                                      data-feather="chevrons-right"></i>
-                                </a>
-                            </li>
-                        @else
-                            <li class="page-item disabled">
-                                <span class="page-link" aria-hidden="true"> <i class="w-4 h-4"
-                                                                               data-feather="chevron-right"></i> </span>
-                            </li>
-                            <li class="page-item disabled">
-                                <span class="page-link" aria-hidden="true"> <i class="w-4 h-4"
-                                                                               data-feather="chevrons-right"></i> </span>
-                            </li>
-                        @endif
-                    </ul>
-                </nav>
-                {{--                TODO: need to fix--}}
-                <select id="perPageSelect" class="w-20 form-select box mt-3 sm:mt-0">
-                    <option value="10" {{ $logos->perPage() == 6 ? 'selected' : '' }}>6</option>
-                    <option value="25" {{ $logos->perPage() == 12 ? 'selected' : '' }}>12</option>
-                    <option value="35" {{ $logos->perPage() == 36 ? 'selected' : '' }}>35</option>
-                    <option value="50" {{ $logos->perPage() == 48 ? 'selected' : '' }}>50</option>
-                </select>
-            </div>
+            {{ $logos->links('vendor.pagination.tailwind-pagination') }}
             <!-- END: Pagination -->
         </div>
     </div>
