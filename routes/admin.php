@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\CouponController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\SettingsController;
 use Illuminate\Support\Facades\Route;
@@ -34,7 +36,13 @@ Route::middleware(['auth', 'verified'])->prefix('admin/')->group(function () {
         Route::post('/import-products', [ProductController::class, 'importProducts'])->name('import.products');
         Route::get('/export-products', [ProductController::class, 'exportProducts'])->name('export.products');
 
-        Route::get('/orders', [\App\Http\Controllers\Admin\OrderController::class, 'showAllOrder'])->name('admin.orderList');
+        Route::get('/orders', [OrderController::class, 'showAllOrder'])->name('admin.orderList');
+
+        Route::get('/Coupons', [CouponController::class, 'showAllCoupons'])->name('admin.coupons');
+        Route::post('/Coupons/store', [CouponController::class, 'couponStore'])->name('admin.couponStore');
+        Route::post('/toggle/couponStatus/{coupon}', [CouponController::class, 'toggle'])->name('coupon.status.toggle');
+        Route::put('/coupon/{coupon}', [CouponController::class, 'edit'])->name('admin.couponEdit');
+        Route::delete('/coupon/delete/{coupon}', [CouponController::class, 'delete'])->name('admin.couponDelete');
     });
 
 });
