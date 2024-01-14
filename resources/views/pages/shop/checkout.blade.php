@@ -27,14 +27,15 @@
         <div class="container">
             <div class="row">
                 <!-- User Quick Action Form -->
-                <div class="col-12" id="successMessage" style="display: none; margin-bottom: 20px">
-                    <div class="" style="background-color: #0d462c;" data-aos="fade-up" data-aos-delay="200">
-                        <h4 style=" color: white">
-                            <i class="fa fa-check" aria-hidden="true"></i>
+                <div class="col-12" id="successMessage" style="display: none; margin-bottom: 5px">
+                    <div class="text-white p-4 rounded-lg shadow-md" style="background-color: #0f5133;" data-aos="fade-up" data-aos-delay="200">
+                        <h4 class="flex items-center text-lg font-semibold" style="color:white;">
+                            <i class="fa fa-check mr-2"></i>
                             Coupon Applied Successfully
                         </h4>
                     </div>
                 </div>
+
                 <div class="col-12" id="couponPart">
                     <div class="user-actions accordion" data-aos="fade-up" data-aos-delay="200">
                         <h3>
@@ -230,7 +231,6 @@
                 .then(function (response) {
                     // Handle success
                     if (response.data.success) {
-                        console.log(response)
                         document.getElementById('cartSubtotal').innerText = '৳ ' + response.data.newSubtotal + ' (' + response.data.discount + '% discount' + ')';
                         calculateAndUpdateOrderTotal();
                         toastr.success('Coupon Applied Successfully!', 'Coupon')
@@ -239,7 +239,6 @@
                         document.getElementById('successMessage').style.display = 'block';
                     } else {
                         // Handle error (e.g., invalid coupon)
-                        console.log(response.data.error);
                         toastr.error('Coupon Not Valid!', 'Coupon')
                     }
                 })
@@ -253,8 +252,7 @@
     <script>
         function calculateAndUpdateOrderTotal() {
             let subtotalText = document.getElementById('cartSubtotal').innerText;
-            let subtotalValue = parseFloat(subtotalText.replace(/[^\d\.]/g, ''));
-
+            let subtotalValue = parseFloat(subtotalText.replace(/[^ \d\.]/g, ''));
             let shippingText = document.getElementById('shipping').innerText;
             let shippingValue = parseFloat(shippingText.replace(/[^\d\.]/g, ''));
 

@@ -27,6 +27,11 @@
                                                placeholder="Enter Coupon Percentage" required>
                                     </div>
                                     <div class="mb-3">
+                                        <label for="regular-form-1" class="form-label">Coupon User Limit</label>
+                                        <input id="regular-form-1" type="number" name="user_limit" class="form-control"
+                                               placeholder="Enter User Limit" required>
+                                    </div>
+                                    <div class="mb-3">
                                         <label for="regular-form-1" class="form-label">Valid Till</label>
                                         <input id="regular-form-1" type="date" name="valid_till" class="form-control"
                                                placeholder="Enter Validity Date" value="{{ date('Y-m-d') }}" required>

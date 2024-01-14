@@ -49,6 +49,7 @@
                     <th class="whitespace-nowrap">Sl no</th>
                     <th class="whitespace-nowrap">Coupon Code</th>
                     <th class="text-center whitespace-nowrap">Discount</th>
+                    <th class="text-center whitespace-nowrap">Usage Limit</th>
                     <th class="text-center whitespace-nowrap">Status</th>
                     <th class="text-center whitespace-nowrap">Valid Till</th>
                     <th class="text-center whitespace-nowrap">ACTIONS</th>
@@ -70,6 +71,8 @@
                         </td>
                         <td class="text-center">
                             <a href="" class="font-medium whitespace-nowrap">{{ $item->percentage }}%</a>
+                        </td><td class="text-center">
+                            <a href="" class="font-medium whitespace-nowrap">{{ $item->user_limit }} per user</a>
                         </td>
                         <td class="text-center">
                             <div class="form-switch w-full">
@@ -86,7 +89,9 @@
                         <td class="table-report__action w-56">
                             <div class="flex justify-center items-center">
                                 <button class="flex items-center mr-3 edit-button" data-id="{{ $item->id }}"
-                                        data-code="{{ $item->coupon_code }}" data-percentage="{{ $item->percentage }}" data-valid="{{ $item->valid_till }}" data-status="{{ $item->is_active }}"> <i
+                                        data-code="{{ $item->coupon_code }}" data-percentage="{{ $item->percentage }}"
+                                        data-valid="{{ $item->valid_till }}" data-status="{{ $item->is_active }}"
+                                        data-limit="{{ $item->user_limit }}"> <i
                                         data-feather="check-square" class="w-4 h-4 mr-1"></i> Edit </button>
                                 <form id="delete-form"
                                       action="{{ route('admin.couponDelete', ['coupon' => $item->id]) }}"
@@ -201,14 +206,16 @@
                 var code = this.getAttribute('data-code');
                 var percentage = this.getAttribute('data-percentage');
                 var valid = this.getAttribute('data-valid');
+                var limit = this.getAttribute('data-limit');
                 var status = this.getAttribute('data-status');
 
                 // Fetch data based on the ID or use the row data
                 // For demonstration, let's assume you fetch data from an API
-                fetchData(id, code, percentage, valid, status).then(function(data) {
+                fetchData(id, code, percentage, limit, valid, status).then(function(data) {
                     const {
                         code,
                         percentage,
+                        limit,
                         valid,
                         status,
                         id: dataId
@@ -217,6 +224,7 @@
                     // Populate the modal
                     document.querySelector('.code').value = code;
                     document.querySelector('.percentage').value = percentage;
+                    document.querySelector('.limit').value = limit;
                     document.querySelector('.valid').value = valid;
                     document.querySelector('.checkStatus').checked = status;
 
@@ -233,7 +241,7 @@
             });
         });
 
-        function fetchData(id, code, percentage, valid, status) {
+        function fetchData(id, code, percentage, limit, valid, status) {
             // Replace with actual data fetching logic
             if (status === "1" || status === "true") {
                 var isActive = true;
@@ -245,6 +253,7 @@
                     id: id,
                     code: code,
                     percentage: percentage,
+                    limit: limit,
                     valid: valid,
                     status: isActive
                 }
