@@ -27,26 +27,36 @@
         <div class="container">
             <div class="row">
                 <!-- User Quick Action Form -->
-                                <div class="col-12">
-                                    <div class="user-actions accordion" data-aos="fade-up" data-aos-delay="200">
-                                        <h3>
-                                            <i class="fa fa-file-o" aria-hidden="true"></i>
-                                            Have a coupon?
-                                            <a class="Returning" href="#" data-bs-toggle="collapse" data-bs-target="#checkout_coupon"
-                                               aria-expanded="true">Click here to enter your code</a>
+                <div class="col-12" id="successMessage" style="display: none; margin-bottom: 20px">
+                    <div class="" style="background-color: #0d462c;" data-aos="fade-up" data-aos-delay="200">
+                        <h4 style=" color: white">
+                            <i class="fa fa-check" aria-hidden="true"></i>
+                            Coupon Applied Successfully
+                        </h4>
+                    </div>
+                </div>
+                <div class="col-12" id="couponPart">
+                    <div class="user-actions accordion" data-aos="fade-up" data-aos-delay="200">
+                        <h3>
+                            <i class="fa fa-file-o" aria-hidden="true"></i>
+                            Have a coupon?
+                            <a class="Returning" href="#" data-bs-toggle="collapse" data-bs-target="#checkout_coupon"
+                               aria-expanded="true">Click here to enter your code</a>
 
-                                        </h3>
-                                        <div id="checkout_coupon" class="collapse checkout_coupon" data-parent="#checkout_coupon">
-                                            <div class="checkout_info">
-                                                <form action="#">
-                                                    <input placeholder="Coupon code" type="text">
-                                                    <button class="btn btn-md btn-black-default-hover" type="submit">Apply
-                                                        coupon</button>
-                                                </form>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                        </h3>
+                        <div id="checkout_coupon" class="collapse checkout_coupon" data-parent="#checkout_coupon">
+                            <div class="checkout_info">
+                                <form id="couponForm">
+                                    <input placeholder="Coupon code" name="coupon" id="couponCode" type="text">
+                                    <input id="subtotal" value="{{ $subtotal }}" type="text" hidden>
+                                    <button class="btn btn-md btn-black-default-hover" type="submit">Apply
+                                        coupon
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <!-- User Quick Action Form -->
             </div>
             <!-- Start User Details Checkout Form -->
@@ -148,11 +158,11 @@
                                         <tfoot>
                                         <tr>
                                             <th>Cart Subtotal</th>
-                                            <td> ৳ {{ $subtotal }}</td>
+                                            <td id="cartSubtotal"> ৳ {{ $subtotal }}</td>
                                         </tr>
                                         <tr>
                                             <th>Shipping</th>
-                                            <td><strong> ৳ 0</strong></td>
+                                            <td id="shipping"><strong> ৳ 0</strong></td>
                                         </tr>
                                         <tr class="order_total">
                                             <th>Order Total</th>
@@ -161,7 +171,7 @@
                                         </tfoot>
                                     </table>
                                 </div>
-                                <input type="hidden" name="total_charge" value="{{ $subtotal }}">
+                                <input type="hidden" name="total_charge" id="total_charge" value="{{ $subtotal }}">
                                 <div class="payment_method">
                                     <div class="panel-default">
                                         <label class="checkbox-default" for="currencyCod" data-bs-toggle="collapse"
@@ -198,3 +208,63 @@
     </div>
     <!-- ...:::: End Checkout Section:::... -->
 @endsection
+@push('js')
+    <script src="{{ asset('assets/js/axios.min.js') }}"></script>
+    <script>
+        document.getElementById('couponForm').addEventListener('submit', function (event) {
+            event.preventDefault();
+
+            var couponCode = document.getElementById('couponCode').value;
+            var subtotal = document.getElementById('subtotal').value;
+
+            // Using Axios to send a POST request
+            axios.post('/apply-coupon', {
+                coupon: couponCode,
+                subtotal: subtotal
+            }, {
+                headers: {
+                    'X-Requested-With': 'XMLHttpRequest',
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}' // Laravel CSRF token
+                }
+            })
+                .then(function (response) {
+                    // Handle success
+                    if (response.data.success) {
+                        console.log(response)
+                        document.getElementById('cartSubtotal').innerText = '৳ ' + response.data.newSubtotal + ' (' + response.data.discount + '% discount' + ')';
+                        calculateAndUpdateOrderTotal();
+                        toastr.success('Coupon Applied Successfully!', 'Coupon')
+                        document.getElementById('couponPart').style.display = 'none';
+                        // Show the success message
+                        document.getElementById('successMessage').style.display = 'block';
+                    } else {
+                        // Handle error (e.g., invalid coupon)
+                        console.log(response.data.error);
+                        toastr.error('Coupon Not Valid!', 'Coupon')
+                    }
+                })
+                .catch(function (error) {
+                    // Handle error
+                    // console.error('Error:', error);
+                    toastr.error('Coupon Not Valid!', 'Coupon')
+                });
+        });
+    </script>
+    <script>
+        function calculateAndUpdateOrderTotal() {
+            let subtotalText = document.getElementById('cartSubtotal').innerText;
+            let subtotalValue = parseFloat(subtotalText.replace(/[^\d\.]/g, ''));
+
+            let shippingText = document.getElementById('shipping').innerText;
+            let shippingValue = parseFloat(shippingText.replace(/[^\d\.]/g, ''));
+
+            let orderTotal = subtotalValue + shippingValue;
+
+            document.querySelector('.order_total td').innerText = '৳ ' + orderTotal.toFixed(2);
+
+            document.getElementById('total_charge').value = orderTotal.toFixed(2);
+        }
+
+        calculateAndUpdateOrderTotal();
+    </script>
+@endpush

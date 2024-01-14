@@ -80,4 +80,18 @@ class CouponController extends Controller
 
         return back();
     }
+
+    public function applyCoupon(Request $request)
+    {
+        $couponCode = $request->input('coupon');
+
+        $exist = Coupon::whereCoupon_code($couponCode)->where('valid_till',  ">=",  date('Y-m-d'))->first();
+
+        if($exist){
+            $newSubtotal = $request->subtotal - (($exist->percentage/100) * $request->subtotal);
+            return response()->json(['success' => true, 'newSubtotal' => $newSubtotal, 'discount' => $exist->percentage]);
+        } else {
+            return response()->json(['success' => false, 'error' => 'Invalid coupon code']);
+        }
+    }
 }

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\CouponController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryToProductController;
 use App\Http\Controllers\CheckoutController;
@@ -48,6 +49,8 @@ Route::middleware('custom.auth')->group(function () {
 
     Route::get('/my-account', [MyAccountController::class, 'index'])->name('user.account');
     Route::get('/invoice/{order}', [InvoiceController::class, 'showInvoice'])->name('user.invoice');
+
+    Route::post('/apply-coupon', [CouponController::class, 'applyCoupon']);
 });
 
 Route::get('product/{product}/details', [UserProductController::class, 'productDetails'])->name('product.details');
