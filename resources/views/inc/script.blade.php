@@ -18,6 +18,7 @@
 <script src="{{ asset('assets/js/plugins/aos.min.js') }}"></script>
 <script src="{{ asset('assets/js/plugins/jquery.instagramFeed.js') }}"></script>
 <script src="{{ asset('assets/js/plugins/ajax-mail.js') }}"></script>
+<script src="{{ asset('assets/js/toastr.min.js') }}"></script>
 
 <!-- Use the minified version files listed below for better performance and remove the files listed above -->
 <!-- <script src="assets/js/vendor/vendor.min.js"></script>
