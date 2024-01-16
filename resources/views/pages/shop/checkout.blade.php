@@ -133,6 +133,7 @@
                                                   placeholder="Notes about your order, e.g. special notes for delivery."></textarea>
                                     </div>
                                 </div>
+                                <input name="discount" id="discount" hidden>
                             </div>
                         </div>
                         <div class="col-lg-6 col-md-6">
@@ -237,6 +238,7 @@
                         document.getElementById('couponPart').style.display = 'none';
                         // Show the success message
                         document.getElementById('successMessage').style.display = 'block';
+                        document.getElementById('discount').value = response.data.discount;
                     } else {
                         // Handle error (e.g., invalid coupon)
                         toastr.error('Coupon Not Valid!', 'Coupon')

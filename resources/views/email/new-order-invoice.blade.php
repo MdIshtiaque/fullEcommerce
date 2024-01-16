@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.js"></script>
     <title>Invoice Template</title>
     <style>
         /* Custom CSS */
@@ -14,10 +15,12 @@
         .container {
             max-width: 680px;
             margin: 0 auto;
+            border: 2px solid #000; /* Add border here */
+            padding: 20px; /* Optional: Add some padding around the content */
+            position: relative;
         }
 
         .logotype {
-            background: #000;
             color: #fff;
             width: 75px;
             height: 75px;
@@ -66,15 +69,52 @@
             padding: 20px;
             display: inline-block
         }
+
+        .download-button {
+            display: block;
+            width: 200px;
+            padding: 10px;
+            margin: 20px auto;
+            text-align: center;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none; /* If using an 'a' tag */
+        }
+
+        .download-button:hover {
+            background-color: #0056b3;
+        }
+        .print-button {
+            display: block;
+            width: 200px;
+            padding: 10px;
+            margin: 20px auto;
+            text-align: center;
+            background-color: green;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none; /* If using an 'a' tag */
+        }
+
+        .print-button:hover {
+            background-color: darkgreen;
+        }
     </style>
 </head>
 <body>
-<div class="container">
+<div class="container" id="print">
 
     <table width="100%">
         <tr>
             <td width="75px">
-                <div class="logotype">Ecommerce</div>
+                <div>
+                    <img class="logotype" src="{{ \App\Models\Logo::whereIs_active(true)->first() ?  asset('admin/logo/'. \App\Models\Logo::whereIs_active(true)->first()->logo) : asset('assets/images/logo/def_logo.png') }}">
+                </div>
             </td>
             <td width="300px">
                 <div
@@ -106,15 +146,13 @@
                 <table>
                     <tr>
                         <td style="vertical-align: text-top;">
-                            <div
-                                style="background: #ffd9e8 url(https://cdn0.iconfinder.com/data/icons/commerce-line-1/512/comerce_delivery_shop_business-07-128.png);width: 50px;height: 50px;margin-right: 10px;background-position: center;background-size: 42px;"></div>
+                            <div style="background: #ffd9e8 url('{{ asset('assets/images/logo/delivery.png') }}'); width: 50px; height: 50px; margin-right: 10px; background-position: center; background-size: 42px; background-repeat: no-repeat"></div>
                         </td>
+
                         <td>
                             <strong>Delivery</strong><br>
                             {{ $order->billingDetail->name }}<br>
-                            Queens high 17 B<br>
-                            SE-254 57 Helsingborg<br>
-                            Sweden
+                            {!! nl2br(e($order->billingDetail->address1)) !!}<br>
                         </td>
                     </tr>
                 </table>
@@ -123,15 +161,12 @@
                 <table>
                     <tr>
                         <td style="vertical-align: text-top;">
-                            <div
-                                style="background: #ffd9e8 url(https://cdn4.iconfinder.com/data/icons/app-custom-ui-1/48/Check_circle-128.png) no-repeat;width: 50px;height: 50px;margin-right: 10px;background-position: center;background-size: 25px;"></div>
+                            <div style="background: #ffd9e8 url('{{ asset('assets/images/logo/delivery.png') }}'); width: 50px; height: 50px; margin-right: 10px; background-position: center; background-size: 42px; background-repeat: no-repeat"></div>
                         </td>
                         <td>
                             <strong>Delivery</strong><br>
                             {{ $order->billingDetail->name }}<br>
-                            Queens high 17 B<br>
-                            SE-254 57 Helsingborg<br>
-                            Sweden
+                            {!! nl2br(e($order->billingDetail->address1)) !!}<br>
                         </td>
                     </tr>
                 </table>
@@ -139,15 +174,9 @@
         </tr>
     </table>
     <br>
-{{--    <table width="100%" style="border-top:1px solid #eee;border-bottom:1px solid #eee;padding:0 0 8px 0">--}}
-{{--        <tr>--}}
-{{--            <td><h3>Checkout details</h3>Your checkout made by VISA Card **** **** **** 2478--}}
-{{--            <td>--}}
-{{--        </tr>--}}
-{{--    </table>--}}
     <br>
     <div
-        style="background: #ffd9e8 url(https://cdn4.iconfinder.com/data/icons/basic-ui-2-line/32/shopping-cart-shop-drop-trolly-128.png) no-repeat;width: 50px;height: 50px;margin-right: 10px;background-position: center;background-size: 25px;float: left; margin-bottom: 15px;"></div>
+        style="background: #ffd9e8 url('{{ asset('assets/images/logo/product.png') }}') no-repeat;width: 50px;height: 50px;margin-right: 10px;background-position: center;background-size: 25px;float: left; margin-bottom: 15px;"></div>
     <h3>Your Products</h3>
 
     <table width="100%" style="border-collapse: collapse;border-bottom:1px solid #eee;">
@@ -159,9 +188,12 @@
         </tr>
         @foreach($items as $item)
             <tr>
-                <td class="row"><span style="color:#777;font-size:11px;">#64000L</span><br>{{ $item->cart->product->name }}</td>
+                <td class="row"><span
+                        style="color:#777;font-size:11px;">#64000L</span><br>{{ $item->cart->product->name }}</td>
                 <td class="row">{{ $item->cart->quantity }}</td>
-                <td class="row">{{ $item->cart->quantity }} <span style="color:#777">X</span> {{ $item->cart->price }} TK</td>
+                <td class="row">{{ $item->cart->quantity }} <span style="color:#777">X</span> {{ $item->cart->price }}
+                    TK
+                </td>
                 <td class="row">{{ $item->cart->total_price }} TK</td>
             </tr>
         @endforeach
@@ -171,6 +203,12 @@
         <tr>
             <td>
                 <table width="300px" style="float:right">
+                    @isset($order->discount)
+                        <tr>
+                            <td><strong>Discount:</strong></td>
+                            <td style="text-align:right">{{ $order->discount }}%</td>
+                        </tr>
+                    @endisset
                     <tr>
                         <td><strong>Sub-total:</strong></td>
                         <td style="text-align:right">{{ $order->total_charge }} TK</td>

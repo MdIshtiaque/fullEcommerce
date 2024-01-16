@@ -49,6 +49,7 @@ class PurchaseController extends Controller
                 'ordered_by' => auth()->user()->id,
                 'order_code' => generateOrderNumber(),
                 'shipping_charge' => 0,
+                'discount' => $request->discount,
                 'total_charge' => $request->total_charge,
                 'payment_type' => ($paymentType === 'on') ? 'cash' : 'online',
             ]);

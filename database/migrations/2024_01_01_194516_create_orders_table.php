@@ -17,6 +17,7 @@ return new class extends Migration
             $table->foreignId('ordered_by')->constrained('users')->onDelete('cascade');
             $table->string('order_code');
             $table->decimal('shipping_charge', 10, 2)->nullable();
+            $table->string('discount')->nullable();
             $table->decimal('total_charge', 10, 2);
             $table->enum('payment_type', ['cash', 'paypal', 'credit_card', 'online', 'other']);
             $table->boolean('is_payment')->default(false);
