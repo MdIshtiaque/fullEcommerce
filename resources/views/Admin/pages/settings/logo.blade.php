@@ -213,7 +213,7 @@
                         data: {is_active: true},
                         success: function (response) {
                             console.log(response);
-                            // window.location.reload();
+                            window.location.reload();
                             Toastify({
                                 node: $("#success-notification-content")
                                     .clone()
