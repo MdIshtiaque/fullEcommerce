@@ -21,7 +21,6 @@
         }
 
         .logotype {
-            background: #000;
             color: #fff;
             width: 75px;
             height: 75px;
@@ -113,7 +112,9 @@
     <table width="100%">
         <tr>
             <td width="75px">
-                <div class="logotype">Ecommerce</div>
+                <div>
+                    <img class="logotype" src="{{ \App\Models\Logo::whereIs_active(true)->first() ?  asset('admin/logo/'. \App\Models\Logo::whereIs_active(true)->first()->logo) : asset('assets/images/logo/def_logo.png') }}">
+                </div>
             </td>
             <td width="300px">
                 <div
@@ -151,9 +152,7 @@
                         <td>
                             <strong>Delivery</strong><br>
                             {{ $order->billingDetail->name }}<br>
-                            Queens high 17 B<br>
-                            SE-254 57 Helsingborg<br>
-                            Sweden
+                            {!! nl2br(e($order->billingDetail->address1)) !!}<br>
                         </td>
                     </tr>
                 </table>
@@ -167,9 +166,7 @@
                         <td>
                             <strong>Delivery</strong><br>
                             {{ $order->billingDetail->name }}<br>
-                            Queens high 17 B<br>
-                            SE-254 57 Helsingborg<br>
-                            Sweden
+                            {!! nl2br(e($order->billingDetail->address1)) !!}<br>
                         </td>
                     </tr>
                 </table>
@@ -177,15 +174,9 @@
         </tr>
     </table>
     <br>
-    {{--    <table width="100%" style="border-top:1px solid #eee;border-bottom:1px solid #eee;padding:0 0 8px 0">--}}
-    {{--        <tr>--}}
-    {{--            <td><h3>Checkout details</h3>Your checkout made by VISA Card **** **** **** 2478--}}
-    {{--            <td>--}}
-    {{--        </tr>--}}
-    {{--    </table>--}}
     <br>
     <div
-        style="background: #ffd9e8 url(https://cdn4.iconfinder.com/data/icons/basic-ui-2-line/32/shopping-cart-shop-drop-trolly-128.png) no-repeat;width: 50px;height: 50px;margin-right: 10px;background-position: center;background-size: 25px;float: left; margin-bottom: 15px;"></div>
+        style="background: #ffd9e8 url('{{ asset('assets/images/logo/product.png') }}') no-repeat;width: 50px;height: 50px;margin-right: 10px;background-position: center;background-size: 25px;float: left; margin-bottom: 15px;"></div>
     <h3>Your Products</h3>
 
     <table width="100%" style="border-collapse: collapse;border-bottom:1px solid #eee;">
@@ -212,6 +203,12 @@
         <tr>
             <td>
                 <table width="300px" style="float:right">
+                    @isset($order->discount)
+                    <tr>
+                        <td><strong>Discount:</strong></td>
+                        <td style="text-align:right">{{ $order->discount }}%</td>
+                    </tr>
+                    @endisset
                     <tr>
                         <td><strong>Sub-total:</strong></td>
                         <td style="text-align:right">{{ $order->total_charge }} TK</td>
