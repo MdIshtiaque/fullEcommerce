@@ -50,25 +50,9 @@
                             <div class="row">
                                 <!-- Start Sort Wrapper Box -->
                                 <div
-                                    class="sort-box d-flex justify-content-between align-items-md-center align-items-start flex-md-row flex-column"
+                                    class="sort-box d-flex justify-content-end align-items-md-center align-items-start flex-md-row flex-column"
                                     data-aos="fade-up" data-aos-delay="0">
                                     <!-- Start Sort tab Button -->
-                                    <div class="sort-tablist d-flex align-items-center">
-                                        <ul class="tablist nav sort-tab-btn">
-                                            <li><a class="nav-link active" data-bs-toggle="tab"
-                                                   href="#layout-4-grid"><img
-                                                        src="{{ asset('assets/images/icons/bkg_grid.png') }}"
-                                                        alt=""></a></li>
-                                            <li><a class="nav-link" data-bs-toggle="tab" href="#layout-list"><img
-                                                        src="{{ asset('assets/images/icons/bkg_list.png') }}"
-                                                        alt=""></a></li>
-                                        </ul>
-
-                                        <!-- Start Page Amount -->
-                                        <div class="page-amount ml-2">
-                                            <span>Showing 1–9 of 21 results</span>
-                                        </div> <!-- End Page Amount -->
-                                    </div> <!-- End Sort tab Button -->
 
                                     <!-- Start Sort Select Option -->
                                     <div class="sort-select-list d-flex align-items-center">
@@ -161,7 +145,7 @@
                                                                 </div>
                                                                 <div class="content-right">
                                                                     <span
-                                                                        class="price">{{ $item->symbol->symbol }} {{ $item->price }}</span>
+                                                                        class="price">{{ $item->symbol->symbol }}{{ $item->price }}</span>
                                                                 </div>
 
                                                             </div>
@@ -240,14 +224,8 @@
                     </div> <!-- End Tab Wrapper -->
 
                     <!-- Start Pagination -->
-                    <div class="page-pagination text-center" data-aos="fade-up" data-aos-delay="0">
-                        <ul>
-                            <li><a class="active" href="#">1</a></li>
-                            <li><a href="#">2</a></li>
-                            <li><a href="#">3</a></li>
-                            <li><a href="#"><i class="ion-ios-skipforward"></i></a></li>
-                        </ul>
-                    </div> <!-- End Pagination -->
+                    {{ $items->links('vendor.pagination.custom-pagination') }}
+                    <!-- End Pagination -->
                 </div> <!-- End Shop Product Sorting Section  -->
             </div>
         </div>
