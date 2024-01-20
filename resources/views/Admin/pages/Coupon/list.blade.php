@@ -93,12 +93,12 @@
                                         data-valid="{{ $item->valid_till }}" data-status="{{ $item->is_active }}"
                                         data-limit="{{ $item->user_limit }}"> <i
                                         data-feather="check-square" class="w-4 h-4 mr-1"></i> Edit </button>
-                                <form id="delete-form"
+                                <form id="delete-form-{{ $item->id }}"
                                       action="{{ route('admin.couponDelete', ['coupon' => $item->id]) }}"
                                       method="POST">
                                     @csrf
                                     @method('DELETE') <!-- Specifying that this is a DELETE request -->
-                                    <button type="button" onclick="deleteConfirmation();"
+                                    <button type="button" onclick="deleteConfirmation({{ $item->id }});"
                                             class="flex items-center text-danger">
                                         <i data-feather="trash-2" class="w-4 h-4 mr-1"></i> Delete
                                     </button>
@@ -274,9 +274,8 @@
             modal.hide();
         });
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
-        function deleteConfirmation() {
+        function deleteConfirmation(itemId) {
             Swal.fire({
                 title: 'Are you sure?',
                 text: 'You will not be able to recover this record!',
@@ -287,7 +286,7 @@
             }).then((result) => {
                 if (result.isConfirmed) {
                     // If the user confirms, you can redirect to the delete route
-                    document.getElementById('delete-form').submit();
+                    document.getElementById('delete-form-' + itemId).submit();
                 }
             });
         }
