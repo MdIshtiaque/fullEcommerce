@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\BannerController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\CouponController;
 use App\Http\Controllers\Admin\DashboardController;
@@ -51,6 +52,11 @@ Route::middleware(['auth', 'verified'])->prefix('admin/')->group(function () {
         Route::post('/toggle/sliderStatus/{slider}', [SliderController::class, 'toggle'])->name('slider.status.toggle');
         Route::delete('/slider/delete/{slider}', [SliderController::class, 'delete'])->name('admin.sliderDelete');
 
+        Route::get('/banners', [BannerController::class, 'showBanners'])->name('admin.banner');
+        Route::post('banner/save', [BannerController::class, 'bannerSave'])->name('admin.bannerSave');
+//        Route::put('/slider/{slider}', [SliderController::class, 'edit'])->name('admin.sliderEdit');
+//        Route::post('/toggle/sliderStatus/{slider}', [SliderController::class, 'toggle'])->name('slider.status.toggle');
+//        Route::delete('/slider/delete/{slider}', [SliderController::class, 'delete'])->name('admin.sliderDelete');
 
 
     });

@@ -79,6 +79,12 @@
             </a>
         </li>
         <li>
+            <a href="{{ route('admin.banner') }}" class="side-menu">
+                <div class="side-menu__icon"> <i data-feather="inbox"></i> </div>
+                <div class="side-menu__title"> Banner Manage </div>
+            </a>
+        </li>
+        <li>
             <a href="{{ route('admin.coupons') }}" class="side-menu">
                 <div class="side-menu__icon"> <i data-feather="inbox"></i> </div>
                 <div class="side-menu__title"> Coupon Manage </div>

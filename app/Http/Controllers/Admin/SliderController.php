@@ -23,7 +23,7 @@ class SliderController extends Controller
 
     public function sliderStore(Request $request): RedirectResponse
     {
-        dd($request->input());
+//        dd($request->input());
         try {
             $image = $request->file('file');
             $path = uploadImage($image, 'admin/slider');

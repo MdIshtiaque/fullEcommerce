@@ -207,7 +207,7 @@
                                         @foreach($products as $product)
                                     <div class="product-default-single-item product-color--pink swiper-slide">
                                             <div class="image-box">
-                                                <a href="product-details-default.html" class="image-link">
+                                                <a href="{{ route('product.details', ['product' => $product->id]) }}" class="image-link">
                                                     <img
                                                         src="{{ asset('admin/product/'. $product->productImage->first()->image) }}"
                                                         alt="">
