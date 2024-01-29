@@ -14,6 +14,13 @@
             object-fit: cover;
         }
 
+        .banner-single-item .image img {
+            width: 100%; /* adjust width as needed */
+            height: 500px; /* adjust height as needed */
+            object-fit: cover;
+            object-position: center;
+        }
+
     </style>
 @endpush
 @section('content')
@@ -23,48 +30,33 @@
         <div class="hero-slider-active swiper-container">
             <!-- Additional required wrapper -->
             <div class="swiper-wrapper">
-                <!-- Start Hero Single Slider Item -->
-                <div class="hero-single-slider-item swiper-slide">
-                    <!-- Hero Slider Image -->
-                    <div class="hero-slider-bg">
-                        <img src="assets/images/hero-slider/slider 1.png" alt="">
-                    </div>
-                    <!-- Hero Slider Content -->
-                    <div class="hero-slider-wrapper">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-auto">
-                                    <div class="hero-slider-content">
-                                        <h4 class="subtitle">New collection</h4>
-                                        <h1 class="title">New Series of <br> Watch </h1>
-                                        <a href="product-details-default.html" class="btn btn-lg btn-pink">shop now </a>
+                @foreach($sliders as $slider)
+                    <!-- Start Hero Single Slider Item -->
+                    <div class="hero-single-slider-item swiper-slide">
+                        <!-- Hero Slider Image -->
+                        <div class="hero-slider-bg">
+                            <img
+                                src="{{ asset('admin/slider/'. $slider->image) ? asset('admin/slider/'. $slider->image) : asset('assets/images/hero-slider/slider 1.png') }}"
+                                alt="">
+                        </div>
+                        <!-- Hero Slider Content -->
+                        <div class="hero-slider-wrapper">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-auto">
+                                        <div class="hero-slider-content">
+                                            <h4 class="subtitle">New collection</h4>
+                                            <h1 class="title">New Series of <br> Watch </h1>
+                                            <a href="product-details-default.html" class="btn btn-lg btn-pink">shop
+                                                now </a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div> <!-- End Hero Single Slider Item -->
-                <!-- Start Hero Single Slider Item -->
-                {{--            <div class="hero-single-slider-item swiper-slide">--}}
-                {{--                <!-- Hero Slider Image -->--}}
-                {{--                <div class="hero-slider-bg">--}}
-                {{--                    <img src="assets/images/hero-slider/home-3/hero-slider-2.jpg" alt="">--}}
-                {{--                </div>--}}
-                {{--                <!-- Hero Slider Content -->--}}
-                {{--                <div class="hero-slider-wrapper">--}}
-                {{--                    <div class="container">--}}
-                {{--                        <div class="row">--}}
-                {{--                            <div class="col-auto">--}}
-                {{--                                <div class="hero-slider-content">--}}
-                {{--                                    <h4 class="subtitle">New collection</h4>--}}
-                {{--                                    <h1 class="title">Best Of HiFi <br> Loud Speaker</h1>--}}
-                {{--                                    <a href="product-details-default.html" class="btn btn-lg btn-pink">shop now </a>--}}
-                {{--                                </div>--}}
-                {{--                            </div>--}}
-                {{--                        </div>--}}
-                {{--                    </div>--}}
-                {{--                </div>--}}
-                {{--            </div> <!-- End Hero Single Slider Item -->--}}
+                @endforeach
+                <!-- End Hero Single Slider Item -->
             </div>
 
             <!-- If we need pagination -->
@@ -204,10 +196,11 @@
                             <div class="swiper-container product-default-slider-4grid-1row">
                                 <!-- Additional required wrapper -->
                                 <div class="swiper-wrapper">
-                                        @foreach($products as $product)
-                                    <div class="product-default-single-item product-color--pink swiper-slide">
+                                    @foreach($products as $product)
+                                        <div class="product-default-single-item product-color--pink swiper-slide">
                                             <div class="image-box">
-                                                <a href="{{ route('product.details', ['product' => $product->id]) }}" class="image-link">
+                                                <a href="{{ route('product.details', ['product' => $product->id]) }}"
+                                                   class="image-link">
                                                     <img
                                                         src="{{ asset('admin/product/'. $product->productImage->first()->image) }}"
                                                         alt="">
@@ -254,8 +247,8 @@
                                                 </div>
 
                                             </div>
-                                    </div>
-                                        @endforeach
+                                        </div>
+                                    @endforeach
                                 </div>
                             </div>
                             <!-- If we need navigation buttons -->
@@ -274,26 +267,25 @@
         <div class="banner-wrapper clearfix">
             <!-- Start Banner Single Item -->
             <a href="product-details-default.html">
-                <div class="banner-single-item banner-style-8 banner-animation banner-color--green float-left"
-                     data-aos="fade-up" data-aos-delay="0">
+                <div class="banner-single-item banner-style-8 banner-animation banner-color--green float-left" data-aos="fade-up" data-aos-delay="0">
                     <div class="image">
-                        <img class="img-fluid" src="assets/images/banner/banner-style-8-img-1.jpg" alt="">
+                        <img class="img-fluid" src="{{ $banners[0]->image ? asset('admin/Banner/'. $banners[0]->image) : asset('assets/images/banner/banner-style-8-img-1.jpg') }}" alt="">
                     </div>
                 </div>
             </a>
             <!-- End Banner Single Item -->
             <!-- Start Banner Single Item -->
             <a href="product-details-default.html">
-                <div class="banner-single-item banner-style-8 banner-animation banner-color--green float-left"
-                     data-aos="fade-up" data-aos-delay="200">
+                <div class="banner-single-item banner-style-8 banner-animation banner-color--green float-left" data-aos="fade-up" data-aos-delay="200">
                     <div class="image">
-                        <img class="img-fluid" src="assets/images/banner/banner-style-8-img-2.jpg" alt="">
+                        <img class="img-fluid" src="{{ $banners[1]->image ? asset('admin/Banner/'. $banners[1]->image) : asset('assets/images/banner/banner-style-8-img-2.jpg') }}" alt="">
                     </div>
                 </div>
             </a>
             <!-- End Banner Single Item -->
         </div>
     </div>
+
     <!-- End Banner Section -->
 
     <!-- Start Product Default Slider Section -->

@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Banner;
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\Slider;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -12,6 +14,11 @@ class HomeController extends Controller
 
         $products = Product::with('productImage')->get();
         $categories = Category::all();
-        return view('pages.Home.home', ['products' => $products, 'categories' => $categories]);
+        $sliders = Slider::get();
+        $banners = Banner::get();
+        return view('pages.Home.home', ['products' => $products,
+            'categories' => $categories,
+            'banners' => $banners,
+            'sliders' => $sliders]);
     }
 }
