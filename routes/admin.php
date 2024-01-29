@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\SettingsController;
+use App\Http\Controllers\Admin\SliderController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -43,6 +44,15 @@ Route::middleware(['auth', 'verified'])->prefix('admin/')->group(function () {
         Route::post('/toggle/couponStatus/{coupon}', [CouponController::class, 'toggle'])->name('coupon.status.toggle');
         Route::put('/coupon/{coupon}', [CouponController::class, 'edit'])->name('admin.couponEdit');
         Route::delete('/coupon/delete/{coupon}', [CouponController::class, 'delete'])->name('admin.couponDelete');
+
+        Route::get('/sliders', [SliderController::class, 'showAllSlider'])->name('admin.sliders');
+        Route::post('slider/store', [SliderController::class, 'sliderStore'])->name('admin.sliderStore');
+        Route::put('/slider/{slider}', [SliderController::class, 'edit'])->name('admin.sliderEdit');
+        Route::post('/toggle/sliderStatus/{slider}', [SliderController::class, 'toggle'])->name('slider.status.toggle');
+        Route::delete('/slider/delete/{slider}', [SliderController::class, 'delete'])->name('admin.sliderDelete');
+
+
+
     });
 
 });

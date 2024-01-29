@@ -11,7 +11,15 @@
                             </div>
                         </div>
                         <!-- End Header Logo -->
-
+                        <style>
+                            .mega-menu-sub {
+                                width: 477px;
+                                max-height: 300px; /* Adjust the height as needed */
+                                overflow-y: auto;
+                                overflow-x: hidden;
+                                box-sizing: border-box;
+                            }
+                        </style>
                         <!-- Start Header Main Menu -->
                         <div class="main-menu menu-color--white menu-hover-color--pink">
                             <nav>
