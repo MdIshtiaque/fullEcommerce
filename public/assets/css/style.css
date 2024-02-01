@@ -34,7 +34,7 @@
     -> Pages - My Account
     -> Pages - FAQ
     -> Pages - Privacy Policy
-    -> Pages - 404 
+    -> Pages - 404
     -> Pages - About
     -> Pages - Contact
     -> Pages - Blog
@@ -14595,7 +14595,7 @@ input {
 }
 
 /***********************
-* Components - Hero 
+* Components - Hero
 ************************/
 .hero-slider-active {
     position: relative;
@@ -18484,7 +18484,7 @@ Pages - Contact
 }
 .footer-top .footer-widget-single-item .footer-nav li a {
     display: inline-block;
-    color: #9b9b97;
+    color: white;
     transition: all 0.5s ease;
 }
 .footer-top .footer-widget-single-item .footer-nav li a:hover {

@@ -44,9 +44,9 @@
                             <div class="container">
                                 <div class="row">
                                     <div class="col-auto">
-                                        <div class="hero-slider-content">
-                                            <h4 class="subtitle">New collection</h4>
-                                            <h1 class="title">New Series of <br> Watch </h1>
+                                        <div class="hero-slider-content color">
+                                            <h4 style="color: white" class="subtitle">New collection</h4>
+                                            <h1 style="color: white" class="title">New Series of <br> Panjabi </h1>
                                             <a href="product-details-default.html" class="btn btn-lg btn-pink">shop
                                                 now </a>
                                         </div>

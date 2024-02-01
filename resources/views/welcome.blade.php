@@ -7,10 +7,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>Ecommerce</title>
+    <title>পাঞ্জাবিওয়ালা</title>
 
     <!-- ::::::::::::::Favicon icon::::::::::::::-->
-    <link rel="shortcut icon" href="{{ asset('assets/images/favicon.ico') }}" type="image/png">
+    <link rel="shortcut icon" href="{{ $systemLogo ? asset('admin/logo/' . $systemLogo) : asset('dist/images/logo.svg') }}" type="image/png">
 
     @include('inc.style')
 

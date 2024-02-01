@@ -3,14 +3,14 @@
 <!-- BEGIN: Head -->
 <head>
     <meta charset="utf-8">
-    <link href="{{ asset('dist/images/logo.svg') }}" rel="shortcut icon">
+    <link href="{{ $systemLogo ? asset('admin/logo/' . $systemLogo) : asset('dist/images/logo.svg') }}" rel="shortcut icon">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Tinker admin is super flexible, powerful, clean & modern responsive tailwind admin template with unlimited possibilities.">
     <meta name="keywords" content="admin template, Tinker Admin Template, dashboard template, flat admin template, responsive admin template, web app">
     <meta name="author" content="LEFT4CODE">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     @vite('resources/css/app.css')
-    <title>Dashboard - Ecommerce</title>
+    <title>Dashboard - পাঞ্জাবিওয়ালা</title>
     <!-- BEGIN: CSS Assets-->
     @include('Admin.include.styles')
     <!-- END: CSS Assets-->

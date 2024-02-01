@@ -1,13 +1,13 @@
 <header class="header-section d-none d-xl-block">
     <div class="header-wrapper">
-        <div class="header-bottom header-bottom-color--black section-fluid sticky-header sticky-color--black">
+        <div class="header-bottom section-fluid sticky-header" style="background-color: #6F42C1">
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-12 d-flex align-items-center justify-content-between">
                         <!-- Start Header Logo -->
                         <div class="header-logo">
                             <div class="logo">
-                                <a href="{{ route('home') }}"><img src="{{ asset('assets/images/logo/logo_white.png') }}" alt=""></a>
+                                <a href="{{ route('home') }}"><img class="w-100" src="{{ $systemLogo ? asset('admin/logo/' . $systemLogo) : asset('dist/images/logo.svg') }}" alt=""></a>
                             </div>
                         </div>
                         <!-- End Header Logo -->
@@ -66,12 +66,6 @@
 
                         <!-- Start Header Action Link -->
                         <ul class="header-action-link action-color--white action-hover-color--pink">
-                            <li>
-                                <a href="#offcanvas-wishlish" class="offcanvas-toggle">
-                                    <i class="icon-heart"></i>
-                                    <span class="item-count">3</span>
-                                </a>
-                            </li>
                             <li>
                                 <a href="#offcanvas-add-cart" class="offcanvas-toggle">
                                     <i class="icon-bag"></i>

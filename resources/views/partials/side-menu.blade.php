@@ -7,7 +7,7 @@
     <!-- Start Mobile contact Info -->
     <div class="mobile-contact-info">
         <div class="logo">
-            <a href="index.html"><img src="{{ asset('assets/images/logo/logo_white.png') }}" alt=""></a>
+            <a href="index.html"><img src="{{ $systemLogo ? asset('admin/logo/' . $systemLogo) : asset('dist/images/logo.svg') }}" alt=""></a>
         </div>
 
         <address class="address">
@@ -24,7 +24,6 @@
         </ul>
 
         <ul class="user-link">
-            <li><a href="wishlist.html">Wishlist</a></li>
             <li><a href="cart.html">Cart</a></li>
             <li><a href="checkout.html">Checkout</a></li>
         </ul>
@@ -41,7 +40,7 @@
     <!-- Start Mobile contact Info -->
     <div class="mobile-contact-info">
         <div class="logo">
-            <a href="index.html"><img src="{{ asset('assets/images/logo/logo_white.png') }}" alt=""></a>
+            <a href="index.html"><img src="{{ $systemLogo ? asset('admin/logo/' . $systemLogo) : asset('dist/images/logo.svg') }}" alt=""></a>
         </div>
 
         <address class="address">
