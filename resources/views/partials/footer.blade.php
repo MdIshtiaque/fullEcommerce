@@ -1,4 +1,4 @@
-<footer class="footer-section footer-bg section-top-gap-100" style="background-color: #6F42C1">
+<footer class="footer-section footer-bg section-top-gap-100" style="background-color: #2a2a92">
     <div class="footer-wrapper">
         <!-- Start Footer Top -->
         <div class="footer-top">

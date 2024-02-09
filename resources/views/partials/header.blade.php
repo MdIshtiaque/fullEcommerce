@@ -1,6 +1,6 @@
 <header class="header-section d-none d-xl-block">
     <div class="header-wrapper">
-        <div class="header-bottom section-fluid sticky-header" style="background-color: #6F42C1">
+        <div class="header-bottom section-fluid sticky-header" style="background-color: #2a2a92">
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-12 d-flex align-items-center justify-content-between">
