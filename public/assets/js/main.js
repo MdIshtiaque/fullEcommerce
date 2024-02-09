@@ -29,7 +29,7 @@
     });
 
     /************************************************
-     * Modal Search 
+     * Modal Search
      ***********************************************/
     $('a[href="#search"]').on('click', function(event) {
         event.preventDefault();
@@ -118,7 +118,7 @@
         speed: 1500,
         watchSlidesProgress: true,
         loop: true,
-        autoplay: false,
+        autoplay: true,
         pagination: {
             el: '.swiper-pagination',
             clickable: true,
@@ -397,7 +397,7 @@
         },
       });
 
-      var modalGalleryTop = new Swiper('.modal-product-image-large', { 
+      var modalGalleryTop = new Swiper('.modal-product-image-large', {
         thumbs: {
           swiper: modalGalleryThumbs
         }
@@ -444,17 +444,17 @@
      * Animate on Scroll
      ***********************************************/
     AOS.init({
-       
-        duration: 1000, 
-        once: true, 
+
+        duration: 1000,
+        once: true,
         easing: 'ease',
     });
-    window.addEventListener('load', AOS.refresh);    
+    window.addEventListener('load', AOS.refresh);
 
     /************************************************
      * Video  Popup
      ***********************************************/
-    $('.video-play-btn').venobox(); 
+    $('.video-play-btn').venobox();
 
     /************************************************
      * Scroll Top

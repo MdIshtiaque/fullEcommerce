@@ -30,8 +30,8 @@
         <div class="hero-slider-active swiper-container">
             <!-- Additional required wrapper -->
             <div class="swiper-wrapper">
+                <!-- Start Hero Single Slider Item -->
                 @foreach($sliders as $slider)
-                    <!-- Start Hero Single Slider Item -->
                     <div class="hero-single-slider-item swiper-slide">
                         <!-- Hero Slider Image -->
                         <div class="hero-slider-bg">
@@ -70,66 +70,66 @@
     <!-- End Hero Slider Section-->
 
     <!-- Start Service Section -->
-{{--    <div class="service-promo-section section-top-gap-100">--}}
-{{--        <div class="service-wrapper">--}}
-{{--            <div class="container">--}}
-{{--                <div class="row">--}}
-{{--                    <!-- Start Service Promo Single Item -->--}}
-{{--                    <div class="col-lg-3 col-sm-6 col-12">--}}
-{{--                        <div class="service-promo-single-item" data-aos="fade-up" data-aos-delay="0">--}}
-{{--                            <div class="image">--}}
-{{--                                <img src="assets/images/icons/service-promo-5.png" alt="">--}}
-{{--                            </div>--}}
-{{--                            <div class="content">--}}
-{{--                                <h6 class="title">FREE SHIPPING</h6>--}}
-{{--                                <p>Get 10% cash back, free shipping, free returns, and more at 1000+ top retailers!</p>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-{{--                    <!-- End Service Promo Single Item -->--}}
-{{--                    <!-- Start Service Promo Single Item -->--}}
-{{--                    <div class="col-lg-3 col-sm-6 col-12">--}}
-{{--                        <div class="service-promo-single-item" data-aos="fade-up" data-aos-delay="200">--}}
-{{--                            <div class="image">--}}
-{{--                                <img src="assets/images/icons/service-promo-6.png" alt="">--}}
-{{--                            </div>--}}
-{{--                            <div class="content">--}}
-{{--                                <h6 class="title">30 DAYS MONEY BACK</h6>--}}
-{{--                                <p>100% satisfaction guaranteed, or get your money back within 30 days!</p>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-{{--                    <!-- End Service Promo Single Item -->--}}
-{{--                    <!-- Start Service Promo Single Item -->--}}
-{{--                    <div class="col-lg-3 col-sm-6 col-12">--}}
-{{--                        <div class="service-promo-single-item" data-aos="fade-up" data-aos-delay="400">--}}
-{{--                            <div class="image">--}}
-{{--                                <img src="assets/images/icons/service-promo-7.png" alt="">--}}
-{{--                            </div>--}}
-{{--                            <div class="content">--}}
-{{--                                <h6 class="title">SAFE PAYMENT</h6>--}}
-{{--                                <p>Pay with the world’s most popular and secure payment methods.</p>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-{{--                    <!-- End Service Promo Single Item -->--}}
-{{--                    <!-- Start Service Promo Single Item -->--}}
-{{--                    <div class="col-lg-3 col-sm-6 col-12">--}}
-{{--                        <div class="service-promo-single-item" data-aos="fade-up" data-aos-delay="600">--}}
-{{--                            <div class="image">--}}
-{{--                                <img src="assets/images/icons/service-promo-8.png" alt="">--}}
-{{--                            </div>--}}
-{{--                            <div class="content">--}}
-{{--                                <h6 class="title">LOYALTY CUSTOMER</h6>--}}
-{{--                                <p>Card for the other 30% of their purchases at a rate of 1% cash back.</p>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-{{--                    <!-- End Service Promo Single Item -->--}}
-{{--                </div>--}}
-{{--            </div>--}}
-{{--        </div>--}}
-{{--    </div>--}}
+    {{--    <div class="service-promo-section section-top-gap-100">--}}
+    {{--        <div class="service-wrapper">--}}
+    {{--            <div class="container">--}}
+    {{--                <div class="row">--}}
+    {{--                    <!-- Start Service Promo Single Item -->--}}
+    {{--                    <div class="col-lg-3 col-sm-6 col-12">--}}
+    {{--                        <div class="service-promo-single-item" data-aos="fade-up" data-aos-delay="0">--}}
+    {{--                            <div class="image">--}}
+    {{--                                <img src="assets/images/icons/service-promo-5.png" alt="">--}}
+    {{--                            </div>--}}
+    {{--                            <div class="content">--}}
+    {{--                                <h6 class="title">FREE SHIPPING</h6>--}}
+    {{--                                <p>Get 10% cash back, free shipping, free returns, and more at 1000+ top retailers!</p>--}}
+    {{--                            </div>--}}
+    {{--                        </div>--}}
+    {{--                    </div>--}}
+    {{--                    <!-- End Service Promo Single Item -->--}}
+    {{--                    <!-- Start Service Promo Single Item -->--}}
+    {{--                    <div class="col-lg-3 col-sm-6 col-12">--}}
+    {{--                        <div class="service-promo-single-item" data-aos="fade-up" data-aos-delay="200">--}}
+    {{--                            <div class="image">--}}
+    {{--                                <img src="assets/images/icons/service-promo-6.png" alt="">--}}
+    {{--                            </div>--}}
+    {{--                            <div class="content">--}}
+    {{--                                <h6 class="title">30 DAYS MONEY BACK</h6>--}}
+    {{--                                <p>100% satisfaction guaranteed, or get your money back within 30 days!</p>--}}
+    {{--                            </div>--}}
+    {{--                        </div>--}}
+    {{--                    </div>--}}
+    {{--                    <!-- End Service Promo Single Item -->--}}
+    {{--                    <!-- Start Service Promo Single Item -->--}}
+    {{--                    <div class="col-lg-3 col-sm-6 col-12">--}}
+    {{--                        <div class="service-promo-single-item" data-aos="fade-up" data-aos-delay="400">--}}
+    {{--                            <div class="image">--}}
+    {{--                                <img src="assets/images/icons/service-promo-7.png" alt="">--}}
+    {{--                            </div>--}}
+    {{--                            <div class="content">--}}
+    {{--                                <h6 class="title">SAFE PAYMENT</h6>--}}
+    {{--                                <p>Pay with the world’s most popular and secure payment methods.</p>--}}
+    {{--                            </div>--}}
+    {{--                        </div>--}}
+    {{--                    </div>--}}
+    {{--                    <!-- End Service Promo Single Item -->--}}
+    {{--                    <!-- Start Service Promo Single Item -->--}}
+    {{--                    <div class="col-lg-3 col-sm-6 col-12">--}}
+    {{--                        <div class="service-promo-single-item" data-aos="fade-up" data-aos-delay="600">--}}
+    {{--                            <div class="image">--}}
+    {{--                                <img src="assets/images/icons/service-promo-8.png" alt="">--}}
+    {{--                            </div>--}}
+    {{--                            <div class="content">--}}
+    {{--                                <h6 class="title">LOYALTY CUSTOMER</h6>--}}
+    {{--                                <p>Card for the other 30% of their purchases at a rate of 1% cash back.</p>--}}
+    {{--                            </div>--}}
+    {{--                        </div>--}}
+    {{--                    </div>--}}
+    {{--                    <!-- End Service Promo Single Item -->--}}
+    {{--                </div>--}}
+    {{--            </div>--}}
+    {{--        </div>--}}
+    {{--    </div>--}}
     <!-- End Service Section -->
 
     <!-- Start Banner Section -->
@@ -267,18 +267,24 @@
         <div class="banner-wrapper clearfix">
             <!-- Start Banner Single Item -->
             <a href="product-details-default.html">
-                <div class="banner-single-item banner-style-8 banner-animation banner-color--green float-left" data-aos="fade-up" data-aos-delay="0">
+                <div class="banner-single-item banner-style-8 banner-animation banner-color--green float-left"
+                     data-aos="fade-up" data-aos-delay="0">
                     <div class="image">
-                        <img class="img-fluid" src="{{ $banners[0]->image ? asset('admin/Banner/'. $banners[0]->image) : asset('assets/images/banner/banner-style-8-img-1.jpg') }}" alt="">
+                        <img class="img-fluid"
+                             src="{{ $banners[0]->image ? asset('admin/Banner/'. $banners[0]->image) : asset('assets/images/banner/banner-style-8-img-1.jpg') }}"
+                             alt="">
                     </div>
                 </div>
             </a>
             <!-- End Banner Single Item -->
             <!-- Start Banner Single Item -->
             <a href="product-details-default.html">
-                <div class="banner-single-item banner-style-8 banner-animation banner-color--green float-left" data-aos="fade-up" data-aos-delay="200">
+                <div class="banner-single-item banner-style-8 banner-animation banner-color--green float-left"
+                     data-aos="fade-up" data-aos-delay="200">
                     <div class="image">
-                        <img class="img-fluid" src="{{ $banners[1]->image ? asset('admin/Banner/'. $banners[1]->image) : asset('assets/images/banner/banner-style-8-img-2.jpg') }}" alt="">
+                        <img class="img-fluid"
+                             src="{{ $banners[1]->image ? asset('admin/Banner/'. $banners[1]->image) : asset('assets/images/banner/banner-style-8-img-2.jpg') }}"
+                             alt="">
                     </div>
                 </div>
             </a>
@@ -1277,4 +1283,5 @@
         `;
         }
     </script>
+
 @endpush
