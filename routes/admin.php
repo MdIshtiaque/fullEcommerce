@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\SliderController;
 use Illuminate\Support\Facades\Route;
 
 
+    Route::get('/sales-data', [DashboardController::class, "getMonthlySalesData"]);
 Route::middleware(['auth', 'verified'])->prefix('admin/')->group(function () {
     Route::get('dashboard', [DashboardController::class, "dashboard"])->name('admin.dashboard');
     Route::get('settings/logo', [SettingsController::class, "logo"])->name('admin.setting.logo');
