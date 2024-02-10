@@ -103,59 +103,41 @@
                 </div>
                 <!-- END: Sales Report -->
                 <!-- BEGIN: Weekly Top Seller -->
-                <div class="col-span-12 sm:col-span-6 lg:col-span-3 mt-8">
+                <div class="col-span-12 sm:col-span-6 lg:col-span-6 mt-8">
                     <div class="intro-y flex items-center h-10">
                         <h2 class="text-lg font-medium truncate mr-5">
-                            Weekly Top Seller
+                            Unique Visitors
                         </h2>
-                        <a href="" class="ml-auto text-primary truncate">Show More</a>
                     </div>
                     <div class="intro-y box p-5 mt-5">
-                        <canvas class="mt-3" id="report-pie-chart" height="300"></canvas>
-                        <div class="mt-8">
-                            <div class="flex items-center">
-                                <div class="w-2 h-2 bg-primary rounded-full mr-3"></div>
-                                <span class="truncate">17 - 30 Years old</span> <span
-                                    class="font-medium xl:ml-auto">62%</span>
-                            </div>
-                            <div class="flex items-center mt-4">
-                                <div class="w-2 h-2 bg-pending rounded-full mr-3"></div>
-                                <span class="truncate">31 - 50 Years old</span> <span
-                                    class="font-medium xl:ml-auto">33%</span>
-                            </div>
-                            <div class="flex items-center mt-4">
-                                <div class="w-2 h-2 bg-warning rounded-full mr-3"></div>
-                                <span class="truncate">>= 50 Years old</span> <span
-                                    class="font-medium xl:ml-auto">10%</span>
-                            </div>
-                        </div>
+                        <div class="mt-3" id="uniqueVisitsChart" height="300"></div>
                     </div>
                 </div>
-                <div class="col-span-12 sm:col-span-6 lg:col-span-3 mt-8">
-                    <div class="intro-y flex items-center h-10">
-                        <h2 class="text-lg font-medium truncate mr-5">
-                            Sales Report
-                        </h2>
-                        <a href="" class="ml-auto text-primary truncate">Show More</a>
-                    </div>
-                    <div class="intro-y box p-5 mt-5">
-                        <canvas class="mt-3" id="report-donut-chart" height="300"></canvas>
-                        <div class="mt-8">
-                            <div class="flex items-center">
-                                <div class="w-2 h-2 bg-primary rounded-full mr-3"></div>
-                                <span class="truncate">17 - 30 Years old</span> <span class="font-medium xl:ml-auto">62%</span>
-                            </div>
-                            <div class="flex items-center mt-4">
-                                <div class="w-2 h-2 bg-pending rounded-full mr-3"></div>
-                                <span class="truncate">31 - 50 Years old</span> <span class="font-medium xl:ml-auto">33%</span>
-                            </div>
-                            <div class="flex items-center mt-4">
-                                <div class="w-2 h-2 bg-warning rounded-full mr-3"></div>
-                                <span class="truncate">>= 50 Years old</span> <span class="font-medium xl:ml-auto">10%</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+{{--                <div class="col-span-12 sm:col-span-6 lg:col-span-3 mt-8">--}}
+{{--                    <div class="intro-y flex items-center h-10">--}}
+{{--                        <h2 class="text-lg font-medium truncate mr-5">--}}
+{{--                            Sales Report--}}
+{{--                        </h2>--}}
+{{--                        <a href="" class="ml-auto text-primary truncate">Show More</a>--}}
+{{--                    </div>--}}
+{{--                    <div class="intro-y box p-5 mt-5">--}}
+{{--                        <canvas class="mt-3" id="report-donut-chart" height="300"></canvas>--}}
+{{--                        <div class="mt-8">--}}
+{{--                            <div class="flex items-center">--}}
+{{--                                <div class="w-2 h-2 bg-primary rounded-full mr-3"></div>--}}
+{{--                                <span class="truncate">17 - 30 Years old</span> <span class="font-medium xl:ml-auto">62%</span>--}}
+{{--                            </div>--}}
+{{--                            <div class="flex items-center mt-4">--}}
+{{--                                <div class="w-2 h-2 bg-pending rounded-full mr-3"></div>--}}
+{{--                                <span class="truncate">31 - 50 Years old</span> <span class="font-medium xl:ml-auto">33%</span>--}}
+{{--                            </div>--}}
+{{--                            <div class="flex items-center mt-4">--}}
+{{--                                <div class="w-2 h-2 bg-warning rounded-full mr-3"></div>--}}
+{{--                                <span class="truncate">>= 50 Years old</span> <span class="font-medium xl:ml-auto">10%</span>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
             </div>
         </div>
     </div>
@@ -198,5 +180,44 @@
                 .catch(error => console.log(error));
         });
     </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function(){
+            fetch('/unique-user-visits')
+                .then(response => response.json())
+                .then(data => {
+                    var options = {
+                        series: data.data,
+                        chart: {
+                            type: 'radialBar',
+                            height: 448
+                        },
+                        plotOptions: {
+                            radialBar: {
+                                dataLabels: {
+                                    name: {
+                                        fontSize: '22px',
+                                    },
+                                    value: {
+                                        fontSize: '16px',
+                                    },
+                                    total: {
+                                        show: true,
+                                        label: 'Total Unique Site Visitors',
+                                        formatter: function (w) {
+                                            // By default this function returns the average of all series. The below is just an example to show the use of custom formatter function
+                                            return data.data
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        labels: data.labels,
+                    };
 
+                    var chart = new ApexCharts(document.querySelector("#uniqueVisitsChart"), options);
+                    chart.render();
+                })
+                .catch(error => console.log(error));
+        });
+    </script>
 @endpush

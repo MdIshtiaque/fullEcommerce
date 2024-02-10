@@ -6,7 +6,7 @@
     @include('Admin.partials.search')
     <!-- END: Search -->
     <!-- BEGIN: Notifications -->
-    @include('Admin.partials.notifications')
+{{--    @include('Admin.partials.notifications')--}}
     <!-- END: Notifications -->
     <!-- BEGIN: Account Menu -->
     @include('Admin.partials.account')

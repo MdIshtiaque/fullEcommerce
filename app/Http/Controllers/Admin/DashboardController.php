@@ -13,6 +13,7 @@ use Carbon\Carbon;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Foundation\Application;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -48,7 +49,8 @@ class DashboardController extends Controller
             'previousMonthTotal' => $previousMonthTotal]);
     }
 
-    public function getMonthlySalesData() {
+    public function getMonthlySalesData(): JsonResponse
+    {
         $salesData = Order::select(
             DB::raw('sum(total_charge) as sums'),
             DB::raw("DATE_FORMAT(created_at, '%m') as monthKey")
@@ -65,6 +67,23 @@ class DashboardController extends Controller
         return response()->json([
             'labels' => array_keys($months),
             'data' => array_values($months),
+        ]);
+    }
+
+    public function getUniqueUserVisits(): JsonResponse
+    {
+        $visits = DB::table('visits')
+            ->select(DB::raw('COUNT(DISTINCT user_id) as unique_visits'), DB::raw("DATE_FORMAT(created_at, '%Y-%m') as month"))
+            ->groupBy('month')
+            ->orderBy('month', 'ASC')
+            ->get();
+
+        $months = $visits->pluck('month')->toArray();
+        $uniqueVisits = $visits->pluck('unique_visits')->toArray();
+
+        return response()->json([
+            'labels' => $months,
+            'data' => $uniqueVisits,
         ]);
     }
 }
