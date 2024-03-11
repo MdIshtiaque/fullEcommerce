@@ -44,8 +44,12 @@
                             <li><a href="#account-details" data-bs-toggle="tab"
                                    class="nav-link btn btn-block btn-md btn-black-default-hover">Account details</a>
                             </li>
-                            <li><a href="login.html"
-                                   class="nav-link btn btn-block btn-md btn-black-default-hover">logout</a></li>
+                            <li>
+                                <form action="{{ route('user.auth.logout') }}" method="post">
+                                    @csrf
+                                <button type="submit"
+                                   class="nav-link btn btn-block btn-md btn-black-default-hover">logout</button>
+                                </form></li>
                         </ul>
                     </div>
                 </div>

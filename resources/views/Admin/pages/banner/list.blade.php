@@ -26,18 +26,18 @@
                             <div class="mb-3">
                                 <label for="regular-form-1" class="form-label">Title</label>
                                 <input id="regular-form-1" type="text" name="title" class="form-control"
-                                       placeholder="Enter Slider Title" value="{{ $items[0]->title }}" required>
+                                       placeholder="Enter Slider Title" value="{{ isset($items[0]) ? $items[0]->title : '' }}" required>
                             </div>
                             <div class="mb-3">
                                 <label for="regular-form-1" class="form-label">Description</label>
                                 <textarea id="regular-form-1" name="description" class="form-control"
                                           placeholder="Enter Banner Description"
-                                          required>{{ $items[0]->description }}</textarea>
+                                          required>{{ isset($items[0]) ? $items[0]->description :  '' }}</textarea>
                             </div>
                             <div class="mb-3">
                                 <label for="regular-form-1" class="form-label">Slider Image</label>
                                 <input name="file" type="file"
-                                       data-default-file="{{ asset('admin/Banner').'/'. $items[0]->image }}"
+                                       data-default-file="{{ isset($items[0]) ?  asset('admin/Banner').'/'. $items[0]->image : '' }}"
                                        class="dropify" data-height="400"/>
                             </div>
                         </div>
@@ -65,19 +65,19 @@
                             <div class="mb-3">
                                 <label for="regular-form-1" class="form-label">Title</label>
                                 <input id="regular-form-1" type="text" name="title" class="form-control"
-                                       value="{{ $items[1]->title }}"
+                                       value="{{ isset($items[1]) ? $items[1]->title : '' }}"
                                        placeholder="Enter Slider Title" required>
                             </div>
                             <div class="mb-3">
                                 <label for="regular-form-1" class="form-label">Description</label>
                                 <textarea id="regular-form-1" name="description" class="form-control"
                                           placeholder="Enter Banner Description"
-                                          required>{{ $items[1]->description }}</textarea>
+                                          required>{{ isset($items[1]) ? $items[1]->description : '' }}</textarea>
                             </div>
                             <div class="mb-3">
                                 <label for="regular-form-1" class="form-label">Slider Image</label>
                                 <input name="file" type="file" class="dropify"
-                                       data-default-file="{{ asset('admin/Banner').'/'. $items[1]->image }}"
+                                       data-default-file="{{ isset($items[1]) ?  asset('admin/Banner').'/'. $items[1]->image : '' }}"
                                        data-height="400"/>
                             </div>
                         </div>

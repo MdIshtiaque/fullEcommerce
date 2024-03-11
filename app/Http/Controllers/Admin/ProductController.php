@@ -98,6 +98,7 @@ class ProductController extends Controller
             DB::commit();
             dispatch(new SendNewProductEmail($product));
         } catch (Exception $exception) {
+            dd($exception->getMessage());
             DB::rollback();
             toastr()->error('Something went wrong!!!');
         }

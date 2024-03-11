@@ -48,7 +48,7 @@
                                     <i class="fa fa-map-marker"></i>
                                 </div>
                                 <div class="contact-details-content contact-phone">
-                                    <span>Your address goes here.</span>
+                                    <span>Moti Plaza (2nd Floor) Ship Company Junction, Rangpur.</span>
                                 </div>
                             </div> <!-- End Contact Details Single Item -->
                         </div>

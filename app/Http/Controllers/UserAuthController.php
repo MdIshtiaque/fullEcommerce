@@ -39,12 +39,14 @@ class UserAuthController extends Controller
         $validatedData = $request->validate([
             'name' => 'required|max:255',
             'email' => 'required|email|unique:users',
+            'phone' => 'required|unique:users',
             'password' => 'required|confirmed|min:6',
         ]);
 
         $user = User::create([
             'name' => $validatedData['name'],
             'email' => $validatedData['email'],
+            'phone' => $validatedData['phone'],
             'password' => Hash::make($validatedData['password']),
             'role' => User::USER_CUSTOMER
         ]);

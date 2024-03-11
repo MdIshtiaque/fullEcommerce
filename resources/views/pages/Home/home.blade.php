@@ -268,7 +268,7 @@
                      data-aos="fade-up" data-aos-delay="0">
                     <div class="image">
                         <img class="img-fluid"
-                             src="{{ $banners[0]->image ? asset('admin/Banner/'. $banners[0]->image) : asset('assets/images/banner/banner-style-8-img-1.jpg') }}"
+                             src="{{ isset($banners[0]) ? asset('admin/Banner/'. $banners[0]->image) : asset('assets/images/banner/banner-style-8-img-1.jpg') }}"
                              alt="">
                     </div>
                 </div>
@@ -280,7 +280,7 @@
                      data-aos="fade-up" data-aos-delay="200">
                     <div class="image">
                         <img class="img-fluid"
-                             src="{{ $banners[1]->image ? asset('admin/Banner/'. $banners[1]->image) : asset('assets/images/banner/banner-style-8-img-2.jpg') }}"
+                             src="{{ isset($banners[1]) ? asset('admin/Banner/'. $banners[1]->image) : asset('assets/images/banner/banner-style-8-img-2.jpg') }}"
                              alt="">
                     </div>
                 </div>

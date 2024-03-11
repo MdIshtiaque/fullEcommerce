@@ -69,6 +69,10 @@
                                 <input type="email" name="email" required>
                             </div>
                             <div class="default-form-box">
+                                <label>Phone Number <span>*</span></label>
+                                <input type="text" name="phone" required>
+                            </div>
+                            <div class="default-form-box">
                                 <label>Passwords <span>*</span></label>
                                 <input type="password" name="password" id="pass" required>
                             </div>
