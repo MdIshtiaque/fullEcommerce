@@ -7,26 +7,15 @@
     <!-- Start Mobile contact Info -->
     <div class="mobile-contact-info">
         <div class="logo">
-            <a href="index.html"><img src="{{ $systemLogo ? asset('admin/logo/' . $systemLogo) : asset('dist/images/logo.svg') }}" alt=""></a>
+            <a href="{{ route('home') }}"><img
+                    src="{{ $systemLogo ? asset('admin/logo/' . $systemLogo) : asset('dist/images/logo.svg') }}" alt=""></a>
         </div>
 
         <address class="address">
-            <span>Address: Your address goes here.</span>
-            <span>Call Us: 0123456789, 0123456789</span>
-            <span>Email: demo@example.com</span>
+            <span>Address: Moti Plaza (2nd Floor) Ship Company Junction, Rangpur.</span>
+            <span>Call Us: +8801331551351</span>
+            <span>Email: panjabiwala.rng@gmail.com</span>
         </address>
-
-        <ul class="social-link">
-            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-            <li><a href="#"><i class="fa fa-instagram"></i></a></li>
-            <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-        </ul>
-
-        <ul class="user-link">
-            <li><a href="cart.html">Cart</a></li>
-            <li><a href="checkout.html">Checkout</a></li>
-        </ul>
     </div>
     <!-- End Mobile contact Info -->
 </div>
@@ -40,7 +29,8 @@
     <!-- Start Mobile contact Info -->
     <div class="mobile-contact-info">
         <div class="logo">
-            <a href="index.html"><img src="{{ $systemLogo ? asset('admin/logo/' . $systemLogo) : asset('dist/images/logo.svg') }}" alt=""></a>
+            <a href="{{ route('home') }}"><img
+                    src="{{ $systemLogo ? asset('admin/logo/' . $systemLogo) : asset('dist/images/logo.svg') }}" alt=""></a>
         </div>
 
         <address class="address">
@@ -48,7 +38,7 @@
                 <span>You Are not Logged in</span>
             @else
                 <span>{{ auth()->user()->name }}</span>
-    {{--            <span>Call Us: 0123456789, 0123456789</span>--}}
+                {{--            <span>Call Us: 0123456789, 0123456789</span>--}}
                 <span>Email: {{ auth()->user()->email }}</span>
             @endif
         </address>
@@ -61,7 +51,9 @@
                 <li><a href="{{ route('user.account') }}" class="btn btn-black-default-hover">Account</a></li>
                 <form action="{{ route('user.auth.logout') }}" method="post">
                     @csrf
-                    <li><button type="submit" class="btn btn-black-default-hover">Logout</button></li>
+                    <li>
+                        <button type="submit" class="btn btn-black-default-hover">Logout</button>
+                    </li>
                 </form>
             @endif
         </ul>

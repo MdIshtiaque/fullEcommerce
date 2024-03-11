@@ -21,4 +21,16 @@ class HomeController extends Controller
             'banners' => $banners,
             'sliders' => $sliders]);
     }
+
+    public function contactUs()
+    {
+        $products = Product::with('productImage')->get();
+        $categories = Category::all();
+        $sliders = Slider::get();
+        $banners = Banner::get();
+        return view('pages.contact-us.contact-us', ['products' => $products,
+            'categories' => $categories,
+            'banners' => $banners,
+            'sliders' => $sliders]);
+    }
 }

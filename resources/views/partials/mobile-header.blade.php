@@ -6,9 +6,9 @@
                 <div class="mobile-header-left">
                     <ul class="mobile-menu-logo">
                         <li>
-                            <a href="index.html">
+                            <a href="{{ route('home') }}">
                                 <div class="logo">
-                                    <img src="{{ asset('assets/images/logo/logo_white.png') }}" alt="">
+                                    <img src="{{ $systemLogo ? asset('admin/logo/' . $systemLogo) : asset('dist/images/logo.svg') }}" alt="">
                                 </div>
                             </a>
                         </li>
@@ -19,17 +19,6 @@
                 <!-- Start Mobile Right Side -->
                 <div class="mobile-right-side">
                     <ul class="header-action-link action-color--white action-hover-color--pink">
-                        <li>
-                            <a href="#search">
-                                <i class="icon-magnifier"></i>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#offcanvas-wishlish" class="offcanvas-toggle">
-                                <i class="icon-heart"></i>
-                                <span class="item-count">3</span>
-                            </a>
-                        </li>
                         <li>
                             <a href="#offcanvas-add-cart" class="offcanvas-toggle">
                                 <i class="icon-bag"></i>

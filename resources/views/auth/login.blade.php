@@ -23,11 +23,11 @@
         <!-- BEGIN: Login Info -->
         <div class="hidden xl:flex flex-col min-h-screen">
             <a href="" class="-intro-x flex items-center pt-5">
-                <img alt="Tinker Tailwind HTML Admin Template" style="max-width: 50%;" class="w-3/12" src="{{ $systemLogo ? asset('admin/logo/' . $systemLogo) : asset('dist/images/logo.svg') }}">
+{{--                <img alt="Tinker Tailwind HTML Admin Template" style="max-width: 50%;" class="w-3/12" src="{{ $systemLogo ? asset('admin/logo/' . $systemLogo) : asset('dist/images/logo.svg') }}">--}}
             </a>
             <div class="my-auto">
                 <img alt="Tinker Tailwind HTML Admin Template" class="-intro-x w-1/2 -mt-16"
-                     src="{{ asset('admin/login.png') }}">
+                     src="{{ $systemLogo ? asset('admin/logo/' . $systemLogo) : asset('dist/images/logo.svg') }}">
                 <div class="-intro-x text-white font-medium text-4xl leading-tight mt-10">
                     A few more clicks to
                     <br>

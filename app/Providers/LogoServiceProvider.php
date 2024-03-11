@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\Cart;
 use App\Models\Logo;
 use Illuminate\Support\ServiceProvider;
 
@@ -22,5 +23,6 @@ class LogoServiceProvider extends ServiceProvider
     {
         $systemLogo = Logo::whereIs_active(true)->first();
         view()->share('systemLogo', $systemLogo->logo ?? "sadsad");
+
     }
 }

@@ -50,7 +50,7 @@
                         </ul>
                     </li>
                     <li><a href="about-us.html">About Us</a></li>
-                    <li><a href="contact-us.html">Contact Us</a></li>
+                    <li><a href="{{ route('contactUs') }}">Contact Us</a></li>
                 </ul>
             </div> <!-- End Mobile Menu Nav -->
         </div> <!-- End Mobile Menu -->

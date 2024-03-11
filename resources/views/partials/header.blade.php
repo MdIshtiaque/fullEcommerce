@@ -57,7 +57,7 @@
                                         <a href="about-us.html">About Us</a>
                                     </li>
                                     <li>
-                                        <a href="contact-us.html">Contact Us</a>
+                                        <a href="{{ route('contactUs') }}">Contact Us</a>
                                     </li>
                                 </ul>
                             </nav>
@@ -70,11 +70,6 @@
                                 <a href="#offcanvas-add-cart" class="offcanvas-toggle">
                                     <i class="icon-bag"></i>
                                     <span class="item-count cart-count" >{{ optional($cartItems)->count()?? 0 }}</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#search">
-                                    <i class="icon-magnifier"></i>
                                 </a>
                             </li>
                             <li>

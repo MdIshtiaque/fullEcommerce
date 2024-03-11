@@ -124,19 +124,6 @@
                                     </label>
                                 </div>
                             </div>
-
-                            <!-- Product Variable Single Item -->
-                            {{--                            <div class="variable-single-item">--}}
-                            {{--                                <span>Size</span>--}}
-                            {{--                                <select class="product-variable-size">--}}
-                            {{--                                    <option selected value="1"> size in option</option>--}}
-                            {{--                                    <option value="2">s</option>--}}
-                            {{--                                    <option value="3">m</option>--}}
-                            {{--                                    <option value="4">l</option>--}}
-                            {{--                                    <option value="5">xl</option>--}}
-                            {{--                                    <option value="6">xxl</option>--}}
-                            {{--                                </select>--}}
-                            {{--                            </div>--}}
                             <!-- Product Variable Single Item -->
                             <div class="d-flex align-items-center ">
                                 <div class="variable-single-item ">
@@ -146,17 +133,20 @@
                                     </div>
                                 </div>
 
-                                <div class="product-add-to-cart-btn">
-                                    <a href="#" class="add-to-cart-btn" data-product-id="{{ $item->id }}"
-                                       data-product-price="{{ $item->price }}" data-bs-toggle="modal"
-                                       data-bs-target="#modalAddcart-{{ $item->id }}">+ Add To Cart</a>
-                                </div>
+                                @if($item->stock > 0)
+                                    <div class="product-add-to-cart-btn">
+                                        <a href="#" class="add-to-cart-btn" data-product-id="{{ $item->id }}"
+                                           data-product-price="{{ $item->price }}" data-bs-toggle="modal"
+                                           data-bs-target="#modalAddcart-{{ $item->id }}">+ Add To Cart</a>
+                                    </div>
+                                @else
+                                    <div class="product-add-to-cart-btn">
+                                        <button class="out-of-stock-btn" disabled>Out Of Stock</button>
+                                    </div>
+                                @endif
                             </div>
                             <!-- Start  Product Details Meta Area-->
-                            <div class="product-details-meta mb-20">
-                                <a href="wishlist.html" class="icon-space-right"><i class="icon-heart"></i>Add to
-                                    wishlist</a>
-                            </div>
+
                             <!-- End  Product Details Meta Area-->
                         </div>
                         <!-- End Product Variable Area -->
@@ -174,20 +164,6 @@
                             </ul>
                         </div>
                         <!-- End  Product Details Catagories Area-->
-
-
-                        <!-- Start  Product Details Social Area-->
-                        <div class="product-details-social">
-                            <span class="title">SHARE THIS PRODUCT:</span>
-                            <ul>
-                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                <li><a href="#"><i class="fa fa-pinterest"></i></a></li>
-                                <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                                <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                            </ul>
-                        </div>
-                        <!-- End  Product Details Social Area-->
                     </div>
                 </div>
             </div>
@@ -205,12 +181,6 @@
                         <ul class="nav tablist product-details-content-tab-btn d-flex justify-content-center">
                             <li><a class="nav-link active" data-bs-toggle="tab" href="#description">
                                     Description
-                                </a></li>
-                            <li><a class="nav-link" data-bs-toggle="tab" href="#specification">
-                                    Specification
-                                </a></li>
-                            <li><a class="nav-link" data-bs-toggle="tab" href="#review">
-                                    Reviews (1)
                                 </a></li>
                         </ul> <!-- End Product Details Tab Button -->
 
@@ -457,7 +427,7 @@
                                             </div>
                                             <div class="modal-add-cart-product-cart-buttons">
                                                 <a href="cart.html">View Cart</a>
-                                                <a href="checkout.html">Checkout</a>
+                                                <a href="{{ route('user.checkout', ['product' => $item->id]) }}">Checkout</a>
                                             </div>
                                         </div>
                                     </div>
