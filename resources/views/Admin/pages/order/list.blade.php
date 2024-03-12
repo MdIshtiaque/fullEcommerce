@@ -79,9 +79,11 @@
                         </td>
                         <td class="table-report__action w-56">
                             <div class="flex justify-center items-center">
-                                <a href="{{ route('completeOrder', [$item->id]) }}" class="flex items-center mr-3 edit-button"><i
-                                        data-feather="check-square" class="w-4 h-4 mr-1"></i> Mark as done
-                                </a>
+                                @if($item->status === \App\Models\Order::STATUS_PENDING)
+                                    <a href="{{ route('completeOrder', [$item->id]) }}" class="flex items-center mr-3 edit-button"><i
+                                            data-feather="check-square" class="w-4 h-4 mr-1"></i> Mark as done
+                                    </a>
+                                @endif
                                 <a href="{{ route('user.invoice', [$item->id]) }}" target="_blank" class="flex items-center mr-3 edit-button"><i
                                         data-feather="check-square" class="w-4 h-4 mr-1"></i> View Invoice
                                 </a>
