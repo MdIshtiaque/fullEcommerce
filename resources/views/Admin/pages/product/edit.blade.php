@@ -196,51 +196,11 @@
                             @endforeach
                         </select>
                     </div>
-
                     {{--                    TODO:: need to fix--}}
                     <div class="mt-3">
-                        <label for="post-form-4" class="form-label">Size (OPTIONAL)</label>
-                        <select data-placeholder="Add your product sizes" class="tom-select w-full" id="post-form-4"
-                                name="size[]" multiple>
-                            <option value="S">S</option>
-                            <option value="M">M</option>
-                            <option value="X">X</option>
-                            <option value="XL">XL</option>
-                            <option value="XXL">XXL</option>
-                        </select>
-                    </div>
-                    {{--                    TODO:: need to fix--}}
-                    <div class="mt-3">
-                        <h1 class="mb-2">Select Color</h1>
-                        <input type="radio" name="color1" id="red" value="red"/>
-                        <label for="red"><span class="red"></span></label>
-
-                        <input type="radio" name="color" id="green"/>
-                        <label for="green"><span class="green"></span></label>
-
-                        <input type="radio" name="color" id="yellow"/>
-                        <label for="yellow"><span class="yellow"></span></label>
-
-                        <input type="radio" name="color" id="olive"/>
-                        <label for="olive"><span class="olive"></span></label>
-
-                        <input type="radio" name="color" id="orange"/>
-                        <label for="orange"><span class="orange"></span></label>
-
-                        <input type="radio" name="color" id="teal"/>
-                        <label for="teal"><span class="teal"></span></label>
-
-                        <input type="radio" name="color" id="blue"/>
-                        <label for="blue"><span class="blue"></span></label>
-
-                        <input type="radio" name="color" id="violet"/>
-                        <label for="violet"><span class="violet"></span></label>
-
-                        <input type="radio" name="color" id="purple"/>
-                        <label for="purple"><span class="purple"></span></label>
-
-                        <input type="radio" name="color" id="pink"/>
-                        <label for="pink"><span class="pink"></span></label>
+                        <label for="post-form-4" class="form-label">Product code</label>
+                        <input type="text" name="product_code" class="form-control" id="post-form-2"
+                               data-single-mode="true" value="{{ $product->product_code }}" required>
                     </div>
 
 
@@ -258,6 +218,11 @@
                         <label for="post-form-4" class="form-label">Product Price</label>
                         <input type="text" name="price" class="form-control" id="post-form-2"
                                data-single-mode="true" value="{{ $product->price }}" required>
+                    </div>
+                    <div class="mt-3">
+                        <label for="post-form-4" class="form-label">Discount Product Price</label>
+                        <input type="text" name="discount_price" class="form-control" id="post-form-2"
+                               data-single-mode="true" value="{{ $product->discount_price }}">
                     </div>
                     <div class="mt-3">
                         <label for="post-form-4" class="form-label">Product Stock</label>

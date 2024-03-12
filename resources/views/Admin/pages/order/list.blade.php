@@ -72,13 +72,16 @@
                             <a href="" class="font-medium whitespace-nowrap">{{ $item->user->name }}</a>
                         </td>
                         <td class="text-center">
-                            <a href="" class="font-medium whitespace-nowrap">PENDING</a>
+                            <a href="" class="font-medium whitespace-nowrap">{{ $item->status }}</a>
                         </td>
                         <td class="w-40 status">
                             <a href="" class="font-medium whitespace-nowrap">{{ $item->created_at->format('jS F, Y') }}</a>
                         </td>
                         <td class="table-report__action w-56">
                             <div class="flex justify-center items-center">
+                                <a href="{{ route('completeOrder', [$item->id]) }}" class="flex items-center mr-3 edit-button"><i
+                                        data-feather="check-square" class="w-4 h-4 mr-1"></i> Mark as done
+                                </a>
                                 <a href="{{ route('user.invoice', [$item->id]) }}" target="_blank" class="flex items-center mr-3 edit-button"><i
                                         data-feather="check-square" class="w-4 h-4 mr-1"></i> View Invoice
                                 </a>

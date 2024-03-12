@@ -45,6 +45,7 @@
                     <th class="whitespace-nowrap">PRODUCT NAME</th>
                     <th class="text-center whitespace-nowrap">STOCK</th>
                     <th class="text-center whitespace-nowrap">PRICE</th>
+                    <th class="text-center whitespace-nowrap">Discount PRICE</th>
                     <th class="text-center whitespace-nowrap">Published/Unpublished</th>
                     <th class="text-center whitespace-nowrap">STATUS</th>
                     <th class="text-center whitespace-nowrap">ACTIONS</th>
@@ -80,6 +81,11 @@
                         <td class="w-40">
                             <div
                                 class="flex items-center justify-center w">{{ $product->productCurrency->symbol }} {{ $product->price }}
+                            </div>
+                        </td>
+                        <td class="w-40">
+                            <div
+                                class="flex items-center justify-center w">{{ $product->productCurrency->symbol }} {{ $product->discount_price }}
                             </div>
                         </td>
                         <td class="text-center">

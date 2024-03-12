@@ -14,6 +14,9 @@ class Order extends Model
 
     protected $guarded = ['id'];
 
+    const STATUS_PENDING = 'pending';
+    const STATUS_COMPLETED = 'completed';
+
     public function billingDetail(): BelongsTo
     {
         return $this->belongsTo(BillingDetails::class);

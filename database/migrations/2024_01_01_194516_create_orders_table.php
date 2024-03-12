@@ -19,6 +19,7 @@ return new class extends Migration
             $table->decimal('shipping_charge', 10, 2)->nullable();
             $table->string('discount')->nullable();
             $table->decimal('total_charge', 10, 2);
+            $table->string('status')->default(\App\Models\Order::STATUS_PENDING);
             $table->enum('payment_type', ['cash', 'paypal', 'credit_card', 'online', 'other']);
             $table->boolean('is_payment')->default(false);
             $table->timestamps();

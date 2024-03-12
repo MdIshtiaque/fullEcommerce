@@ -41,6 +41,7 @@ Route::middleware(['auth', 'verified'])->prefix('admin/')->group(function () {
         Route::get('/export-products', [ProductController::class, 'exportProducts'])->name('export.products');
 
         Route::get('/orders', [OrderController::class, 'showAllOrder'])->name('admin.orderList');
+        Route::get('/done-order/{order}', [OrderController::class, 'completeOrder'])->name('completeOrder');
 
         Route::get('/Coupons', [CouponController::class, 'showAllCoupons'])->name('admin.coupons');
         Route::post('/Coupons/store', [CouponController::class, 'couponStore'])->name('admin.couponStore');

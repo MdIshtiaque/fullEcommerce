@@ -67,6 +67,8 @@ class ProductController extends Controller
                 'description' => $request->description,
                 'tags' => $tags,
                 'price' => $request->price,
+                'product_code' => $request->product_code,
+                'discount_price' => $request->discount_price,
                 'stock' => $request->stock,
                 'is_active' => ($status === 'on') ? true : false,
                 'has_coupon' => ($coupon === 'on') ? true : false,
@@ -96,7 +98,6 @@ class ProductController extends Controller
                 ]);
             }
             DB::commit();
-            dispatch(new SendNewProductEmail($product));
         } catch (Exception $exception) {
             dd($exception->getMessage());
             DB::rollback();
@@ -122,6 +123,8 @@ class ProductController extends Controller
                 'name' => $request->name,
                 'description' => $request->description,
                 'tags' => $tags,
+                'product_code' => $request->product_code,
+                'discount_price' => $request->discount_price,
                 'price' => $request->price,
                 'stock' => $request->stock,
                 'is_active' => ($status === 'on') ? true : false,
@@ -141,16 +144,16 @@ class ProductController extends Controller
                     ]
                 );
             }
-        if ($request->file('image') != '') {
-            foreach ($request->file('image') as $photo) {
-                if (in_array($photo->getClientOriginalName(), $photoArray)) {
-                    $image = $product->productImage()->create([
-                        'product_id' => $product->id,
-                    ]);
-                    upload($image, $photo, 'image');
+            if ($request->file('image') != '') {
+                foreach ($request->file('image') as $photo) {
+                    if (in_array($photo->getClientOriginalName(), $photoArray)) {
+                        $image = $product->productImage()->create([
+                            'product_id' => $product->id,
+                        ]);
+                        upload($image, $photo, 'image');
+                    }
                 }
             }
-        }
 
             if ($coupon === 'on') {
                 if ($product->has_coupon === true) {

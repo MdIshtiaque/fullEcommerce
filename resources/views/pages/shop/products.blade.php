@@ -23,13 +23,12 @@
             <div class="container">
                 <div class="row">
                     <div class="col-12">
-                        <h3 class="breadcrumb-title">Shop - Full Width</h3>
+                        <h3 class="breadcrumb-title">Shop</h3>
                         <div class="breadcrumb-nav breadcrumb-nav-color--black breadcrumb-nav-hover-color--golden">
                             <nav aria-label="breadcrumb">
                                 <ul>
                                     <li><a href="index.html">Home</a></li>
                                     <li><a href="shop-grid-sidebar-left.html">Shop</a></li>
-                                    <li class="active" aria-current="page">Shop Full Width</li>
                                 </ul>
                             </nav>
                         </div>
@@ -105,7 +104,7 @@
                                                                         <a href="#" data-bs-toggle="modal"
                                                                            class="add-to-cart-btn"
                                                                            data-product-id="{{ $item->product->id }}"
-                                                                           data-product-price="{{ $item->product->price }}"
+                                                                           data-product-price="{{ isset($item->product->discount_price) ? $item->product->discount_price :$item->product->price }}"
                                                                            data-bs-target="#modalAddcart-{{ $item->product->id }}">Add
                                                                             to
                                                                             Cart</a>
@@ -143,8 +142,14 @@
                                                                     </ul>
                                                                 </div>
                                                                 <div class="content-right">
-                                                                    <span
-                                                                        class="price">{{ $item->product->symbol->symbol }}{{ $item->product->price }}</span>
+                                                                    @if(isset($item->product->discount_price))
+                                                                        <del class="price">{{ $item->product->symbol->symbol }}{{ $item->product->price }}</del>
+                                                                        <span class="price">{{ $item->product->symbol->symbol }}{{ $item->product->discount_price }}</span>
+                                                                    @else
+                                                                        <span class="price">{{ $item->product->symbol->symbol }}{{ $item->product->price }}</span>
+                                                                    @endif
+{{--                                                                    <span--}}
+{{--                                                                        class="price">{{ $item->product->symbol->symbol }}{{ $item->product->price }}</span>--}}
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -198,7 +203,7 @@
                                                                     <a href="#"
                                                                        class="btn btn-lg btn-black-default-hover add-to-cart-btn"
                                                                        data-product-id="{{ $item->product->id }}"
-                                                                       data-product-price="{{ $item->product->price }}">Add
+                                                                       data-product-price="{{ isset($item->product->discount_price) ? $item->product->discount_price :$item->product->price }}">Add
                                                                         to
                                                                         cart</a>
                                                                     <a href="#" data-bs-toggle="modal"
@@ -271,8 +276,6 @@
                                     </div>
                                     <div class="col-md-5 modal-border">
                                         <ul class="modal-add-cart-product-shipping-info">
-                                            <li><strong><i class="icon-shopping-cart"></i> There Are 5 Items In Your
-                                                    Cart.</strong></li>
                                             <li><strong>TOTAL PRICE: </strong> <span>$187.00</span></li>
                                             <li class="modal-continue-button"><a href="#" data-bs-dismiss="modal">CONTINUE
                                                     SHOPPING</a></li>

@@ -75,7 +75,12 @@
                                 </ul>
                                 <a href="#" class="customer-review ml-2">(customer review )</a>
                             </div>
-                            <div class="price">{{ $item->symbol->symbol }} {{ $item->price }}</div>
+                            @if(isset($item->discount_price))
+                                <del class="price">{{ $item->symbol->symbol }} {{ $item->price }}</del>
+                                <div class="price">{{ $item->symbol->symbol }} {{ $item->discount_price }}</div>
+                            @else
+                                <div class="price">{{ $item->symbol->symbol }} {{ $item->price }}</div>
+                            @endif
                             <p>{{ $item->description }}</p>
                         </div>
                         <!-- End  Product Details Text Area-->
@@ -89,41 +94,41 @@
                                 </div>
                             </div>
                             <!-- Product Variable Single Item -->
-                            <div class="variable-single-item">
-                                <span>Color</span>
-                                <div class="product-variable-color">
-                                    <label for="product-color-red">
-                                        <input name="product-color" id="product-color-red" class="color-select"
-                                               type="radio" checked>
-                                        <span class="product-color-red"></span>
-                                    </label>
-                                    <label for="product-color-tomato">
-                                        <input name="product-color" id="product-color-tomato" class="color-select"
-                                               type="radio">
-                                        <span class="product-color-tomato"></span>
-                                    </label>
-                                    <label for="product-color-green">
-                                        <input name="product-color" id="product-color-green" class="color-select"
-                                               type="radio">
-                                        <span class="product-color-green"></span>
-                                    </label>
-                                    <label for="product-color-light-green">
-                                        <input name="product-color" id="product-color-light-green" class="color-select"
-                                               type="radio">
-                                        <span class="product-color-light-green"></span>
-                                    </label>
-                                    <label for="product-color-blue">
-                                        <input name="product-color" id="product-color-blue" class="color-select"
-                                               type="radio">
-                                        <span class="product-color-blue"></span>
-                                    </label>
-                                    <label for="product-color-light-blue">
-                                        <input name="product-color" id="product-color-light-blue" class="color-select"
-                                               type="radio">
-                                        <span class="product-color-light-blue"></span>
-                                    </label>
-                                </div>
-                            </div>
+{{--                            <div class="variable-single-item">--}}
+{{--                                <span>Color</span>--}}
+{{--                                <div class="product-variable-color">--}}
+{{--                                    <label for="product-color-red">--}}
+{{--                                        <input name="product-color" id="product-color-red" class="color-select"--}}
+{{--                                               type="radio" checked>--}}
+{{--                                        <span class="product-color-red"></span>--}}
+{{--                                    </label>--}}
+{{--                                    <label for="product-color-tomato">--}}
+{{--                                        <input name="product-color" id="product-color-tomato" class="color-select"--}}
+{{--                                               type="radio">--}}
+{{--                                        <span class="product-color-tomato"></span>--}}
+{{--                                    </label>--}}
+{{--                                    <label for="product-color-green">--}}
+{{--                                        <input name="product-color" id="product-color-green" class="color-select"--}}
+{{--                                               type="radio">--}}
+{{--                                        <span class="product-color-green"></span>--}}
+{{--                                    </label>--}}
+{{--                                    <label for="product-color-light-green">--}}
+{{--                                        <input name="product-color" id="product-color-light-green" class="color-select"--}}
+{{--                                               type="radio">--}}
+{{--                                        <span class="product-color-light-green"></span>--}}
+{{--                                    </label>--}}
+{{--                                    <label for="product-color-blue">--}}
+{{--                                        <input name="product-color" id="product-color-blue" class="color-select"--}}
+{{--                                               type="radio">--}}
+{{--                                        <span class="product-color-blue"></span>--}}
+{{--                                    </label>--}}
+{{--                                    <label for="product-color-light-blue">--}}
+{{--                                        <input name="product-color" id="product-color-light-blue" class="color-select"--}}
+{{--                                               type="radio">--}}
+{{--                                        <span class="product-color-light-blue"></span>--}}
+{{--                                    </label>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
                             <!-- Product Variable Single Item -->
                             <div class="d-flex align-items-center ">
                                 <div class="variable-single-item ">
@@ -136,7 +141,7 @@
                                 @if($item->stock > 0)
                                     <div class="product-add-to-cart-btn">
                                         <a href="#" class="add-to-cart-btn" data-product-id="{{ $item->id }}"
-                                           data-product-price="{{ $item->price }}" data-bs-toggle="modal"
+                                           data-product-price="{{ isset($item->discount_price) ? $item->discount_price :$item->price }}" data-bs-toggle="modal"
                                            data-bs-target="#modalAddcart-{{ $item->id }}">+ Add To Cart</a>
                                     </div>
                                 @else

@@ -106,7 +106,7 @@
                                                                         <a href="#" data-bs-toggle="modal"
                                                                            class="add-to-cart-btn"
                                                                            data-product-id="{{ $item->id }}"
-                                                                           data-product-price="{{ $item->price }}"
+                                                                           data-product-price="{{ isset($item->discount_price) ? $item->discount_price :$item->price }}"
                                                                            data-bs-target="#modalAddcart-{{ $item->id }}">Add
                                                                             to
                                                                             Cart</a>
@@ -144,8 +144,13 @@
                                                                     </ul>
                                                                 </div>
                                                                 <div class="content-right">
-                                                                    <span
-                                                                        class="price">{{ $item->symbol->symbol }}{{ $item->price }}</span>
+                                                                    @if(isset($item->discount_price))
+                                                                        <span class="price" style="text-decoration: line-through">{{ $item->symbol->symbol }}{{ $item->price }}</span>
+                                                                        <span class="price">{{ $item->symbol->symbol }}{{ $item->discount_price }}</span>
+                                                                    @else
+                                                                        <span class="price">{{ $item->symbol->symbol }}{{ $item->price }}</span>
+                                                                    @endif
+{{--                                                                    <span class="price">{{ $item->symbol->symbol }}{{ $item->price }}</span>--}}
                                                                 </div>
 
                                                             </div>
@@ -200,7 +205,7 @@
                                                                     <a href="#"
                                                                        class="btn btn-lg btn-black-default-hover add-to-cart-btn"
                                                                        data-product-id="{{ $item->id }}"
-                                                                       data-product-price="{{ $item->price }}">Add
+                                                                       data-product-price="{{ isset($item->discount_price) ? $item->discount_price :$item->price }}">Add
                                                                         to
                                                                         cart</a>
                                                                     <a href="#" data-bs-toggle="modal"
@@ -273,9 +278,6 @@
                                     </div>
                                     <div class="col-md-5 modal-border">
                                         <ul class="modal-add-cart-product-shipping-info">
-                                            <li><strong><i class="icon-shopping-cart"></i> There Are 5 Items In Your
-                                                    Cart.</strong></li>
-                                            <li><strong>TOTAL PRICE: </strong> <span>$187.00</span></li>
                                             <li class="modal-continue-button"><a href="#" data-bs-dismiss="modal">CONTINUE
                                                     SHOPPING</a></li>
                                         </ul>
@@ -330,9 +332,6 @@
                                 </div>
                                 <div class="col-md-5 modal-border">
                                     <ul class="modal-add-cart-product-shipping-info">
-                                        <li><strong><i class="icon-shopping-cart"></i> There Are 5 Items In Your
-                                                Cart.</strong></li>
-                                        <li><strong>TOTAL PRICE: </strong> <span>$187.00</span></li>
                                         <li class="modal-continue-button"><a href="#" data-bs-dismiss="modal">CONTINUE
                                                 SHOPPING</a></li>
                                     </ul>

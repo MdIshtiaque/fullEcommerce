@@ -216,7 +216,7 @@
                                                         <a href="#" data-bs-toggle="modal"
                                                            class="add-to-cart-btn"
                                                            data-product-id="{{ $product->id }}"
-                                                           data-product-price="{{ $product->price }}"
+                                                           data-product-price="{{ isset($product->discount_price) ? $product->discount_price :$product->price }}"
                                                            data-bs-target="#modalAddcart-{{ $product->id }}">Add
                                                             to
                                                             Cart</a>
@@ -240,7 +240,12 @@
                                                     </ul>
                                                 </div>
                                                 <div class="content-right">
-                                                    <span class="price">{{ $product->price }}</span>
+                                                    @if(isset($product->discount_price))
+                                                        <del class="price">{{ $product->price }}</del>
+                                                        <span class="price">{{ $product->discount_price }}</span>
+                                                    @else
+                                                        <span class="price">{{ $product->price }}</span>
+                                                    @endif
                                                 </div>
 
                                             </div>
@@ -338,7 +343,7 @@
                                                         <a href="#" data-bs-toggle="modal"
                                                            class="add-to-cart-btn"
                                                            data-product-id="{{ $product->id }}"
-                                                           data-product-price="{{ $product->price }}"
+                                                           data-product-price="{{ isset($product->discount_price) ? $product->discount_price :$product->price }}"
                                                            data-bs-target="#modalAddcart-{{ $product->id }}">Add
                                                             to
                                                             Cart</a>
@@ -420,9 +425,6 @@
                             </div>
                             <div class="col-md-5 modal-border">
                                 <ul class="modal-add-cart-product-shipping-info">
-                                    <li><strong><i class="icon-shopping-cart"></i> There Are 5 Items In Your
-                                            Cart.</strong></li>
-                                    <li><strong>TOTAL PRICE: </strong> <span>$187.00</span></li>
                                     <li class="modal-continue-button"><a href="#" data-bs-dismiss="modal">CONTINUE
                                             SHOPPING</a></li>
                                 </ul>
@@ -645,9 +647,6 @@
                                     </div>
                                     <div class="col-md-5 modal-border">
                                         <ul class="modal-add-cart-product-shipping-info">
-                                            <li><strong><i class="icon-shopping-cart"></i> There Are 5 Items In Your
-                                                    Cart.</strong></li>
-                                            <li><strong>TOTAL PRICE: </strong> <span>$187.00</span></li>
                                             <li class="modal-continue-button"><a href="#" data-bs-dismiss="modal">CONTINUE
                                                     SHOPPING</a></li>
                                         </ul>

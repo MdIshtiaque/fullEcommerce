@@ -45,12 +45,6 @@
                                                 </li>
 
                                             </ul>
-                                            <div class="menu-banner">
-                                                <a href="#" class="menu-banner-link">
-                                                    <img class="menu-banner-img"
-                                                         src="{{ asset('assets/images/banner/menu-banner.jpg') }}" alt="">
-                                                </a>
-                                            </div>
                                         </div>
                                     </li>
                                     <li>

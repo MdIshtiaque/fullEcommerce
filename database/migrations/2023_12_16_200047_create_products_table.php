@@ -18,7 +18,9 @@ return new class extends Migration {
             $table->string('name');
             $table->text('description');
             $table->string('tags');
+            $table->string('product_code');
             $table->decimal('price', 10, 2);
+            $table->decimal('discount_price', 10, 2);
             $table->integer('stock');
             $table->boolean('has_coupon')->default(false);
             $table->boolean('is_active')->default(false);

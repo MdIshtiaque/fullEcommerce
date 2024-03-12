@@ -16,6 +16,6 @@ class DatabaseSeeder extends Seeder
         $this->call(AdminCredentialSeeder::class);
         $this->call(ColorSeeder::class);
         $this->call(CurrencySeeder::class);
-        $this->call(CategorySeeder::class);
+//        $this->call(CategorySeeder::class);
     }
 }
