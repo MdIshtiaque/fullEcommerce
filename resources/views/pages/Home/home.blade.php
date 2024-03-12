@@ -20,12 +20,18 @@
             object-fit: scale-down;
             object-position: center;
         }
+        .hero-slider-bg img {
+            width: 100%; /* Make the image fill the width of its container */
+            height: 700px; /* Set a fixed height for the image */
+            object-fit: cover; /* Cover the container without losing the aspect ratio */
+        }
+
 
     </style>
 @endpush
 @section('content')
     <!-- Start Hero Slider Section-->
-    <div class="hero-slider-section" style="height: 600px !important;">
+    <div class="hero-slider-section" style="height: 700px !important;">
         <!-- Slider main container -->
         <div class="hero-slider-active swiper-container">
             <!-- Additional required wrapper -->
@@ -45,8 +51,8 @@
                                 <div class="row">
                                     <div class="col-auto">
                                         <div class="hero-slider-content color">
-                                            <h4 style="color: white" class="subtitle">New collection</h4>
-                                            <h1 style="color: white" class="title">New Series of <br> Panjabi </h1>
+{{--                                            <h4 style="color: white" class="subtitle">New collection</h4>--}}
+{{--                                            <h1 style="color: white" class="title">New Series of <br> Panjabi </h1>--}}
                                             <a href="product-details-default.html" class="btn btn-lg btn-pink">shop
                                                 now </a>
                                         </div>

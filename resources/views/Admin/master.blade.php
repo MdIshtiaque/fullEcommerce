@@ -10,6 +10,7 @@
     <meta name="author" content="LEFT4CODE">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     @vite('resources/css/app.css')
+    <link rel="stylesheet" href="{{ asset('build/assets/app-f15cd5ac.css') }}">
     <title>Dashboard - পাঞ্জাবিওয়ালা</title>
     <!-- BEGIN: CSS Assets-->
     @include('Admin.include.styles')
@@ -40,6 +41,7 @@
 
 <!-- BEGIN: JS Assets-->
 @include('Admin.include.scripts')
+<script src="{{ asset('build/assets/app-73b80cb8.js') }}"></script>
 <!-- END: JS Assets-->
 </body>
 </html>
